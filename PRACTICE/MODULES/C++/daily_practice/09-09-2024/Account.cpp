@@ -34,10 +34,10 @@ public:
         this->name = name;
         this->balance = balance;
     }
-    int getBalance(Account *acc)
+    /*int getBalance(Account *acc)
     {
         int balance = 0;
-    }
+    }*/
     void Withdrawl(double amount) {
     	balance -= amount;
     }
@@ -63,13 +63,13 @@ int main()
     // Try to create Account objects using new operator.
     Account account[10];
     char ch;
+    int num = 0;
     do
     {
         showMenu();
         cout << "Enter your choice : ";
         char choice;
         cin >> choice;
-        int num = 0;
         int id;
         string name;
         double balance;
@@ -83,6 +83,8 @@ int main()
             cout << "enter the amount : ";
             cin >> balance;
             account[num].Accept(num, name, balance);
+            account[num].Display();
+            num++;
             break;
         }
         case '2':
@@ -104,6 +106,7 @@ int main()
             int withdrawl;
             cin >> withdrawl;
             account[no].Withdrawl(withdrawl);
+            account[no].Display();
             break;
         }
         case '4':
@@ -116,11 +119,12 @@ int main()
             int deposit;
             cin >> deposit;
             account[no].Deposit(deposit);
+            account[no].Display();
             break;
         }
         case '5':
         {
-            cout << "EXIT";
+            cout << "EXIT"<<endl;
             exit(1);
             break;
         }
