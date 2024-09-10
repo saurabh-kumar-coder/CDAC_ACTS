@@ -1,4 +1,4 @@
-
+#include<iostream>
 using namespace std;
 class Account {
 		int accountNo;
@@ -48,8 +48,7 @@ int main() {
 	int accountNo;
 	string name;
 	double balance;
-//	static int counter;
-	
+
 	do{
 		showMenu();
 		int choice;

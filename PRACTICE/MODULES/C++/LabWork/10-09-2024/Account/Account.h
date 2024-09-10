@@ -1,5 +1,3 @@
-
-
 class Account {
 		int accountNo;
 		string name;
@@ -18,7 +16,7 @@ class Account {
 		void Deposit(double deposit);
 };
 
-int Account::counter = 0;
+int Account::counter = 301;
 
 void showMenu();
 
