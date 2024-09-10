@@ -15,31 +15,7 @@ private:
     float balance;
 
 public:
-    // int getId()
-    // {
-    //     return id;
-    // }
-    // void setId(int id)
-    // {
-    //     this->id = id;
-    // }
-    // string getName()
-    // {
-    //     return name;
-    // }
-    // void setName(string name)
-    // {
-    //     this->name = name;
-    // }
-    // float setBalance()
-    // {
-    //     return balance;
-    // }
-    // void setBalance(float balance)
-    // {
-    //     this->balance = balance;
-    // }
-
+    
     // ctor
     Account() : id(0), name(""), balance(0.00f) {}
 
