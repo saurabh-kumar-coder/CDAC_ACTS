@@ -12,14 +12,14 @@ class Account
 private:
     int id;
     string name;
-    float balance;
+    double balance;
 
 public:
     
     // ctor
     Account() : id(0), name(""), balance(0.00f) {}
 
-    Account(int id, string name, float balance) : id(id), name(name), balance(balance) {}
+    Account(int id, string name, double balance) : id(id), name(name), balance(balance) {}
 
     // methods
     void Display()
@@ -28,7 +28,7 @@ public:
         cout << "Name: " << name << endl;
         cout << "Balance: " << balance << endl;
     }
-    void Accept(int id, string name, float balance)
+    void Accept(int id, string name, double balance)
     {
         this->id = id;
         this->name = name;
@@ -37,6 +37,12 @@ public:
     int getBalance(Account *acc)
     {
         int balance = 0;
+    }
+    void Withdrawl(double amount) {
+    	balance -= amount;
+    }
+    void Deposit(double amount) {
+    	balance += amount;
     }
 };
 
@@ -55,7 +61,7 @@ void showMenu()
 int main()
 {
     // Try to create Account objects using new operator.
-    Account *account = new Account[10];
+    Account account[10];
     char ch;
     do
     {
@@ -66,14 +72,12 @@ int main()
         int num = 0;
         int id;
         string name;
-        float balance;
+        double balance;
         switch (choice)
         {
         case '1':
         {
             cout << "ADD ACCOUNT" << endl;
-            // cout << "enter your id";
-            // cin >> id
             cout << "enter your name : ";
             cin >> name;
             cout << "enter the amount : ";
@@ -99,18 +103,25 @@ int main()
             cout << "Enter amount to be withdrawl : ";
             int withdrawl;
             cin >> withdrawl;
-            // int bal = getBalance(&account);
-            // cout << "BALANCE : " << bal;
+            account[no].Withdrawl(withdrawl);
             break;
         }
         case '4':
         {
-            cout << "DEPOSIT BALANCE";
+            cout << "DEPOSIT BALANCE"<<endl;
+            cout << "Enter account id : " << endl;
+            int no;
+            cin >> no;
+            cout << "Enter amount to be deposit : ";
+            int deposit;
+            cin >> deposit;
+            account[no].Deposit(deposit);
             break;
         }
         case '5':
         {
             cout << "EXIT";
+            exit(1);
             break;
         }
         default:
