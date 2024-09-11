@@ -1,3 +1,5 @@
+#include<iostream>
+using namespace std;
 class Account {
 		int accountNo;
 		string name;
@@ -16,7 +18,7 @@ class Account {
 		void Deposit(double deposit);
 };
 
-int Account::counter = 301;
+//int Account::counter = 301;
 
-void showMenu();
+//void showMenu();
 

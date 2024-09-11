@@ -1,10 +1,16 @@
 #include<iostream>
-#include "Account.h:
+#include "Account.h"
 #include<stdlib.h>
 using namespace std;
 
 int Account::counter = 0;
-
+void showMenu() {
+	cout<<"1. Create Account"<<endl;
+	cout<<"2. Display Account Info"<<endl;
+	cout<<"3. Deposit Balance"<<endl;
+	cout<<"4. Withdrawl Balance"<<endl;
+	cout<<"5. EXIT"<<endl;
+}
 int main() {
 	Account account[20];
 	char ch;
