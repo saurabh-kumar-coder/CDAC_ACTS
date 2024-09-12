@@ -12,7 +12,7 @@ class Array {
 		this->size = size;
 		ptr = new int[size];
 	}
-	
+	/*
 	Array(const Array &x) {
 		this->size = x.size;
 		ptr = new int[size];
@@ -20,7 +20,7 @@ class Array {
 			ptr[i] = x.ptr[i];
 		}
 	}
-	
+	*/
 	int & operator[] (int index) const {
 		return ptr[index];
 	}
@@ -60,7 +60,7 @@ int main() {
 		s1[i] = 6;
 		
 	Array s3 = s + s1;
-	
+	cout<<endl;
 	for(int i = 0; i < 5; i++)
 		cout<<s3.getPtr(i)<<endl;
 	
