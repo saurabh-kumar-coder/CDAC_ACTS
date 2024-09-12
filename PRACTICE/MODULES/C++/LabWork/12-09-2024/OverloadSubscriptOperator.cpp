@@ -12,15 +12,7 @@ class Array {
 		this->size = size;
 		ptr = new int[size];
 	}
-	/*
-	Array(const Array &x) {
-		this->size = x.size;
-		ptr = new int[size];
-		for(int i = 0; i < size; i++) {
-			ptr[i] = x.ptr[i];
-		}
-	}
-	*/
+	
 	int & operator[] (int index) const {
 		return ptr[index];
 	}
