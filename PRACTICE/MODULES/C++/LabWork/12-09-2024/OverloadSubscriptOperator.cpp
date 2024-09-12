@@ -21,7 +21,7 @@ class Array {
 		}
 	}
 	
-	int & operator[] (int index) {
+	int & operator[] (int index) const {
 		return ptr[index];
 	}
 	
