@@ -12,7 +12,7 @@ less than		-lt
 greater than		-gt
 greater than equals	-ge
 less than equals	-le
-equals			-e
+equals			-eq
 not equals		-ne
 
 A
