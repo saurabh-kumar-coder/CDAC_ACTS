@@ -1,9 +1,9 @@
 #include<iostream>
 #include<string>
-#include "Address.h"
-#include "Address.cpp"
-//#include "Student.h"
-#include "Student.cpp"
+#include "Student.h"
+//#include "Address.h"
+//#include "Address.cpp"
+//#include "Student.cpp"
 
 int main() {
 	Student s;
