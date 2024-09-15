@@ -1,7 +1,7 @@
 #include<iostream>
 #include<string>
 #include "Address.h"
-using namespace std;
+//using namespace std;
 
 class Student {
 	private:

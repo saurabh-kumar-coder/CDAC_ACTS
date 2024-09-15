@@ -12,15 +12,7 @@ class Student {
 		this->size = size;
 		ptr = new int[size];
 	}
-	
-	Student(const Student &x) {
-		this->size = x.size;
-		ptr = new int[size];
-		for(int i = 0; i < size; i++) {
-			ptr[i] = x.ptr[i];
-		}
-	}
-	
+
 	int & at(int index) {
 		return ptr[index];
 	}

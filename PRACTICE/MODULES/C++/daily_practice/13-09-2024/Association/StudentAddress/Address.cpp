@@ -3,7 +3,7 @@
 #include<string>
 using namespace std;
 
-Address::Address(): houseNo(0), area(""), pinCode("") {}
+Address::Address(): houseNo(""), area(""), pinCode("") {}
 Address::Address(string houseNo, string area, string pinCode) : houseNo(houseNo), area(area), pinCode(pinCode) {}
 void Address::Accept() {
 	cout<<"Enter House Details : "<<endl;
