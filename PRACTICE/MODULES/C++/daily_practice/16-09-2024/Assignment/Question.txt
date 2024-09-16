@@ -1,0 +1,3 @@
+Ques : Create Employee class hierarchy with two child classes PermanentEmployee and ContractEmployee. 
+Create CalcSalary function as abstract function in base class and override it in child classes.
+Demonstrate runtime polymorphism with the help of base class pointer reference.
