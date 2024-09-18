@@ -11,7 +11,7 @@ int main() {
 	pe.setMonthlySalary(25000);
 	cout<<"Perm EMP id : "<<e->getEmpId()<<endl;	
 	cout<<"Perm EMP name : "<<e->getName()<<endl;
-	cout<<"Perm EMP Salary : "<<pe.getMonthlySalary()<<" : ";
+	cout<<"Perm EMP Salary : "<<pe.getMonthlySalary()<<endl;
 	e->calSalary();
 	cout<<endl;
 	e = &ce;
@@ -20,7 +20,7 @@ int main() {
 	ce.setCurrentDaySalary(500);
 	cout<<"Cont EMP id : "<<e->getEmpId()<<endl;	
 	cout<<"Cont EMP name : "<<e->getName()<<endl;
-	cout<<"Cont EMP Salary : "<<ce.getCurrentDaySalary()<<" : ";
+	cout<<"Cont EMP Salary : "<<ce.getCurrentDaySalary()<<endl;
 	e->calSalary();
 //	ce.setCurrentDaySalary(500);
 //	cout<<ce.getCurrentDaySalary()<<endl;

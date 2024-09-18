@@ -14,10 +14,11 @@ int PermanentEmployee::getMonthlySalary() {
 	return monthlySalary;
 }
 
-PermanentEmployee::~PermanentEmployee() {
-	cout<<"\nPermanent Employee DESTRUCTOR CALLED"<<endl;
+void PermanentEmployee::calSalary() {
+	cout<<"Monthly salary is : "<<monthlySalary * 30<<endl;
 }
 
-void PermanentEmployee::calSalary() {
-	//cout<<"Permanent salary : ";
+PermanentEmployee::~PermanentEmployee() {
+	cout<<"\nPERMANENT Employee DESTRUCTOR CALLED"<<endl;
 }
+

@@ -14,10 +14,11 @@ int ContractEmployee::getCurrentDaySalary() {
 	return currentDaySalary;
 }
 
+void ContractEmployee::calSalary() {
+	cout<<"Contract salary is : "<<currentDaySalary<<endl;
+}
+
 ContractEmployee::~ContractEmployee() {
 	cout<<"\nCONTRACT EMPLOYEE DESTRUCTOR CALLED"<<endl;
 }
 
-void ContractEmployee::calSalary() {
-	//cout<<"Contract salary : ";
-}
