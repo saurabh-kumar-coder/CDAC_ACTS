@@ -1,3 +1,6 @@
+#ifndef CAT_CPP
+#define CAT_CPP
+
 #include<iostream>
 #include "Animal.cpp"
 using namespace std;
@@ -8,3 +11,4 @@ class Cat : virtual public Animal {
 			cout<<"Cat sound"<<endl;
 		}
 };
+#endif
