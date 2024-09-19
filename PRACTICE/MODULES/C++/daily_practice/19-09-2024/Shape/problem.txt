@@ -1,0 +1,1 @@
+Create an abstract class Animal with a pure virtual function sound(). Implement two derived classes, Dog and Cat, which provide their own implementations of the sound() method. Additionally, implement another class Pet that inherits from both Dog and Cat, and demonstrate the use of these classes.
