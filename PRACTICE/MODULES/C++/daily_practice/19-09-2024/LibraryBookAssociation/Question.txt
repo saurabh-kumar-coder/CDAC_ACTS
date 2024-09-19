@@ -1,0 +1,4 @@
+Create a class model to represent a Library and a Book. 
+A Library can have multiple Book instances. 
+Each Book should have a title and an author. 
+Implement methods to add books to the library and to display the details of all books in the library.
