@@ -33,8 +33,8 @@ int main() {
 	Complex c1, c2, c3;
 	c1.Accept(8,10);
 	c2.Accept(5,6);
-//	c3 = c1.add(c2);
-	c3 = c1 + c2;
+	c3 = c1.add(c2);
+	//c3 = c1 + c2;
 	c3.Display();
 	return 0;
 }
