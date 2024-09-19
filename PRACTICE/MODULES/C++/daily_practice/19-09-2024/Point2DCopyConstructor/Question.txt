@@ -1,0 +1,3 @@
+Create a class Point that represents a point in 2D space with x and y coordinates. 
+Implement a copy constructor to allow the creation of a new Point object as a copy of an existing Point. 
+Additionally, implement a method to display the point's coordinates.
