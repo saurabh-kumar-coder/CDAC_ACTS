@@ -1,0 +1,31 @@
+to check which bash we are using
+-> echo $0
+
+to know all the shell present:
+-> cat /etc/shells
+
+scripts.sh
+echo command.
+
+changing execution permission to user
+-> chmod u=rwx scripts.ch
+
+comment in bash
+	<<A
+	A
+A : can be replaced by any other word too.
+
+Variables:
+	VAR_NAME=value
+	echo $VAR_NAME
+
+	variable to store the output of a command:
+	VAR_NAME=$(hostname)
+
+	for CONSTANT variable:
+	readonly var="Hi";
+	readonly keyword is added.
+	
+	
+	
+	
