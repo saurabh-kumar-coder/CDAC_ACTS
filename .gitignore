@@ -2,3 +2,6 @@
 *\.out
 *\.dat
 *\.exe
+*\.class
+*\.zip
+*\.jar
