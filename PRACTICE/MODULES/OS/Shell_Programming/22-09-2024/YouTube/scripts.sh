@@ -66,3 +66,11 @@ echo "lower case string : ${strVar,,}";
 #	first : value to be removed
 #	second : value to be placed
 
+newVar=${strVar/Hello/Hello,}
+echo "New Var is : ${newVar}";
+
+#Slicing in a string
+#based on indexing
+#getting a particular data from string
+newVar=${newVar:2:5};
+echo "New Var is : ${newVar}";
