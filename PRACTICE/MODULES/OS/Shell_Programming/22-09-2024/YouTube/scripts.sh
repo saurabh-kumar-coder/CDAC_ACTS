@@ -157,6 +157,7 @@ greaterThan 		-> -gt
 lessThan 		-> -lt
 A
 
+<<A
 read -p "enter your marks : " marks;
 if [ $marks -gt 80 ];
 then
@@ -167,3 +168,23 @@ then
 else
 	echo "Fail";
 fi
+A
+<<A
+#-------------CASE STATEMENT-------------
+echo "choose an option";
+echo "a) To see the current date"
+echo "a) List all files in current dir"
+
+read choice
+
+case $choice in
+	a) date;;
+	b) ls;;
+	*) echo "Not a valid input";
+esac
+A
+#----------Ternary Operator----------
+#syntax
+age=18;
+[[ $age -ge 18 ]] && echo "Adult" || echo "Minor"
+
