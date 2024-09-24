@@ -49,6 +49,7 @@ echo "new array is : ${newArray[*]}";
 echo "name is : ${newArray[name]}";
 A
 
+<<A
 #---------String Operations---------
 #creating a string variable.
 strVar="Hello welcome to this course. Are you enjoying??";
@@ -74,3 +75,95 @@ echo "New Var is : ${newVar}";
 #getting a particular data from string
 newVar=${newVar:2:5};
 echo "New Var is : ${newVar}";
+#to slice a string
+#${strVar:<starting_point>:<how_many_characters>}
+echo "After slice ${strVar:6:10}";
+A
+
+#--------------------USER INTERACTIONS-----------------
+#taking data from user.
+#read <var_name>;
+#read -p "Your name : " NAME;
+<<A
+echo "What is your name? ";
+read name;
+echo "My Name is : ${name}";
+A
+<<A
+read -p "What is your name? " name;
+echo "Your name is : ${name}";
+A
+
+#---------------ARITHMATIC OPERATIONS------------
+#use 'let' keyword & '$(())'  everytime.
+
+<<A
+
+x=20;
+
+y=10;
+let mul=$x*$y;
+echo "Multiplication Value is : ${mul}";
+
+let add=$x+$y
+echo  "Addition Value is : ${add}";
+
+echo "subtracted value is : $
+(($x-$y))";
+
+echo "divided value is : $
+(($x/$y))"; #gives integer value result always.
+
+A
+
+#-----------if-else condition-----------
+<<A
+	#syntax format
+	if [ $marks -gt 40 ]
+	then,
+		echo "Hello";
+	else
+		echo "Bye";
+	fi
+A
+
+<<A
+read -p "enter your marks : " marks;
+if [ $marks -gt 40 ];
+then
+	echo "Pass";
+else 
+	echo "Fail";
+fi
+A
+
+<<A
+read -p "Enter your age : " age;
+if [[ $age -gt 18 ]]
+then
+	echo "able to vote";
+else 
+	echo "not able to pass";
+fi
+A
+
+<<A
+#-----------operators----------
+equal 			-> -eq / ==
+greaterThanOrEqual 	-> -ge
+lessThanOrEqual 	-> -le
+Not equal 		-> -ne
+greaterThan 		-> -gt
+lessThan 		-> -lt
+A
+
+read -p "enter your marks : " marks;
+if [ $marks -gt 80 ];
+then
+	echo "First Division";
+elif [ $marks -ge 60 ];
+then
+	echo "second division";
+else
+	echo "Fail";
+fi
