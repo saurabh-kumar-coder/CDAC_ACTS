@@ -5,3 +5,7 @@
 *\.class
 *\.zip
 *\.jar
+*\.classpath
+*\.project
+*\.gitignore
+*\.prefs
