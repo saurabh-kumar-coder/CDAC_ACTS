@@ -264,6 +264,7 @@ do
 done < $FILE
 A
 
+<<A
 #----To read content from a CSV file------
 # f1, f2, f3, f4 are column.
 while IFS="," read f1 f2 f3 f4
@@ -273,4 +274,6 @@ do
 	echo $f3;
 	echo $f4;
 done < file.csv
+A
 
+#-------------FUNCTIONS-------------
