@@ -277,3 +277,90 @@ done < file.csv
 A
 
 #-------------FUNCTIONS-------------
+#Syntax
+<<A
+	function myFun {
+		echo "hi";
+	}
+#-------OR----
+	myFun() {
+		echo "hi";
+	}
+#calling a function
+# ->	myFun
+A
+<<A
+addition() {
+	local num1=$1;
+	local num2=$2;
+	let sum=$num1+$num2;
+	echo "sum is $sum";
+}
+addition 12 11;
+A
+
+#------command line arguments
+<<A
+echo "first arg : $1"
+echo "Second arg : $2"
+echo "All the argument are : $@";
+echo "Number of argument are : $#";
+A
+
+<<A
+###loop on cmd line arg
+for cmd in $@
+do
+	echo "data is : $cmd";
+done
+A
+
+<<A
+#-------Break-------
+a=10;
+until [ $a -eq 1 ]
+do
+	if [ $a -eq 5 ]
+	then
+		echo "$a is found"
+		break;
+	fi
+	echo "Number is $a";
+	let a--;
+done
+A
+
+<<A
+a=10;
+until [ $a -eq 1 ]
+do
+	let r=$a%2;
+	if [ $r -eq 0 ]
+	then
+		echo "$a is even"
+		let a--;
+		continue;
+	fi
+	echo "Number is $a";
+	let a--;
+done
+A
+
+#----------RANDOM----------
+<<A
+NO=$(( $RANDOM%6 + 1))
+echo "Number is $NO";
+A
+
+<<A
+#-----------> & >> operator-----
+# > is used to create a new file and write into it.
+
+date > date.txt; 
+ls > fileName.txt;
+
+# >> is used to append data into the file.
+
+date >> data.txt;
+ls >> data.txt;
+A
