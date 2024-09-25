@@ -25,7 +25,3 @@ Variables:
 	for CONSTANT variable:
 	readonly var="Hi";
 	readonly keyword is added.
-	
-	
-	
-	

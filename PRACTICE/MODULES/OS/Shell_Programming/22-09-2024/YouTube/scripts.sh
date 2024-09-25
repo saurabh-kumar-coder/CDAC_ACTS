@@ -183,8 +183,94 @@ case $choice in
 	*) echo "Not a valid input";
 esac
 A
+<<A
 #----------Ternary Operator----------
 #syntax
 age=18;
 [[ $age -ge 18 ]] && echo "Adult" || echo "Minor"
+A
+
+#----------Loops-----------
+<<A
+#--for loop 1
+for i in 1 2 3 4 5 6 7 8 9 0
+do
+	echo "number is $i";
+done
+### using string
+for i in 1 2 3 four 5 6 great 8 name 0
+do
+	echo "number is $i";
+done
+### using wild card
+for i in {1..5}
+do
+	echo "number is : $i";
+done
+A
+#--for loop 2
+### using file
+<<A
+FILE="/home/saurabh/Desktop/CDAC_ACTS/PRACTICE/MODULES/OS/Shell_Programming/22-09-2024/YouTube/commands.txt";
+
+for name in $
+(cat $FILE) 
+do
+	echo "text is : $name";
+done
+
+A
+
+### using array
+<<A
+myArray=( 1 2 4 5 6 7 )
+length=${#myArray[*]}
+echo "${length}";
+for (( i=0;i<$length;i++ ))
+do
+	echo "Value of array is : ${myArray[$i]}";
+done
+A
+
+<<A
+#---------While loop---------
+count=0;
+num=10;
+while [ $num -gt $count ]
+do
+	echo "num is : $num";
+	let num--;
+done
+A
+
+<<A
+#-------Until loop-----------
+# jb tk condition true nahi ho jati tb tk chalega
+a=10;
+until [ $a -eq 1 ]
+do
+	echo $a
+	let a--;
+done
+A
+
+<<A
+#-----read file using while loop-----
+FILE="/home/saurabh/Desktop/CDAC_ACTS/PRACTICE/MODULES/OS/Shell_Programming/22-09-2024/YouTube/commands.txt"
+
+while read txt
+do
+	echo "$txt"
+done < $FILE
+A
+
+#----To read content from a CSV file------
+# f1, f2, f3, f4 are column.
+while IFS="," read f1 f2 f3 f4
+do
+	echo $f1;
+	echo $f2;
+	echo $f3;
+	echo $f4;
+done < file.csv
 
