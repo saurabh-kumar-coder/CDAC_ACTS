@@ -1,0 +1,16 @@
+Day5: 26-September-2024
+1. Write java program to format given mobile number to expected format as shown below.
+Expected output +91-988-162-8598
+Input +91-988-162-8598
+Input +919881628598
+Input 9881628598
+Input 988162859 Error for less than 10 char
+ 
+2. Implement toString() method in student class.
+ 
+3.Write java program for billing of items purchased by customer. Create an Item class with itemCode, itemName, price and quantity along with getters and toString mthods.
+Create an array of items holding stock of items. Create another array of ietms for customer. When customer buy the Item by item code add purchased item in an array. For every purchase create ietem using Parametrized constructor.
+Menus.
+1.     Display stock
+2.     But item by item code
+3.     Display bill

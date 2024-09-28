@@ -1,0 +1,8 @@
+1. Create account class account number, accountName, dateOfOpening, amount.
+Add below functionality
+1.  Generate account number on account creation.
+2.  Add abstract method as  double applyInterest() in the account class
+3. Create child classes as SavingAccount, CurrentAccount, DepostAccount. Override double applyInterest() in the child classes.
+4. Interest percentage of Saving are 3%, Deposit 8%,  and Current as 1%
+5. Use up-casting  and demonstrate Dynamic method dispatch.
+6. 	Make is menu driven.
