@@ -36,5 +36,4 @@ public class DepositAccount extends Account {
 	public String toString() {
 		return super.toString() + "DepositAccount [interestRate=" + interestRate + "]";
 	}
-	
 }

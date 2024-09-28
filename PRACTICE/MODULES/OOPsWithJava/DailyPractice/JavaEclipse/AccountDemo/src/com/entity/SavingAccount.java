@@ -35,15 +35,5 @@ public class SavingAccount extends Account {
 	@Override
 	public String toString() {
 		return super.toString() + "SavingAccount [interestRate=" + interestRate + "]";
-	}
-
-//	@Override
-//	public String toString() {
-//		return "SavingAccount [interestRate=" + interestRate + ", getAccountNo()=" + getAccountNo()
-//				+ ", getAccountName()=" + getAccountName() + ", getDateOfOpening()=" + getDateOfOpening()
-//				+ ", getAmount()=" + getAmount() + "]";
-//	}
-	
-	
-	
+	}	
 }
