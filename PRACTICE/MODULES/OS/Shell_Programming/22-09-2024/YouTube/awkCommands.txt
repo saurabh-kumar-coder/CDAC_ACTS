@@ -1,0 +1,30 @@
+Examples covered in this videos
+
+Print only a given column
+Print last column
+Search a word
+Print only a given line no. (let’s say line 5)
+Print row or line no. at start of each line
+Print range of lines (line3 to 6)
+Get line no. of empty lines
+Search multiple words
+Ignore case while searching
+How to check if a given char is present in column
+How to work with CSV file
+Print data of employees whose salary more than 50k
+What if a file is having multiple delimeter
+How to only get Status of service
+How to get list of files
+How to read logs in range of time
+Get files modified in Oct
+How to replace a word?
+Length of line/field 
+Index/position of a word in a given line
+Print values in upper or lower letter
+How to find total/sum of salary
+How to find average salary
+How to print no. of lines
+How to ignore headers/first row to count no. of users
+How to get length of longest line?
+Print High for salary more than 50k else LOW
+Print Total salary paid in Loan department

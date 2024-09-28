@@ -154,4 +154,4 @@ Example: sed -n ‘/[[:alpha:]]/p’ posix
 [:upper:]
 [:punct:]
 [:space:]
-s
+
