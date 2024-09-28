@@ -8,9 +8,9 @@ public class SavingAccount extends Account {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SavingAccount(int accountNo, String accountName, double amount) {
-		super(accountNo, accountName, amount);
-		// TODO Auto-generated constructor stub
+	public SavingAccount(String accountName, double amount) {
+		super(accountName, amount);
+
 	}
 
 	public SavingAccount(double interestRate) {
@@ -31,4 +31,19 @@ public class SavingAccount extends Account {
 		double calInterest = (getAmount() * getInterestRate()) / 100;
 		return calInterest;
 	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "SavingAccount [interestRate=" + interestRate + "]";
+	}
+
+//	@Override
+//	public String toString() {
+//		return "SavingAccount [interestRate=" + interestRate + ", getAccountNo()=" + getAccountNo()
+//				+ ", getAccountName()=" + getAccountName() + ", getDateOfOpening()=" + getDateOfOpening()
+//				+ ", getAmount()=" + getAmount() + "]";
+//	}
+	
+	
+	
 }

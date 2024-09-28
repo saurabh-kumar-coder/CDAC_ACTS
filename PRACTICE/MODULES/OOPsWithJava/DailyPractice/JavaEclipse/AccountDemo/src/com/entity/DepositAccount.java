@@ -8,8 +8,8 @@ public class DepositAccount extends Account {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DepositAccount(int accountNo, String accountName, double amount) {
-		super(accountNo, accountName, amount);
+	public DepositAccount(String accountName, double amount) {
+		super(accountName, amount);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -31,4 +31,10 @@ public class DepositAccount extends Account {
 		double calInterest = (getAmount() * getInterestRate()) / 100;
 		return calInterest;
 	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "DepositAccount [interestRate=" + interestRate + "]";
+	}
+	
 }

@@ -11,12 +11,10 @@ public abstract class Account {
 	public Account() {
 		counter++;
 	}
-	public Account(int accountNo, String accountName, double amount) {
-		this.accountNo = counter;
+	public Account(String accountName, double amount) {
+		this.accountNo = counter++;
 		this.accountName = accountName;
 		this.amount = amount;
-		counter++;
-		System.out.println("counter is : "+counter);
 	}
 	public int getAccountNo() {
 		return accountNo;

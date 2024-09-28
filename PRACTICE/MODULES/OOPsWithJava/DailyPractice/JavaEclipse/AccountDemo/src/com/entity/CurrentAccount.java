@@ -10,8 +10,8 @@ public class CurrentAccount extends Account {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CurrentAccount(int accountNo, String accountName, double amount) {
-		super(accountNo, accountName, amount);
+	public CurrentAccount(String accountName, double amount) {
+		super(accountName, amount);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -33,4 +33,9 @@ public class CurrentAccount extends Account {
 		double calInterest = (getAmount() * getInterestRate()) / 100;
 		return calInterest;
 	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "CurrentAccount [interestRate=" + interestRate + "]";
+	}	
 }
