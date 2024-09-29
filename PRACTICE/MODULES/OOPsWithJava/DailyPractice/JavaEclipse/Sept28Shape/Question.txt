@@ -1,0 +1,8 @@
+Create Shape class with abstract methods as
+1. double calculateArea();
+2. double calculatePerimeter();
+	Override these methods in child classes like Rectangle and Circle.
+	Add additional method in Circle class as void draw() with 	message( not need to drwa real Circle)
+	Create circle object and have Shape reference to it.
+	Call the draw method of  circle with specific circle reference after 	down casting from Shpae reference
+	Make it menu driven.

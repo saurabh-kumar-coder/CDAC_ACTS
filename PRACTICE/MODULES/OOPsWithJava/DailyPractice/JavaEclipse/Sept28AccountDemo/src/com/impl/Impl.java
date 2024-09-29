@@ -62,14 +62,11 @@ public class Impl {
 				int accNo = sc.nextInt();
 				for (int i = 0; i < account.length && account[i] != null; i++) {
 					if (account[i].getAccountNo() == accNo) {
-						System.out.println("found");
 						if (account[i] instanceof SavingAccount) {
 							System.out.println(account[i].toString());
-							System.out.println("Saving");
 						}
 						if (account[i] instanceof CurrentAccount) {
 							System.out.println(account[i].toString());
-							System.out.println("Current");
 						}
 						if (account[i] instanceof DepositAccount) {
 							System.out.println(account[i].toString());
