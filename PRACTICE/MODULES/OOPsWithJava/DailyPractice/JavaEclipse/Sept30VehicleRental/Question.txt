@@ -1,0 +1,15 @@
+Question 2: Vehicle Rental System
+
+ * Create an interface called Vehicle with methods rent() and returnVehicle().
+
+ * Create abstract classes Car and Bike implementing the Vehicle interface.
+
+ * The Car class should have a rentPerDay attribute and the Bike class should have a rentPerHour attribute.
+
+ * Implement the rent() and returnVehicle() methods in the concrete classes.
+
+ * Create concrete classes Sedan and SportsCar extending the Car class, and Scooter and Motorcycle extending the Bike class.
+
+ * Override the rent() and returnVehicle() methods in the concrete classes if necessary.
+
+ * Create a VehicleRentalSystem class to manage the rental of different vehicles.

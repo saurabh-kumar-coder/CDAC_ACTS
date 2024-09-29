@@ -1,0 +1,15 @@
+Question 1: Shape Hierarchy
+
+ * Create an interface called Shape with methods calculateArea() and calculatePerimeter().
+ 
+ * Create abstract classes Circle and Rectangle implementing the Shape interface.
+ 
+ * The Circle class should have a radius attribute and the Rectangle class should have length and breadth attributes.
+ 
+ * Implement the calculateArea() and calculatePerimeter() methods in the concrete classes using their respective formulas.
+ 
+ * Create concrete classes RegularCircle and Square extending the Circle and Rectangle classes, respectively.
+ 
+ * Override the calculateArea() and calculatePerimeter() methods in the concrete classes if necessary.
+ 
+ * Create a ShapeTester class to test the different shapes and their areas and perimeter.
