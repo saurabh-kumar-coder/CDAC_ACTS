@@ -1,0 +1,13 @@
+Question 1 (Medium): Employee Management System
+Scenario:
+
+Create an interface Employee with methods calculateSalary() and displayDetails().
+Create abstract classes SalariedEmployee and HourlyEmployee implementing Employee.
+Implement calculateSalary() in each class based on their specific pay structure.
+Create concrete classes Manager, Developer, Intern, and Consultant extending the appropriate abstract classes.
+Create custom exceptions InvalidSalaryException and InvalidHoursException for invalid salary or hours worked.
+Task:
+
+Implement try-catch-finally blocks to handle potential exceptions during salary calculation.
+Use upcasting and downcasting to demonstrate polymorphism in the system.
+Test the system with various input values to ensure proper exception handling.

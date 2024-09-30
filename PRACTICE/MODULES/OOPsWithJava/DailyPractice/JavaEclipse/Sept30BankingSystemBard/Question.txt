@@ -1,0 +1,14 @@
+Question 2 (Medium): Banking System
+Scenario:
+
+Create an interface Account with methods deposit() and withdraw().
+Create abstract classes SavingsAccount and CurrentAccount implementing Account.
+Implement deposit() and withdraw() methods, ensuring that withdrawals don't exceed the account balance.
+Create concrete classes RegularSavingsAccount, HighInterestSavingsAccount, BasicCurrentAccount, and PremiumCurrentAccount extending the appropriate abstract classes.
+Create a custom exception InsufficientFundsException for insufficient funds.
+Task:
+
+Use try-catch-finally blocks to handle potential exceptions during transactions.
+Implement a transactionHistory method in the Account interface to store transaction details.
+Use upcasting and downcasting to demonstrate polymorphism in the system.
+Test the system with various transaction scenarios to ensure proper exception handling.

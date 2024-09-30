@@ -1,0 +1,14 @@
+Question 3 (Hard): E-commerce System
+Scenario:
+
+Create an interface Product with methods calculatePrice() and displayDetails().
+Create abstract classes Electronics and Clothing implementing Product.
+Implement calculatePrice() based on product type and attributes.
+Create concrete classes Mobile, Laptop, Tablet, Shirt, Trouser, and Dress extending the appropriate abstract classes.
+Create custom exceptions InvalidProductException and OutOfStockException.
+Task:
+
+Use try-catch-finally blocks to handle potential exceptions during product creation, modification, and purchase.
+Implement a shoppingCart class to manage products added to the cart.
+Use up-casting and down-casting to demonstrate polymorphism in the system.
+Test the system with various product scenarios to ensure proper exception handling and order processing.
