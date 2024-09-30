@@ -2,6 +2,8 @@ package com.serviceImpl;
 
 import com.abstractModal.HourlyEmployee;
 import com.constant.EnumDept;
+import com.exception.InvalidHourException;
+import com.exception.InvalidSalaryException;
 import com.service.PayableBonus;
 
 public class Consultant extends HourlyEmployee implements PayableBonus {
@@ -11,7 +13,7 @@ public class Consultant extends HourlyEmployee implements PayableBonus {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Consultant(int id, String name, EnumDept dept, double hourlyPay, double noOfHours) {
+	public Consultant(int id, String name, EnumDept dept, double hourlyPay, double noOfHours) throws InvalidHourException {
 		super(id, name, dept, hourlyPay, noOfHours);
 		// TODO Auto-generated constructor stub
 	}
@@ -19,10 +21,12 @@ public class Consultant extends HourlyEmployee implements PayableBonus {
 	@Override
 	public double calculateSalary() {
 		// TODO Auto-generated method stub
-//		System.out.println("printing Consultant salary");
 		double salary = (getHourlyPay() * getNoOfHours() + tip());
-		//System.out.println("Salary of Consultant is : " + salary);
-		return salary;
+		if(salary <= 0) {
+			throw new InvalidSalaryException("Salary should not be less than or equal to 0");
+		} else {
+			return salary;						
+		}
 	}
 
 	@Override

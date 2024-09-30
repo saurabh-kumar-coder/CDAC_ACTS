@@ -1,6 +1,7 @@
 package com.impl;
 
 import com.constant.EnumDept;
+import com.exception.InvalidHourException;
 import com.service.Employee;
 import com.serviceImpl.Consultant;
 import com.serviceImpl.Developer;
@@ -8,7 +9,7 @@ import com.serviceImpl.Intern;
 import com.serviceImpl.Manager;
 
 public class Impl {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InvalidHourException {
 // 		consultant salary
 		Employee e = new Consultant(1, "Hari", EnumDept.Consultant, 500, 30);
 		e.calculateSalary();

@@ -2,6 +2,7 @@ package com.serviceImpl;
 
 import com.abstractModal.HourlyEmployee;
 import com.constant.EnumDept;
+import com.exception.InvalidHourException;
 import com.service.PayableBonus;
 
 public class Intern extends HourlyEmployee implements PayableBonus {
@@ -11,7 +12,7 @@ public class Intern extends HourlyEmployee implements PayableBonus {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Intern(int id, String name, EnumDept dept, double hourlyPay, double noOfHours) {
+	public Intern(int id, String name, EnumDept dept, double hourlyPay, double noOfHours) throws InvalidHourException {
 		super(id, name, dept, hourlyPay, noOfHours);
 		// TODO Auto-generated constructor stub
 	}

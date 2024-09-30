@@ -1,6 +1,8 @@
 package com.abstractModal;
 
 import com.constant.EnumDept;
+import com.exception.InvalidHourException;
+import com.exception.InvalidSalaryException;
 import com.service.Employee;
 
 public abstract class HourlyEmployee extends EmployeeDetails implements Employee {
@@ -12,10 +14,14 @@ public abstract class HourlyEmployee extends EmployeeDetails implements Employee
 		// TODO Auto-generated constructor stub
 	}
 
-	public HourlyEmployee(int id, String name, EnumDept dept, double hourlyPay, double noOfHours) {
+	public HourlyEmployee(int id, String name, EnumDept dept, double hourlyPay, double noOfHours) throws InvalidHourException {
 		super(id, name, dept);
 		this.hourlyPay = hourlyPay;
-		this.noOfHours = noOfHours;
+		if(noOfHours <= 0) {
+			throw new InvalidHourException("Hours should be more than 0");
+		} else {
+			this.noOfHours = noOfHours;			
+		}
 	}
 
 	public double getHourlyPay() {
