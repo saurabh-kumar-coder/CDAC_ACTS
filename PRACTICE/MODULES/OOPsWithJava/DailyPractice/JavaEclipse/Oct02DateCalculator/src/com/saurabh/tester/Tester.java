@@ -41,7 +41,6 @@ public class Tester {
 		System.out.println(toDate);
 		System.out.println("Please enter date : ");
 		String strDate2 = "24/04/1984";
-		
 		LocalDate fromDate = LocalDate.parse(strDate2, dateTimeFormatter);
 		System.out.println(fromDate.format(dateTimeFormatter));
 		Period period = Period.between(fromDate, toDate);
