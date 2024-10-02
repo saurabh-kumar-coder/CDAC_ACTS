@@ -41,13 +41,13 @@ public abstract class HourlyEmployee extends EmployeeDetails implements Employee
 	}
 
 	@Override
-	public String toString() {
+	public String toString()  {
 		return super.toString() + "HourlyEmployee [hourlyPay=" + hourlyPay + ", noOfHours=" + noOfHours + "]";
 	}
 
 	@Override
-	public abstract double calculateSalary();
+	public abstract double calculateSalary() throws InvalidSalaryException;
 
 	@Override
-	public abstract void displayDetails();
+	public abstract void displayDetails() throws InvalidSalaryException;
 }

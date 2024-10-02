@@ -19,37 +19,48 @@ public class Consultant extends HourlyEmployee implements PayableBonus {
 	}
 
 	@Override
-	public double calculateSalary() {
+	public double calculateSalary() throws InvalidSalaryException {
 		// TODO Auto-generated method stub
 		double salary = (getHourlyPay() * getNoOfHours() + tip());
 		if(salary <= 0) {
 			throw new InvalidSalaryException("Salary should not be less than or equal to 0");
-		} else {
-			return salary;						
-		}
+			
+		} 
+			return salary;
 	}
 
 	@Override
-	public void displayDetails() {
+	public void displayDetails()  {
 		// TODO Auto-generated method stub
-		System.out.println("id : "+this.getId() + " "
-				+ " name : " + this.getName() + " "
-				+ " dept : " + this.getDept() + " "
-				+ " hourly-pay : " + this.getHourlyPay() + " "
-				+ " calcSalary : " + this.calculateSalary() + " "
-				+ " tip : " + this.tip() + " "
-				+ " bonus : " + this.giveBonus());
+		try {
+			System.out.println("id : "+this.getId() + " "
+					+ " name : " + this.getName() + " "
+					+ " dept : " + this.getDept() + " "
+					+ " hourly-pay : " + this.getHourlyPay() + " "
+					+ " calcSalary : " + this.calculateSalary() + " "
+					+ " tip : " + this.tip() + " "
+					+ " bonus : " + this.giveBonus());
+		} catch (InvalidSalaryException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
 	}
 	@Override
 	public double tip() {
 		// TODO Auto-generated method stub
 //		System.out.println("giving bonus to Consultant");
-		return 1000.0;
+		return 0.0;
 	}
 
 	@Override
 	public String toString() {
-		return super.toString() + "Consultant [calculateSalary()=" + calculateSalary() + ", tip()=" + tip() + "]";
+		try {
+			return super.toString() + "Consultant [calculateSalary()=" + calculateSalary() + ", tip()=" + tip() + "]";
+		} catch (InvalidSalaryException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		return super.toString();
 	}
 	
 }

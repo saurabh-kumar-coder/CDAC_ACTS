@@ -1,6 +1,7 @@
 package com.abstractModal;
 
 import com.constant.EnumDept;
+import com.exception.InvalidSalaryException;
 import com.service.Employee;
 
 public abstract class SalariedEmployee extends EmployeeDetails implements Employee {
@@ -27,11 +28,12 @@ public abstract class SalariedEmployee extends EmployeeDetails implements Employ
 	@Override
 	public String toString() {
 		return super.toString() + "SalariedEmployee [salaryPay=" + salaryPay + "]";
+//		return super.toString();
 	}
 
 	@Override
-	public abstract double calculateSalary();
+	public abstract double calculateSalary() throws InvalidSalaryException;
 
 	@Override
-	public abstract void displayDetails();
+	public abstract void displayDetails() throws InvalidSalaryException;
 }

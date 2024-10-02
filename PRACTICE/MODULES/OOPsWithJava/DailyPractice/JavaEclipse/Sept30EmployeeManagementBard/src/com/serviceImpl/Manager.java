@@ -2,6 +2,7 @@ package com.serviceImpl;
 
 import com.abstractModal.SalariedEmployee;
 import com.constant.EnumDept;
+import com.exception.InvalidSalaryException;
 import com.service.PayableBonus;
 
 public class Manager extends SalariedEmployee implements PayableBonus {
@@ -17,16 +18,19 @@ public class Manager extends SalariedEmployee implements PayableBonus {
 	}
 
 	@Override
-	public double calculateSalary() {
+	public double calculateSalary() throws InvalidSalaryException {
 		// TODO Auto-generated method stub
 //		System.out.println("printing Manager salary");
 		double salary = (getSalaryPay() + tip()+ giveBonus());
 		//System.out.println("Salary of Manager is : " + salary);
+		if(salary <= 0) {
+			throw new InvalidSalaryException("Salary should not be less than or equal to 0");
+		} 
 		return salary;
 	}
 
 	@Override
-	public void displayDetails() {
+	public void displayDetails() throws InvalidSalaryException {
 		// TODO Auto-generated method stub
 		System.out.println("id : "+this.getId() + " "
 				+ " name : " + this.getName() + " "
@@ -40,19 +44,25 @@ public class Manager extends SalariedEmployee implements PayableBonus {
 	@Override
 	public double giveBonus() {
 		// TODO Auto-generated method stub
-		return 2000;
+		return 000;
 	}
 
 	@Override
 	public double tip() {
 		// TODO Auto-generated method stub
 //		System.out.println("giving tip to Manager : ");
-		return 5000;
+		return 000;
 	}
 	
 	
 	@Override
 	public String toString() {
-		return super.toString() + "Manager [calculateSalary()=" + calculateSalary() + ", tip()=" + tip() + "]";
+		try {
+			return super.toString() + "Manager [calculateSalary()=" + calculateSalary() + ", tip()=" + tip() + "]";
+		} catch (InvalidSalaryException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		return super.toString();
 	}
 }

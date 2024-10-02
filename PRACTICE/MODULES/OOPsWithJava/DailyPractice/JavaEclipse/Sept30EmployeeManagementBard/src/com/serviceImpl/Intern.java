@@ -18,11 +18,14 @@ public class Intern extends HourlyEmployee implements PayableBonus {
 	}
 
 	@Override
-	public double calculateSalary() {
+	public double calculateSalary() throws RuntimeException {
 		// TODO Auto-generated method stub
 //		System.out.println("printing Intern salary");
 		double salary = (super.getHourlyPay() * super.getNoOfHours() + tip());
 		//System.out.println("Salary of Intern is : " + salary);
+		if(salary <= 0) {
+			throw new RuntimeException("Salary should not be less than or equal to 0");
+		} 
 		return salary;
 	}
 
@@ -40,8 +43,7 @@ public class Intern extends HourlyEmployee implements PayableBonus {
 	@Override
 	public double tip() {
 		// TODO Auto-generated method stub
-//		System.out.println("giving tip to Intern : ");
-		return 300;
+		return 0;
 	}
 
 	@Override

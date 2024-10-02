@@ -2,6 +2,7 @@ package com.serviceImpl;
 
 import com.abstractModal.SalariedEmployee;
 import com.constant.EnumDept;
+import com.exception.InvalidSalaryException;
 import com.service.PayableBonus;
 
 public class Developer extends SalariedEmployee implements PayableBonus {
@@ -17,11 +18,14 @@ public class Developer extends SalariedEmployee implements PayableBonus {
 	}
 
 	@Override
-	public double calculateSalary() {
+	public double calculateSalary() throws RuntimeException {
 		// TODO Auto-generated method stub
 //		System.out.println("printing Developer salary");
 		double salary = (getSalaryPay() + tip() + giveBonus());
 		//System.out.println("Salary of Developer is : " + salary);
+		if(salary <= 0) {
+			throw new RuntimeException("Salary should not be less than or equal to 0");
+		} 
 		return salary;
 	}
 
@@ -52,7 +56,12 @@ public class Developer extends SalariedEmployee implements PayableBonus {
 
 	@Override
 	public String toString() {
-		return super.toString() + "Developer [calculateSalary()=" + calculateSalary() + ", tip()=" + tip() + "]";
+		try {
+			return super.toString() + "Developer [calculateSalary()=" + calculateSalary() + ", tip()=" + tip() + "]";
+		} catch (RuntimeException e) {
+			// TODO Auto-generated catch block
+		}
+		return super.toString();
 	}
 	
 }

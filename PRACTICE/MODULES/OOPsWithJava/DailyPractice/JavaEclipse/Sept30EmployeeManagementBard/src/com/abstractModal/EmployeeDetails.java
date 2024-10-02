@@ -1,6 +1,7 @@
 package com.abstractModal;
 
 import com.constant.EnumDept;
+import com.exception.InvalidSalaryException;
 
 public abstract class EmployeeDetails {
 	private int id;
@@ -37,5 +38,6 @@ public abstract class EmployeeDetails {
 	@Override
 	public String toString() {
 		return "EmployeeDetails [id=" + id + ", name=" + name + ", dept=" + dept + "]";
+		//return "";
 	}
 }
