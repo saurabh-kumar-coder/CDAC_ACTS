@@ -1,0 +1,66 @@
+I am using contains method of ArrayList class, and 
+case 1 : not overriding equals(Object o) method.
+case 2 : overriding equals(Object o) method.
+tell me the flow sequence of the program just by telling the stack trace.
+tell about all the method used in it(like indexOf, ...etc).
+
+
+
+When using the contains method of the ArrayList class, the flow sequence differs based on whether you override the equals(Object o) method in your custom class. Here’s how the stack trace looks for both cases:
+
+Case 1: Not Overriding equals(Object o)
+ArrayList.contains(Object o)
+
+The contains method is called on the ArrayList instance with the object to check.
+ArrayList.indexOf(Object o)
+
+contains internally calls indexOf to determine if the object exists in the list.
+Loop through elements
+
+The indexOf method loops through the elements in the list and checks each one against the input object using:
+Object.equals(Object o) (default implementation)
+Since you haven't overridden equals, it uses the default Object implementation, which checks for reference equality (i.e., checks if both references point to the same object).
+Return Result
+
+If a match is found (same reference), it returns the index; otherwise, it returns -1.
+Return to ArrayList.contains(Object o)
+
+If indexOf returns -1, contains returns false; otherwise, it returns true.
+Method Summary (Case 1):
+contains(Object o): Checks if the list contains the specified element.
+indexOf(Object o): Searches for the specified element and returns the index.
+Object.equals(Object o): Default equality check (reference equality).
+Case 2: Overriding equals(Object o)
+ArrayList.contains(Object o)
+
+The contains method is called on the ArrayList instance.
+ArrayList.indexOf(Object o)
+
+Just like in Case 1, contains internally calls indexOf.
+Loop through elements
+
+The indexOf method loops through the list and checks each element against the input object using:
+YourClass.equals(Object o)
+Since you have overridden equals, it uses your custom logic to determine equality based on your defined criteria (e.g., comparing specific fields).
+Return Result
+
+If your custom equals method finds a match, it returns the index; otherwise, it returns -1.
+Return to ArrayList.contains(Object o)
+
+If indexOf returns -1, contains returns false; otherwise, it returns true.
+Method Summary (Case 2):
+contains(Object o): Same as before, checks for the specified element.
+indexOf(Object o): Same as before, but uses your custom equals.
+YourClass.equals(Object o): Custom equality check based on your logic.
+Overall Flow Comparison:
+Case 1:
+ArrayList.contains(Object o)
+ArrayList.indexOf(Object o)
+Loop through elements → Object.equals(Object o) (reference equality)
+Return result back to contains.
+Case 2:
+ArrayList.contains(Object o)
+ArrayList.indexOf(Object o)
+Loop through elements → YourClass.equals(Object o) (custom equality)
+Return result back to contains.
+This is how the method calls and flow sequence differ based on whether you override the equals method or not!
