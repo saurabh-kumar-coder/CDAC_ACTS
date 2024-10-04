@@ -1,5 +1,5 @@
 package com.saurabh.pojo;
-
+import java.util.Objects;
 public class Employee {
 	public Integer id;
 	public String name;
@@ -30,13 +30,14 @@ public class Employee {
 	}
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-//		int hashCode = getId().hashCode();
-//		System.out.println("HashCode : " + hashCode);
+		int readyHash = Objects.hash(id, name);
+		System.out.println("ReadyHash : " + readyHash);
 		int result = 1;
-		result = 31 * result + (getId() == null ? 0 : getId().hashCode());
-		result = 31 * result + (getName() == null ? 0 : getName().hashCode());
+//		result = 31 * result + (this.getId() == null ? 0 : this.getId().hashCode());
+//		result = 31 * result + (this.getName() == null ? 0 : this.getName().hashCode());
+		result = 31 * result + (id == null ? 0 : id.hashCode());
+		result = 31 * result + (name == null ? 0 : name.hashCode());
 		System.out.println("Result is : " + result);
-		return super.hashCode();
+		return result;
 	}
 }

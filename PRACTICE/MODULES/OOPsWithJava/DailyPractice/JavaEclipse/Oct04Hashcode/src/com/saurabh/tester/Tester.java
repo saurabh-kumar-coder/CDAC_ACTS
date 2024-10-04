@@ -5,6 +5,7 @@ import com.saurabh.pojo.Employee;
 public class Tester {
 	public static void main(String[] args) {
 		Set<Employee> emp = EmployeeData.getEmployeeData();
+		System.out.println(emp.hashCode());
 //		System.out.println("Hi " + "hi".hashCode());
 		
 		
