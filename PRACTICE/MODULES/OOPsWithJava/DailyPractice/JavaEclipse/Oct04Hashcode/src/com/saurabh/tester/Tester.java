@@ -7,7 +7,7 @@ public class Tester {
 		Set<Employee> emp = EmployeeData.getEmployeeData();
 		System.out.println(emp.hashCode());
 //		System.out.println("Hi " + "hi".hashCode());
-		
+		System.out.println(emp);
 		
 	}
 }

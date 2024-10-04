@@ -38,6 +38,7 @@ public class Employee {
 		result = 31 * result + (id == null ? 0 : id.hashCode());
 		result = 31 * result + (name == null ? 0 : name.hashCode());
 		System.out.println("Result is : " + result);
+		System.out.println();
 		return result;
 	}
 }
