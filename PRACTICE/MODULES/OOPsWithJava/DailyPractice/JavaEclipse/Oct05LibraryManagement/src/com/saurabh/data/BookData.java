@@ -18,6 +18,7 @@ public class BookData {
 		bookData.put("The Catcher in the Rye", new Books("The Catcher in the Rye", EnumBookType.valueOf("FICTION"), LocalDate.parse("1951-07-16"), "J.D. Salinger", 6));
 		bookData.put("Educated", new Books("Educated", EnumBookType.valueOf("THRILLER"), LocalDate.parse("2018-02-20"), "Tara Westover", 11));
 		bookData.put("The Great Gatsby", new Books("The Great Gatsby", EnumBookType.valueOf("FANTASY"), LocalDate.parse("1925-04-10"), "F. Scott Fitzgerald", 4));
+		bookData.put("A", new Books("A", EnumBookType.valueOf("FANTASY"), LocalDate.parse("1925-04-10"), "A", 5));
 		return bookData;
 	}
 }
