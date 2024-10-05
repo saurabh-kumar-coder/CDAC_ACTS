@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Set;
 import com.saurabh.pojo.Books;
 import com.saurabh.utility.EnumBookType;
+import com.saurabh.exceptions.BookNotFoundException;
+import com.saurabh.exceptions.DuplicateBookEntryException;
 import com.saurabh.data.BookData;
 public class Impl {
 	public static void showMenu() {
@@ -13,11 +15,11 @@ public class Impl {
 		System.out.println("1. Add Book");
 		System.out.println("2. Display All Book");
 		System.out.println("3. Allot book to Students. Find by book title");
-		System.out.println("Take book return ( quantity +1) Find by book title");
-		System.out.println("Remove book");
+		System.out.println("4. Take book return ( quantity +1) Find by book title");
+		System.out.println("5. Remove book");
 	}
 	
-	private static Map<String, Books> addBook(Map<String, Books> bookData, Scanner sc) {
+	private static Map<String, Books> addBook(Map<String, Books> bookData, Scanner sc) throws DuplicateBookEntryException {
 		// TODO Auto-generated method stub
 		System.out.println("Enter Book Name (A)");
 		String bookTitle = sc.nextLine();
@@ -31,6 +33,9 @@ public class Impl {
 		String bookAuthorName = sc.nextLine();
 		System.out.println("Enter Book Quantity (5)");
 		Integer bookQuantity = sc.nextInt();
+		if(bookData.containsKey(bookTitle)) {
+			throw new DuplicateBookEntryException("Book Already Present in Library");
+		}
 		bookData.put(bookTitle, new Books(bookTitle, bookType,bookPublishedDate,bookAuthorName,bookQuantity));
 		return bookData;
 	}
@@ -56,7 +61,11 @@ public class Impl {
 				switch(choice) {
 					case 1:{
 						System.out.println("Case 1 called");
-						bookData = addBook(bookData, sc);
+						try {
+							bookData = addBook(bookData, sc);							
+						} catch(DuplicateBookEntryException e) {
+							System.out.println(e.getMessage());
+						}
 						System.out.println(bookData.size());
 					}
 					break;
@@ -66,18 +75,29 @@ public class Impl {
 					}
 					break;
 					case 3: {
-						System.out.println("enter the book title choosed by student: ");
-						String bookTitle = sc.nextLine();
-						Books book = bookData.get(bookTitle);
-						boolean isFound = false;
-						if(book != null) {
-							isFound = bookData.containsKey(bookTitle);
-							System.out.println(isFound);
-							bookData.get(bookTitle).setBookQuantity(bookData.get(bookTitle).getBookQuantity() - 1);
-						} else {
-							System.out.println(isFound);
+						try {
+							bookIssuedByStudent(bookData, sc);
+						} catch (BookNotFoundException e) {
+							System.out.println(e.getMessage());
+						}
+						
+					}
+					break;
+					case 4: {
+						try {
+							bookReturnByStudent(bookData, sc);							
+						} catch(BookNotFoundException e) {
+							System.out.println(e.getMessage());
 						}
 					}
+					break;
+					case 5: {
+						try {
+							removeBook(bookData, sc);							
+						} catch(BookNotFoundException e) {
+							System.out.println(e.getMessage());
+						}
+					} 
 					break;
 					default : {
 						System.out.println("You entered wrong input");
@@ -87,6 +107,43 @@ public class Impl {
 				ch = sc.next().charAt(0);
 			} while(ch == 'y' || ch == 'Y');
 		}
+	}
+
+	private static void removeBook(Map<String, Books> bookData, Scanner sc) throws BookNotFoundException {
+		// TODO Auto-generated method stub
+		System.out.println("enter the book you want to remove.");
+		String bookTitle = sc.nextLine();
+		if(!bookData.containsKey(bookTitle)) {
+			throw new BookNotFoundException("Book not found. So, can't be removed");
+		}
+		bookData.remove(bookTitle);
+	}
+
+	private static void bookReturnByStudent(Map<String, Books> bookData, Scanner sc) throws BookNotFoundException {
+		// TODO Auto-generated method stub
+		System.out.println("Enter the book returned by the student");
+		String bookTitle = sc.nextLine();
+		if(!bookData.containsKey(bookTitle)) {
+			throw new BookNotFoundException("Student is returning a wrong book");
+		}
+		bookData.get(bookTitle).setBookQuantity(bookData.get(bookTitle).getBookQuantity() + 1);
+	}
+
+	private static void bookIssuedByStudent(Map<String, Books> bookData, Scanner sc) throws BookNotFoundException {
+		// TODO Auto-generated method stub
+		System.out.println("enter the book title choosed by student: ");
+		String bookTitle = sc.nextLine();
+		Books book = bookData.get(bookTitle);
+		boolean isFound = false;
+		if(book == null) {
+			throw new BookNotFoundException("Book not present in the Library");
+		} 
+		if(bookData.get(bookTitle).getBookQuantity() <= 0) {
+			throw new BookNotFoundException("Book is not present at the moment.");
+		}
+		
+		isFound = bookData.containsKey(bookTitle);
+		bookData.get(bookTitle).setBookQuantity(bookData.get(bookTitle).getBookQuantity() - 1);
 	}
 
 
