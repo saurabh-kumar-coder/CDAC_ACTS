@@ -1,0 +1,13 @@
+1. Use HashMap , LinkedHamap and TreeMap ( Create separate tester for
+each type of Map)
+2. Book details : title, bookType(enum), price, publishedDate, authorName, quantity
+Unique ID : book title
+3. Get data from user and store Books in HashSet
+Menus
+	1 Add book.
+	2 Display All books
+	3 Allot book to student ( quantity -1). Find by book title
+	4 Take book return ( quantity +1) Find by book title
+	5 Remove book
+Handle exceptions for duplicate book entries and
+BookNotFoundException

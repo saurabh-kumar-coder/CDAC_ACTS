@@ -1,13 +1,14 @@
 package com.saurabh.data;
 
 import java.util.Map;
-import java.util.HashMap;
+
+import java.util.TreeMap;
 import java.time.LocalDate;
 import com.saurabh.pojo.Books;
 import com.saurabh.utility.EnumBookType;
 public class BookData {
 	public static Map<String, Books> getBookData() {
-		Map<String, Books> bookData = new HashMap<String,Books>();
+		Map<String, Books> bookData = new TreeMap<String,Books>();
 		bookData.put("To Kill a Mockingbird", new Books("To Kill a Mockingbird", EnumBookType.valueOf("MYSTERY"), LocalDate.parse("1960-07-11"), "Harper Lee", 12));
 		bookData.put("Nineteen Eighty-Four", new Books("Nineteen Eighty-Four", EnumBookType.valueOf("FANTASY"), LocalDate.parse("1949-06-08"), "George Orwell", 8));
 		bookData.put("A Brief History of Time", new Books("A Brief History of Time", EnumBookType.valueOf("FICTION"), LocalDate.parse("1988-04-01"), "Stephen Hawking", 5));
