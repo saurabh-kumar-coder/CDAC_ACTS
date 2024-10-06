@@ -1,0 +1,20 @@
+Create an application for School which will maintain data for all the school students in HashMap.
+
+RollNo is not unique, There can be more than 1 students in school with same roll No.
+
+Division/Section is not unique in the school for 5A, 6B.
+
+Unique key can be a combination of standard, division and roll no.
+
+Student class will have following properties
+rollNo
+standard
+division
+name
+ 
+Menu:
+Add student
+Find student using unique mentioned above
+Print all students
+ 
+Note: once it works change the HashMap to TreeMap
