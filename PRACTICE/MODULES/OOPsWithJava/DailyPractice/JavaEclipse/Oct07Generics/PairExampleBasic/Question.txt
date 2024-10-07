@@ -1,0 +1,5 @@
+Task: Create a generic class called Pair<K, V> that represents a pair of objects. It should have the following features:
+Two private fields to store the key and value.
+A constructor to initialize both fields.
+Getter methods for the key and value.
+A toString() method that returns a string representation of the pair.
