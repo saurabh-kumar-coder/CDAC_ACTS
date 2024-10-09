@@ -1,0 +1,21 @@
+1) Create Apple class with weight, color and taste. Use Stream API
+for below things. Use method ref for println
+
+Filter by weight
+filter by color
+filter by color and weight
+filter by color, weight and taste
+Sort by weight
+Sort by color
+Remove red apples
+Removed Green apples
+Convert to Set collection
+
+
+2) create list of String and use Stream API for below ( use method
+ref for println
+print distinct
+print all with uppercase
+print which starts with specific letter
+concat all strings in the list
+filter by ending with some text
