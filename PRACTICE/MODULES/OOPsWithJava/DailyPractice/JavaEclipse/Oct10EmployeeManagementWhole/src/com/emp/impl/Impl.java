@@ -1,23 +1,31 @@
 package com.emp.impl;
 
-import static com.emp.empEnum.EmployeeEnum.HR;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+
+//import static com.emp.empEnum.EmployeeEnum.HR;
 
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 import com.emp.abstractcls.Employee;
 import com.emp.data.EmployeeData;
 import com.emp.data.SkillsData;
+import com.emp.empEnum.EmployeeEnum;
 import com.emp.pojos.EmployeeKey;
+import com.emp.pojos.Skills;
 
 public class Impl {
 	public static void main(String[] args) {
@@ -35,7 +43,7 @@ public class Impl {
 					}
 						break;
 					case 2: {
-						addEmployee(employeeData);
+						addEmployee(employeeData, sc);
 					}
 						break;
 					case 3: {
@@ -50,6 +58,14 @@ public class Impl {
 						readObjectFromFile();
 					}
 					break;
+					case 6: {
+						writeCharacterIntoFile(employeeData);
+					}
+					break;
+					case 7: {
+						readCharacterFromFile(employeeData);
+					}
+					break;
 					default: {
 						System.out.println("you entered wrong choice");
 					}
@@ -60,11 +76,47 @@ public class Impl {
 		}
 	}
 
+	private static void readCharacterFromFile(Map<EmployeeKey, Employee> employeeData) {
+		// TODO Auto-generated method stub
+		try(FileReader fr = new FileReader("character.txt");
+				BufferedReader br = new BufferedReader(fr);){
+			String employee;
+			while((employee = br.readLine()) != null) {
+				System.out.println(employee);
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	private static void writeCharacterIntoFile(Map<EmployeeKey, Employee> employeeData) {
+		// TODO Auto-generated method stub
+		try(FileWriter fw = new FileWriter("character.txt");
+				BufferedWriter br = new BufferedWriter(fw);){
+			employeeData.entrySet().stream()
+				.forEach(entry -> {
+					EmployeeKey key = entry.getKey();
+					Employee val = entry.getValue();
+					try {
+						br.write(key.toString() + " " + val.toString());
+						br.newLine();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						System.out.println(e.getMessage());
+					}
+				});
+			System.out.println("data entered into file.");
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
 	private static void readObjectFromFile() {
 		// TODO Auto-generated method stub
 		try(FileInputStream fis = new FileInputStream("binary.ser");
 				ObjectInputStream ois = new ObjectInputStream(fis)){
 			while(true) {
+				@SuppressWarnings("unchecked")
 				Map<EmployeeKey, Employee> employee = (Map<EmployeeKey, Employee>)ois.readObject();
 				System.out.println(employee);
 			}
@@ -102,11 +154,29 @@ public class Impl {
 		});
 	}
 
-	private static void addEmployee(Map<EmployeeKey, Employee> employeeData) {
+	private static void addEmployee(Map<EmployeeKey, Employee> employeeData, Scanner sc) {
 		// TODO Auto-generated method stub
-//		Integer employeeId, String firstName, String lastName, LocalDate dateOfJoining, String phoneNo, List<Skills> skills, Double salary, EmployeeEnum empType
-		employeeData.put(new EmployeeKey("MON", "90000000"), new Employee(6, "MON", "DOM",
-				LocalDate.parse("2019-08-26"), "90000000", SkillsData.getSkillsData().subList(1, 3), 26000.0, HR));
+		System.out.println("enter employee id : ");
+		Integer employeeId = sc.nextInt();
+		System.out.println("enter first name : ");
+		String firstName = sc.nextLine();
+		System.out.println("enter last name : ");
+		String lastName = sc.nextLine();
+		System.out.println("enter date of joining : ");
+		String doj = sc.nextLine();
+		LocalDate dateOfJoining = LocalDate.parse(doj);
+		System.out.println("enter phone number : ");
+		String phoneNo = sc.nextLine();
+		System.out.println("enter skills : ");
+		List<Skills> skills = new ArrayList<>(SkillsData.getSkillsData().subList(1, 1));
+		System.out.println("enter salary");
+		Double salary = sc.nextDouble();
+		System.out.println("enter employee type(HR/ MANAGER/ DEVELOPER) : ");
+		EmployeeEnum empType = EmployeeEnum.valueOf(sc.nextLine());
+		employeeData.put(new EmployeeKey("MON", "90000000"), new Employee(employeeId, firstName, lastName,
+				dateOfJoining, phoneNo, skills, salary, empType));
+//		employeeData.put(new EmployeeKey("MON", "90000000"), new Employee(6, "MON", "DOM",
+//				LocalDate.parse("2019-08-26"), "90000000", SkillsData.getSkillsData().subList(1, 3), 26000.0, HR));
 		System.out.println("Added Employee");
 		return;
 	}
@@ -131,7 +201,7 @@ public class Impl {
 		employeeData.entrySet().stream().forEach(entry -> {
 			EmployeeKey key = entry.getKey();
 			Employee value = entry.getValue();
-//			System.out.println(key + " " + value);
+			System.out.println(key + " " + value);
 		});
 	}
 }

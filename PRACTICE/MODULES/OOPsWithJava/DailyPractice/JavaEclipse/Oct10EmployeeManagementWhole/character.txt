@@ -1,0 +1,4 @@
+EmployeeKey [firstName=POQ, phoneNo=2032564865] Employee [employeeId=2, firstName=POQ, lastName=DEF, dateOfJoining=2021-12-16, phoneNo=2032564865, skills=[Skills [skills=Communication]], salary=3000.0, empType=DEVELOPER]
+EmployeeKey [firstName=POQ, phoneNo=2032564866] Employee [employeeId=2, firstName=POQ, lastName=DEF, dateOfJoining=2021-12-16, phoneNo=2032564866, skills=[Skills [skills=Communication]], salary=3000.0, empType=DEVELOPER]
+EmployeeKey [firstName=ABC, phoneNo=2032564897] Employee [employeeId=1, firstName=ABC, lastName=DEF, dateOfJoining=2024-10-11, phoneNo=2032564897, skills=[Skills [skills=Java]], salary=3000.0, empType=HR]
+EmployeeKey [firstName=ZET, phoneNo=2032564809] Employee [employeeId=9, firstName=ZET, lastName=DEF, dateOfJoining=2022-02-06, phoneNo=2032564809, skills=[Skills [skills=Java], Skills [skills=SQL]], salary=3000.0, empType=MANAGER]
