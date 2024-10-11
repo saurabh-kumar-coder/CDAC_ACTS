@@ -24,14 +24,6 @@ public class Employee implements Serializable{
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
-//		this.employeeId = employeeId == 0 ? 1 : employeeId;
-//		this.firstName = (firstName != null && firstName.equals(null)) ? "ABC" : firstName;
-//		this.lastName = (lastName != null && lastName.equals(null)) ? "DEF" : lastName;
-//		this.dateOfJoining = dateOfJoining == null ? LocalDate.now() : dateOfJoining;
-//		this.phoneNo = (phoneNo != null && phoneNo.equals(null)) ? "2015547896" : phoneNo;
-////		this.skills = skills; // == null ? new ArrayList<>() : new ArrayList<>();
-//		this.salary = salary == null ? 2000.0 : null;
-//		this.empType = empType;
 	}
 	public Employee(Integer employeeId, String firstName, String lastName, LocalDate dateOfJoining, String phoneNo,
 			List<Skills> skills, Double salary, EmployeeEnum empType) {

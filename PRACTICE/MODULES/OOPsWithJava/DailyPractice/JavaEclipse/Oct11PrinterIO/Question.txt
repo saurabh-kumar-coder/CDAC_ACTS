@@ -1,0 +1,14 @@
+Create Printer class with serialNo, modelNo, price, printerType,
+manufacturingDate. Create Enum for PrinterType with values as LASER,
+INKJET, DOTMATRIX.
+Store the printers objects in file using ObjectOutputStream.On program
+startup read all printers from file and store them in HashMap where
+serialNo will be key and printer object will be value.
+1.Add Printer
+2.Update Printer Price
+3.Print all Printers
+4.Display printers sorted by Prices (user comparing method of Comparator)
+5.Filter by printerType ( use filter method of Stream API)
+6.Remove a book
+7. Show printer by PrinterType ( use goupingBy of Stream)
+0.Save in file and Exit

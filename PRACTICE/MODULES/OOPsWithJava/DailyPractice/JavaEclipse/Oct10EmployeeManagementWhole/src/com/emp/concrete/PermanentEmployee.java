@@ -46,8 +46,8 @@ public class PermanentEmployee extends Employee implements Serializable, Payable
 	}
 
 	@Override
-	public void calcSalary() {
+	public Double calcSalary() {
 		// TODO Auto-generated method stub
-		setSalary(getMonthlySalary());
+		return getMonthlySalary();
 	}
 }

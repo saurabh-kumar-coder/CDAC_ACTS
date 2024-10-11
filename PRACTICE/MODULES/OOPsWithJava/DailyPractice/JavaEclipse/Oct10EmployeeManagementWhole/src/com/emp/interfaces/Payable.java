@@ -2,7 +2,7 @@ package com.emp.interfaces;
 
 @FunctionalInterface
 public interface Payable {
-	void calcSalary();
+	Double calcSalary();
 	default double bonus() {
 		return 5000;
 	}

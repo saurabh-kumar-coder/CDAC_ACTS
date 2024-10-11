@@ -56,8 +56,8 @@ public class ContractEmployee extends Employee implements Serializable, Payable 
 	}
 
 	@Override
-	public void calcSalary() {
+	public Double calcSalary() {
 		// TODO Auto-generated method stub
-		setSalary(getHours() * getRatePerHour());
+		return getHours() * getRatePerHour();
 	}
 }
