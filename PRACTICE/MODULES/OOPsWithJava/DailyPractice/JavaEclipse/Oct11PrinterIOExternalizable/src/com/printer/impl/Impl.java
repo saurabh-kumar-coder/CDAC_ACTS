@@ -20,7 +20,9 @@ import java.util.stream.Collectors;
 import com.printer.enums.PrinterType;
 import com.printer.io.IOOperations;
 import com.printer.pojos.Printer;
-
+//	implements Externalizable interface
+//	override writeObject() and readObject() methods
+//	the sequence should match from writeObject() and readObject()
 public class Impl {
 	public static void showMenu() {
 		System.out.println("******* MENU ******");
