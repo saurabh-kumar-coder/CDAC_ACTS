@@ -1,0 +1,324 @@
+!SESSION 2024-10-13 10:44:30.287 -----------------------------------------------
+eclipse.buildId=4.19.0.202306150758
+java.version=17.0.7
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4 -product org.springframework.boot.ide.branding.sts4
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springframework.boot.ide.branding.sts4 -data E:\@CDAC_ACTS\CDAC_ACTS\PRACTICE\MODULES\AdvancedJava\DailyPractice\Old_J2ee_Workspace -product org.springframework.boot.ide.branding.sts4
+
+!ENTRY org.eclipse.emf.ecore 2 0 2024-10-13 10:44:31.928
+!MESSAGE Both 'org.eclipse.jst.j2ee.core' and 'org.eclipse.jst.j2ee.core' register a package for 'application.xmi'
+
+!ENTRY org.eclipse.jface 2 0 2024-10-13 10:44:36.215
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-10-13 10:44:36.216
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.jdt.ui.navigate.open.type"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.lsp4e.symbolinworkspace"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.egit.ui 2 0 2024-10-13 10:44:40.587
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\1355s'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:06.873
+!MESSAGE Classpath changed for project: Ecommerce
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:06.874
+!MESSAGE Classpath changed for project: EmployeeCRUD
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:06.874
+!MESSAGE Classpath changed for project: HotelService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:06.875
+!MESSAGE Classpath changed for project: Mapping
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:06.876
+!MESSAGE Classpath changed for project: RatingService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:06.876
+!MESSAGE Classpath changed for project: ServiceRegistry
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:06.877
+!MESSAGE Classpath changed for project: SpringJWT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:06.877
+!MESSAGE Classpath changed for project: StrategyDesignPatternDemo
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:06.879
+!MESSAGE Classpath changed for project: ems-backend
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:08.504
+!MESSAGE Classpath changed for project: Ecommerce
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:08.505
+!MESSAGE Classpath changed for project: EmployeeCRUD
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:08.505
+!MESSAGE Classpath changed for project: HotelService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:08.510
+!MESSAGE Classpath changed for project: Mapping
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:08.511
+!MESSAGE Classpath changed for project: RatingService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:08.511
+!MESSAGE Classpath changed for project: ServiceRegistry
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:08.512
+!MESSAGE Classpath changed for project: SpringJWT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:08.513
+!MESSAGE Classpath changed for project: StrategyDesignPatternDemo
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:08.514
+!MESSAGE Classpath changed for project: ems-backend
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:14.626
+!MESSAGE Classpath changed for project: Ecommerce
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:28.056
+!MESSAGE Classpath changed for project: Ecommerce
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:28.068
+!MESSAGE Boot project ADDED: Ecommerce
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:28.069
+!MESSAGE Starting Boot LS...
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:28.090
+!MESSAGE Started Boot LS process
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:28.127
+!MESSAGE Classpath changed for project: Ecommerce
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-10-13 10:47:28.140
+!MESSAGE Command list starting LS: org.springframework.tooling.boot.ls
+START:
+F:\drive_6\Spring_STS\contents\sts-4.19.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.7.v20230425-1502\jre\bin\javaw.exe
+-cp
+F:\drive_6\Spring_STS\contents\sts-4.19.0.RELEASE\plugins\org.springframework.tooling.boot.ls_1.47.0.202306150731\servers\spring-boot-language-server\BOOT-INF\classes;F:\drive_6\Spring_STS\contents\sts-4.19.0.RELEASE\plugins\org.springframework.tooling.boot.ls_1.47.0.202306150731\servers\spring-boot-language-server\BOOT-INF\lib\*
+-Dsts.lsp.client=eclipse
+-Dlsp.completions.indentation.enable=true
+-Xmx1024m
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:TieredStopAtLevel=1
+-Xlog:jni+resolve=off
+-Dspring.config.location=file:F:\drive_6\Spring_STS\contents\sts-4.19.0.RELEASE\plugins\org.springframework.tooling.boot.ls_1.47.0.202306150731\servers\spring-boot-language-server\BOOT-INF\classes\application.properties
+-XX:ErrorFile=E:/@CDAC_ACTS/CDAC_ACTS/PRACTICE/MODULES/AdvancedJava/DailyPractice/Old_J2ee_Workspace/.metadata/.plugins/org.springframework.tooling.boot.ls/fatal-error-spring-boot_1728796648139
+org.springframework.ide.vscode.boot.app.BootLanguageServerBootApp
+--languageserver.hover-timeout=225
+END
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:28.141
+!MESSAGE DelegatingStreamConnectionProvider - Starting Boot LS
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-10-13 10:47:28.158
+!MESSAGE Started org.springframework.tooling.boot.ls LS process 7212
+
+!ENTRY org.eclipse.lsp4e 4 0 2024-10-13 10:47:28.193
+!MESSAGE org.springframework.ide.vscode.commons.protocol.spring.SpringModelLanguageServer cannot be found by org.springframework.tooling.boot.ls_1.47.0.202306150731
+!STACK 0
+java.lang.ClassNotFoundException: org.springframework.ide.vscode.commons.protocol.spring.SpringModelLanguageServer cannot be found by org.springframework.tooling.boot.ls_1.47.0.202306150731
+	at org.eclipse.osgi.internal.loader.BundleLoader.generateException(BundleLoader.java:541)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass0(BundleLoader.java:536)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:416)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:168)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.loadClass(EquinoxBundle.java:622)
+	at org.eclipse.lsp4e.LanguageServersRegistry$ExtensionLanguageServerDefinition.getServerInterface(LanguageServersRegistry.java:196)
+	at org.eclipse.lsp4e.LanguageServerWrapper.lambda$1(LanguageServerWrapper.java:291)
+	at java.base/java.util.concurrent.CompletableFuture$UniRun.tryFire(CompletableFuture.java:787)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:29.825
+!MESSAGE Classpath changed for project: Ecommerce
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:29.826
+!MESSAGE Classpath changed for project: EmployeeCRUD
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:38.201
+!MESSAGE Classpath changed for project: EmployeeCRUD
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:38.217
+!MESSAGE Boot project ADDED: EmployeeCRUD
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:38.312
+!MESSAGE Classpath changed for project: EmployeeCRUD
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:39.937
+!MESSAGE Classpath changed for project: EmployeeCRUD
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:41.673
+!MESSAGE Classpath changed for project: HotelService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:47.580
+!MESSAGE Classpath changed for project: HotelService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:47.617
+!MESSAGE Boot project ADDED: HotelService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:47.731
+!MESSAGE Classpath changed for project: HotelService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:49.326
+!MESSAGE Classpath changed for project: HotelService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:49.329
+!MESSAGE Classpath changed for project: Mapping
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:53.032
+!MESSAGE Classpath changed for project: Mapping
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:47:53.033
+!MESSAGE Boot project ADDED: Mapping
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:00.183
+!MESSAGE Classpath changed for project: RatingService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:04.109
+!MESSAGE Classpath changed for project: RatingService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:04.133
+!MESSAGE Boot project ADDED: RatingService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:04.225
+!MESSAGE Classpath changed for project: RatingService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:05.876
+!MESSAGE Classpath changed for project: Mapping
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:05.876
+!MESSAGE Classpath changed for project: RatingService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:05.877
+!MESSAGE Classpath changed for project: ServiceRegistry
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:11.182
+!MESSAGE Classpath changed for project: ServiceRegistry
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:11.208
+!MESSAGE Boot project ADDED: ServiceRegistry
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:11.295
+!MESSAGE Classpath changed for project: ServiceRegistry
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:12.836
+!MESSAGE Classpath changed for project: ServiceRegistry
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:12.837
+!MESSAGE Classpath changed for project: SpringJWT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:13.886
+!MESSAGE Classpath changed for project: SpringJWT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:13.906
+!MESSAGE Boot project ADDED: SpringJWT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:13.985
+!MESSAGE Classpath changed for project: SpringJWT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:15.655
+!MESSAGE Classpath changed for project: SpringJWT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:17.746
+!MESSAGE Classpath changed for project: StrategyDesignPatternDemo
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:21.082
+!MESSAGE Classpath changed for project: StrategyDesignPatternDemo
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:21.091
+!MESSAGE Boot project ADDED: StrategyDesignPatternDemo
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:21.163
+!MESSAGE Classpath changed for project: StrategyDesignPatternDemo
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:22.880
+!MESSAGE Classpath changed for project: ems-backend
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:22.882
+!MESSAGE Boot project ADDED: ems-backend
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:22.882
+!MESSAGE Classpath changed for project: StrategyDesignPatternDemo
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:48:25.083
+!MESSAGE Classpath changed for project: ems-backend
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:10.607
+!MESSAGE Classpath changed for project: ems-backend
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:10.608
+!MESSAGE Boot project REMOVED: ems-backend
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:18.512
+!MESSAGE Classpath changed for project: Ecommerce
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:18.513
+!MESSAGE Boot project REMOVED: Ecommerce
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:18.513
+!MESSAGE Classpath changed for project: EmployeeCRUD
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:18.513
+!MESSAGE Boot project REMOVED: EmployeeCRUD
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:18.514
+!MESSAGE Classpath changed for project: Mapping
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:18.514
+!MESSAGE Boot project REMOVED: Mapping
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:18.514
+!MESSAGE Classpath changed for project: RatingService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:18.515
+!MESSAGE Boot project REMOVED: RatingService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:18.515
+!MESSAGE Classpath changed for project: ServiceRegistry
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:18.515
+!MESSAGE Boot project REMOVED: ServiceRegistry
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:18.515
+!MESSAGE Classpath changed for project: SpringJWT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:18.516
+!MESSAGE Boot project REMOVED: SpringJWT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:18.516
+!MESSAGE Classpath changed for project: StrategyDesignPatternDemo
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:18.517
+!MESSAGE Boot project REMOVED: StrategyDesignPatternDemo
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:24.326
+!MESSAGE Classpath changed for project: HotelService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:24.328
+!MESSAGE Boot project REMOVED: HotelService
