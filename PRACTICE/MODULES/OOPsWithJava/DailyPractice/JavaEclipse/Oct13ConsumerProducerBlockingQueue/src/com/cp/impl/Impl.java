@@ -10,7 +10,12 @@ public class Impl {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				producerConsumer.consume();
+				try {
+					producerConsumer.consume();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		
@@ -18,7 +23,12 @@ public class Impl {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				producerConsumer.produce();
+				try {
+					producerConsumer.produce();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		
