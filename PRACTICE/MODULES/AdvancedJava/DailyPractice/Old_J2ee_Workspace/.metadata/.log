@@ -322,3 +322,156 @@ java.lang.ClassNotFoundException: org.springframework.ide.vscode.commons.protoco
 
 !ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 10:49:24.328
 !MESSAGE Boot project REMOVED: HotelService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:40.785
+!MESSAGE Classpath changed for project: Ecommerce
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:40.785
+!MESSAGE Classpath changed for project: EmployeeCRUD
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:40.785
+!MESSAGE Classpath changed for project: HotelService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:40.786
+!MESSAGE Classpath changed for project: Mapping
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:40.786
+!MESSAGE Classpath changed for project: RatingService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:40.786
+!MESSAGE Classpath changed for project: ServiceRegistry
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:40.787
+!MESSAGE Classpath changed for project: SpringJWT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:40.787
+!MESSAGE Classpath changed for project: StrategyDesignPatternDemo
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:46.374
+!MESSAGE Classpath changed for project: Ecommerce
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:46.375
+!MESSAGE Boot project ADDED: Ecommerce
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:46.375
+!MESSAGE Classpath changed for project: EmployeeCRUD
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:46.376
+!MESSAGE Boot project ADDED: EmployeeCRUD
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:46.376
+!MESSAGE Classpath changed for project: HotelService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:46.376
+!MESSAGE Boot project ADDED: HotelService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:47.951
+!MESSAGE Classpath changed for project: Mapping
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:47.952
+!MESSAGE Boot project ADDED: Mapping
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:47.952
+!MESSAGE Classpath changed for project: RatingService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:49.775
+!MESSAGE Classpath changed for project: RatingService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:49.776
+!MESSAGE Boot project ADDED: RatingService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:49.776
+!MESSAGE Classpath changed for project: ServiceRegistry
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:51.421
+!MESSAGE Classpath changed for project: ServiceRegistry
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:51.421
+!MESSAGE Boot project ADDED: ServiceRegistry
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:51.421
+!MESSAGE Classpath changed for project: SpringJWT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:52.653
+!MESSAGE Classpath changed for project: SpringJWT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:52.655
+!MESSAGE Boot project ADDED: SpringJWT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:52.658
+!MESSAGE Classpath changed for project: StrategyDesignPatternDemo
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:52.660
+!MESSAGE Boot project ADDED: StrategyDesignPatternDemo
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:55.108
+!MESSAGE Classpath changed for project: Ecommerce
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:55.109
+!MESSAGE Classpath changed for project: EmployeeCRUD
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:55.110
+!MESSAGE Classpath changed for project: HotelService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:55.111
+!MESSAGE Classpath changed for project: Mapping
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:55.112
+!MESSAGE Classpath changed for project: RatingService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:55.112
+!MESSAGE Classpath changed for project: ServiceRegistry
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:55.113
+!MESSAGE Classpath changed for project: SpringJWT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:03:55.113
+!MESSAGE Classpath changed for project: StrategyDesignPatternDemo
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:04:30.495
+!MESSAGE Classpath changed for project: EmployeeCRUD
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:04:30.495
+!MESSAGE Boot project REMOVED: EmployeeCRUD
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:04:30.496
+!MESSAGE Classpath changed for project: HotelService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:04:30.496
+!MESSAGE Boot project REMOVED: HotelService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:04:30.497
+!MESSAGE Classpath changed for project: Mapping
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:04:30.497
+!MESSAGE Boot project REMOVED: Mapping
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:04:30.498
+!MESSAGE Classpath changed for project: RatingService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:04:30.498
+!MESSAGE Boot project REMOVED: RatingService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:04:30.498
+!MESSAGE Classpath changed for project: ServiceRegistry
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:04:30.499
+!MESSAGE Boot project REMOVED: ServiceRegistry
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:04:30.499
+!MESSAGE Classpath changed for project: SpringJWT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:04:30.500
+!MESSAGE Boot project REMOVED: SpringJWT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:04:30.500
+!MESSAGE Classpath changed for project: StrategyDesignPatternDemo
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:04:30.501
+!MESSAGE Boot project REMOVED: StrategyDesignPatternDemo
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:04:33.761
+!MESSAGE Classpath changed for project: Ecommerce
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-10-13 11:04:33.762
+!MESSAGE Boot project REMOVED: Ecommerce
