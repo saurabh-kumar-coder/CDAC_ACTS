@@ -1,7 +1,6 @@
 package com.saurabh.impl;
 
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -71,5 +70,6 @@ public class Impl {
 			System.out.println("Do you want to continue ? Press y/Y");
 			ch = sc.next().charAt(0);
 		} while(ch == 'y' || ch == 'Y');
+		sc.close();
 	}
 }
