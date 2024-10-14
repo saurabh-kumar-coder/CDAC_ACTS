@@ -131,10 +131,12 @@ public class EmployeeUtility {
 	
 	public static void addEmployee(Employee employee, Map<EmployeeKey, Employee> employeeData, Scanner sc) {
 		// TODO Auto-generated method stub
+		sc.nextLine();
 		System.out.println("enter type of employee. Press P for permanent employee/ C for Contract Employee");
 		String et = sc.nextLine().toLowerCase();
 		System.out.println("enter employee id : ");
 		Integer employeeId = sc.nextInt();
+		sc.nextLine();
 		System.out.println("enter first name : ");
 		String firstName = sc.nextLine();
 		System.out.println("enter last name : ");

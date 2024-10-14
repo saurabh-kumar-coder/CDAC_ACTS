@@ -10,7 +10,19 @@ import com.emp.utility.EmployeeUtility;
 
 public class Impl {
 	public static Employee employee = null;
-
+	public static void showMenu() {
+		System.out.println("+++++ MENU +++++");
+		System.out.println("1. Write data into file");
+		System.out.println("2. Add Employee");
+		System.out.println("3. Sort Data Using First Name And Phone No");
+		System.out.println("4. Sort Data Using First Name");
+		System.out.println("5. Read Object From File");
+		System.out.println("6. Write Character Into File");
+		System.out.println("7. Read Character From File");
+		System.out.println("8. Calculate Number Of Days From Joining Date");
+		System.out.println("9. Get Employee Data");
+		System.out.println("0. To EXIT");
+	}
 	public static void main(String[] args) {
 		Map<EmployeeKey, Employee> employeeData = EmployeeData.getEmployeeData();
 
@@ -52,6 +64,10 @@ public class Impl {
 					break;
 				case 8: {
 					EmployeeUtility.calculateNumberOfDaysFromJoiningDate(employeeData);
+				}
+					break;
+				case 9: {
+					EmployeeUtility.getEmployeeData(employeeData);
 				}
 					break;
 				default: {
