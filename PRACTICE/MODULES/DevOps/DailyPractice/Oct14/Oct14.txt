@@ -123,7 +123,7 @@ stop a container
 	docker stop <container_name>
 
 remove a container
-	docker rm if <container_name>
+	docker rm -f <container_name>
 	
 view logs :
 	docker logs <container_id>
@@ -162,5 +162,4 @@ docker build -t <tag_name_to_java_code> .
 
 RUN THE DOCKER CONTAINER
 docker run <tag_name_to_java_code>
-	
 	

@@ -1,0 +1,278 @@
+docker ps
+CONTAINER ID   IMAGE     COMMAND       CREATED         STATUS         PORTS     NAMES
+0ff26ebe7383   ubuntu    "/bin/bash"   5 minutes ago   Up 5 minutes             s_ubuntu
+saurabh@ubuntu:~$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+ubuntu       latest    dc4c1391d370   5 days ago    78.1MB
+nginx        latest    7f553e8bbc89   13 days ago   192MB
+saurabh@ubuntu:~$ docker run dc4
+saurabh@ubuntu:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND       CREATED         STATUS         PORTS     NAMES
+0ff26ebe7383   ubuntu    "/bin/bash"   7 minutes ago   Up 7 minutes             s_ubuntu
+saurabh@ubuntu:~$ docker run dc4c1391d370
+saurabh@ubuntu:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND       CREATED         STATUS         PORTS     NAMES
+0ff26ebe7383   ubuntu    "/bin/bash"   8 minutes ago   Up 8 minutes             s_ubuntu
+saurabh@ubuntu:~$ docker run ngnix
+Unable to find image 'ngnix:latest' locally
+docker: Error response from daemon: pull access denied for ngnix, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+saurabh@ubuntu:~$ docker rmi -f ngnix
+Error response from daemon: No such image: ngnix:latest
+saurabh@ubuntu:~$ docker rmi -f 7f553e8bbc89
+Untagged: nginx:latest
+Untagged: nginx@sha256:d2eb56950b84efe34f966a2b92efb1a1a2ea53e7e93b94cdf45a27cf3cd47fc0
+Deleted: sha256:7f553e8bbc897571642d836b31eaf6ecbe395d7641c2b24291356ed28f3f2bd0
+Deleted: sha256:3ba9e1b5feaec13b6ac4c4039ff77db13d386040a109f2c378707e70a16ceff0
+Deleted: sha256:84bde598cdfbb8af5b5509ede416a448ab7b8e38a4b7e5f2808c096739cb10e8
+Deleted: sha256:c51526393f89152369e3f34f04409221511ff198968d6e221a7f9f4ed47369c7
+Deleted: sha256:9663f01c380b3953165314a61b7f06e064a1ca39914d7bf6bc047f11d2836df8
+Deleted: sha256:eb228edcd2ea132c0353513e457bae71a4c06332541ac4517b06f70b71b7e977
+Deleted: sha256:b3f70c08ab98515399e812f56f987b033a998abc2fceaa683f432cad5a8bd04a
+Deleted: sha256:8d853c8add5d1e7b0aafc4b68a3d9fb8e7a0da27970c2acf831fe63be4a0cd2c
+saurabh@ubuntu:~$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED      SIZE
+ubuntu       latest    dc4c1391d370   5 days ago   78.1MB
+saurabh@ubuntu:~$ docker stop s_ubuntu
+s_ubuntu
+saurabh@ubuntu:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+saurabh@ubuntu:~$ docker run -dit --name=s_ubuntu ubuntu:latest
+docker: Error response from daemon: Conflict. The container name "/s_ubuntu" is already in use by container "0ff26ebe7383a1d0a76ced182252614134915157ff528121712535a8ef87c8ff". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+saurabh@ubuntu:~$ docker -q
+unknown shorthand flag: 'q' in -q
+See 'docker --help'.
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Common Commands:
+  run         Create and run a new container from an image
+  exec        Execute a command in a running container
+  ps          List containers
+  build       Build an image from a Dockerfile
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  images      List images
+  login       Authenticate to a registry
+  logout      Log out from a registry
+  search      Search Docker Hub for images
+  version     Show the Docker version information
+  info        Display system-wide information
+
+Management Commands:
+  builder     Manage builds
+  buildx*     Docker Buildx
+  compose*    Docker Compose
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  plugin      Manage plugins
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Swarm Commands:
+  swarm       Manage Swarm
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  wait        Block until one or more containers stop, then print their exit codes
+
+Global Options:
+      --config string      Location of client config files (default
+                           "/home/saurabh/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon
+                           (overrides DOCKER_HOST env var and default context set
+                           with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket to connect to
+  -l, --log-level string   Set the logging level ("debug", "info", "warn", "error",
+                           "fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default
+                           "/home/saurabh/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default
+                           "/home/saurabh/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/home/saurabh/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Run 'docker COMMAND --help' for more information on a command.
+
+For more help on how to use Docker, head to https://docs.docker.com/go/guides/
+
+saurabh@ubuntu:~$ docker ps -q
+saurabh@ubuntu:~$ docker ps --filter "status=stopped"
+Error response from daemon: invalid filter 'status=stopped'
+saurabh@ubuntu:~$ docker ps --filter "status=Stopped"
+Error response from daemon: invalid filter 'status=Stopped'
+saurabh@ubuntu:~$ docker ps --filter "status=Exited"
+Error response from daemon: invalid filter 'status=Exited'
+saurabh@ubuntu:~$ docker ps --filter "status=exited"
+CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS                       PORTS     NAMES
+b7a7a1228364   dc4c1391d370   "/bin/bash"   9 minutes ago    Exited (0) 9 minutes ago               competent_franklin
+a0018ea7cc59   dc4            "/bin/bash"   9 minutes ago    Exited (0) 9 minutes ago               priceless_cartwright
+0ff26ebe7383   ubuntu         "/bin/bash"   17 minutes ago   Exited (137) 4 minutes ago             s_ubuntu
+5c99d340a438   d2c94e258dcb   "/hello"      7 hours ago      Exited (0) 7 hours ago                 pensive_blackburn
+saurabh@ubuntu:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+saurabh@ubuntu:~$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED      SIZE
+ubuntu       latest    dc4c1391d370   5 days ago   78.1MB
+saurabh@ubuntu:~$ docker run -dit --name=s_ubuntu ubuntu
+docker: Error response from daemon: Conflict. The container name "/s_ubuntu" is already in use by container "0ff26ebe7383a1d0a76ced182252614134915157ff528121712535a8ef87c8ff". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+saurabh@ubuntu:~$ docker rmi -f s_ubuntu
+Error response from daemon: No such image: s_ubuntu:latest
+saurabh@ubuntu:~$ docker rm s_ubuntu
+s_ubuntu
+saurabh@ubuntu:~$ docker run -dit --name=sa_ubuntu ubuntu
+658558d226f1f3e7a5eabbf00b8e16b878f6ad85015dc502dd27432b0a100891
+saurabh@ubuntu:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND       CREATED          STATUS          PORTS     NAMES
+658558d226f1   ubuntu    "/bin/bash"   20 seconds ago   Up 19 seconds             sa_ubuntu
+saurabh@ubuntu:~$ ls
+Desktop    Downloads          Music     Public     Videos
+Documents  libinput-gestures  Pictures  Templates
+saurabh@ubuntu:~$ cd Desktop/
+saurabh@ubuntu:~/Desktop$ cd CDAC_ACTS/
+saurabh@ubuntu:~/Desktop/CDAC_ACTS$ ls
+COLLEGE  PRACTICE
+saurabh@ubuntu:~/Desktop/CDAC_ACTS$ cd PRACTICE/
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE$ ls
+MODULES
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE$ cd MODULES/
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES$ ls
+AdvancedJava  C++  DevOps  OOPsWithJava  OS
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES$ cd DevOps/
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps$ ls
+DailyPractice
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps$ cd DailyPractice/
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice$ cd Oct14/
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14$ ls
+HelloWorld  Oct14.txt
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14$ cd HelloWorld/
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/HelloWorld$ ls
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/HelloWorld$ gedit
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/HelloWorld$ touch Hello.java
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/HelloWorld$ gedit Hello.java 
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/HelloWorld$ ls
+Hello.java
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/HelloWorld$ touch Dockerfile
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/HelloWorld$ gedit Dockerfile 
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/HelloWorld$ docker build -t s_hello .
+[+] Building 0.1s (1/1) FINISHED                                            docker:default
+ => [internal] load build definition from Dockerfile                                  0.0s
+ => => transferring dockerfile: 125B                                                  0.0s
+Dockerfile:5
+--------------------
+   3 |     COPY . / app
+   4 |     RUN javac Hello.java
+   5 | >>> CMD["java", "Hello"]
+   6 |     
+--------------------
+ERROR: failed to solve: dockerfile parse error on line 5: unknown instruction: CMD["java",
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/HelloWorld$ docker build -t s_hello .
+[+] Building 0.1s (1/1) FINISHED                                            docker:default
+ => [internal] load build definition from Dockerfile                                  0.0s
+ => => transferring dockerfile: 124B                                                  0.0s
+Dockerfile:5
+--------------------
+   3 |     COPY . /app
+   4 |     RUN javac Hello.java
+   5 | >>> CMD["java", "Hello"]
+   6 |     
+--------------------
+ERROR: failed to solve: dockerfile parse error on line 5: unknown instruction: CMD["java",
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/HelloWorld$ docker build -t s_hello .
+[+] Building 59.7s (8/8) FINISHED                                           docker:default
+ => [internal] load build definition from Dockerfile                                  0.0s
+ => => transferring dockerfile: 125B                                                  0.0s
+ => [internal] load metadata for docker.io/library/openjdk:latest                     3.5s
+ => [internal] load .dockerignore                                                     0.0s
+ => => transferring context: 2B                                                       0.0s
+ => [1/4] FROM docker.io/library/openjdk:latest@sha256:9b448de897d211c9e0ec635a4856  54.6s
+ => => resolve docker.io/library/openjdk:latest@sha256:9b448de897d211c9e0ec635a48565  0.0s
+ => => sha256:9b448de897d211c9e0ec635a485650aed6e28d4eca1efbc3494056 1.04kB / 1.04kB  0.0s
+ => => sha256:fe05457a5e9b9403f8e72eeba507ae80a4237d2d2d3f219fa62ceb1284 954B / 954B  0.0s
+ => => sha256:71260f256d19f4ae5c762601e5301418d2516ca591103b1376f063 4.46kB / 4.46kB  0.0s
+ => => sha256:197c1adcd755131915cd019bdd58658d44445b3638f65449932 44.56MB / 44.56MB  19.0s
+ => => sha256:57b698b7af4b18900b53c768746b1dfb603dfb9aec1eea328fd 12.26MB / 12.26MB  10.9s
+ => => sha256:95a27dbe0150755fca4304b4afd0d7d6dd6a40ede6fdb30da 188.74MB / 188.74MB  49.8s
+ => => extracting sha256:197c1adcd755131915cd019bdd58658d44445b3638f65449932c18ee39b  3.1s
+ => => extracting sha256:57b698b7af4b18900b53c768746b1dfb603dfb9aec1eea328fdac86d370  0.8s
+ => => extracting sha256:95a27dbe0150755fca4304b4afd0d7d6dd6a40ede6fdb30da8568e9e8cd  4.7s
+ => [internal] load build context                                                     0.0s
+ => => transferring context: 270B                                                     0.0s
+ => [2/4] WORKDIR /app                                                                0.1s
+ => [3/4] COPY . /app                                                                 0.1s
+ => ERROR [4/4] RUN javac Hello.java                                                  1.3s
+------                                                                                     
+ > [4/4] RUN javac Hello.java:                                                             
+1.130 Hello.java:2: error: cannot find symbol                                              
+1.130   public static void main(Strings[] args) {                                          
+1.130 	                        ^
+1.130   symbol:   class Strings
+1.131   location: class Hello
+1.199 1 error
+------
+Dockerfile:4
+--------------------
+   2 |     WORKDIR /app
+   3 |     COPY . /app
+   4 | >>> RUN javac Hello.java
+   5 |     CMD ["java", "Hello"]
+   6 |     
+--------------------
+ERROR: failed to solve: process "/bin/sh -c javac Hello.java" did not complete successfully: exit code: 1
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/HelloWorld$ docker build -t s_hello .
+[+] Building 2.5s (9/9) FINISHED                                            docker:default
+ => [internal] load build definition from Dockerfile                                  0.0s
+ => => transferring dockerfile: 125B                                                  0.0s
+ => [internal] load metadata for docker.io/library/openjdk:latest                     0.9s
+ => [internal] load .dockerignore                                                     0.0s
+ => => transferring context: 2B                                                       0.0s
+ => [1/4] FROM docker.io/library/openjdk:latest@sha256:9b448de897d211c9e0ec635a48565  0.0s
+ => [internal] load build context                                                     0.0s
+ => => transferring context: 175B                                                     0.0s
+ => CACHED [2/4] WORKDIR /app                                                         0.0s
+ => [3/4] COPY . /app                                                                 0.1s
+ => [4/4] RUN javac Hello.java                                                        1.3s
+ => exporting to image                                                                0.1s
+ => => exporting layers                                                               0.0s
+ => => writing image sha256:7c04a1a9684b2090c5307008643c12987fbc32d3cbb5af0c9aeab20c  0.0s
+ => => naming to docker.io/library/s_hello                                            0.0s
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/HelloWorld$ docker run s_hello
+Hello World
+
