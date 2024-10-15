@@ -86,20 +86,81 @@ if not the it will go to dockerhub and download it.
 -i: allowing you to interact with the container
 -t: useful for interactive processes
 	docker run -dit ubuntu
+
+give name to a container : 
+	docker run -dit --name=<image_name> ubuntu
 	
+to stop a running container
+	docker stop <container_id>
 	
+to view images, show list of docker images on our local machine
+	docker images
 	
+inspect a container :
+	docker inspect <container_id>
 	
+pulling an image :
+pulling image doesnot run the container.
+	docker pull ngnix
 	
+check image using:
+	docker images
 	
+check history of images :
+	docker history nginx
 	
+delete and image :
+it will untag the image (mark it as unused or dangling)
+	docker rmi nginx
 	
+to remove the image completely
+	docker prune
 	
+to check how much disk space is docker using
+	docker system df
 	
+stop a container
+	docker stop <container_name>
+
+remove a container
+	docker rm if <container_name>
 	
+view logs :
+	docker logs <container_id>
 	
+make a container accessible in a browser :
+	docker run --name <my_container_name> -d -p 8080:80 <container_name>
 	
+stop container for browser :
+	docker stop <my_container_name>
 	
-	
+-------------------------------------------------------------------
+building image using docker:
+from	: set the base image
+CMD	: command to be executed when the image is run as a container
+RUN	: Executes a command to help build out image
+EXPOSE	: opens network port
+VOLUME	: sets a disk share
+COPY	: copies files from the local disk to the image
+ENV	: add an environment variable.
+ENTRYPOINT	: determines which executable runs when a container starts(use CMD to pass options to the executable).
+
+"Hello World" in Docker
+-> create a plain hello world program in java and save as Hello.java file
+compile : javac Hello.java
+test : java Hello
+
+create a Dockerfile
+FROM openjdk:latest
+WORKDIR /app
+COPY . /app
+RUN javac Hello.java
+CMD ["java", "Hello"]
+
+BUILD AND EXECUTE : 
+docker build -t <tag_name_to_java_code> .
+
+RUN THE DOCKER CONTAINER
+docker run <tag_name_to_java_code>
 	
 	
