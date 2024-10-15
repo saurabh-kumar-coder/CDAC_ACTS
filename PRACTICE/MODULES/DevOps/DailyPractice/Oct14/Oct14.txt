@@ -1,1 +1,105 @@
 DevOps intro and DOCKER
+to check the particular version of ubuntu : 
+	-> cat /etc/os-release
+	NAME="Ubuntu"
+	VERSION="20.04.6 LTS (Focal Fossa)"
+	ID=ubuntu
+	ID_LIKE=debian
+	PRETTY_NAME="Ubuntu 20.04.6 LTS"
+	VERSION_ID="20.04"
+	HOME_URL="https://www.ubuntu.com/"
+	SUPPORT_URL="https://help.ubuntu.com/"
+	BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+	PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+	VERSION_CODENAME=focal
+	UBUNTU_CODENAME=focal
+to check current version of linux release :
+	-> uname -srm
+	Linux 5.15.0-122-generic x86_64
+	--> this gives kernal name, release and architecture
+to check the current version of ubuntu we are using :
+	-> lsb_release -a
+	No LSB modules are available.
+	Distributor ID:	Ubuntu
+	Description:	Ubuntu 20.04.6 LTS
+	Release:	20.04
+	Codename:	focal
+installing DOCKER :
+	# Add Docker's official GPG key:
+	sudo apt-get update
+	sudo apt-get install ca-certificates curl
+	sudo install -m 0755 -d /etc/apt/keyrings
+	sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+	sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+	# Add the repository to Apt sources:
+	echo \
+	  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+	  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+	  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+	sudo apt-get update
+	
+	sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+	
+to check the status of docker if active(running) or sleeping
+	-> sudo systemctl status docker
+	
+to enable docker
+	-> sudo systemctl enable docker	
+	
+to start docker
+	-> sudo systemctl start docker
+	
+Verify that the Docker Engine installation is successful by running the hello-world image.
+	sudo docker run hello-world
+	
+to check current groups for our user : 
+	-> groups
+
+Add our users to the docker group :
+	-> sudo usermod -aG docker $USER
+	
+refresh the group membership :
+	-> newgrp docker
+	we will see docker is added into the groups
+	
+to restart docker :
+	sudo systemctl restart docker
+	
+to check running containers in docker. 
+Information this command provides : Container ID, Image, Command, Created, Status, Ports, Names
+	docker ps
+	
+to show all containers :
+	docker ps -a
+
+show all container id :
+	docker ps -q
+	 
+filter containers using conditions
+	docker ps --filter "status=exited"
+	
+to run a container
+initially the docker will check ig the image is available locally or not,
+if not the it will go to dockerhub and download it.
+-d: detached mode, run in background
+-i: allowing you to interact with the container
+-t: useful for interactive processes
+	docker run -dit ubuntu
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
