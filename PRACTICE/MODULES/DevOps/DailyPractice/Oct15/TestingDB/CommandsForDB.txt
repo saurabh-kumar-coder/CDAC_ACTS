@@ -1,0 +1,42 @@
+sudo apt-get install mysql-server
+
+sudo mysql -u root -p
+-> try to run simple commands 
+
+first create a docker network using
+	docker network create <network-name>
+	docker network create saurabh-network
+	
+to check docker network created
+	docker network ls
+	
+to inspect a existing network
+	docker inspect network <network_id/name>
+	docker inspect network saurabh-network
+	
+start sql container in the above network
+	docker run --name <mysql-container-name> --network saurabh-network -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=<password> -v mysql:/var/lib/mysql mysql:8
+	docker run --name saurabh-mysql-container --network saurabh-network -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -v mysql:/var/lib/mysql mysql:8
+	
+before building we need to create java code and dockerfile.
+ 
+build the image
+	docker build -t <build-name> .
+	docker build -t saurabh-build-mysql .
+	
+run docker container
+	docker run --network <network-name> <build-name>
+	docker run --network saurabh-network saurabh-build-mysql 
+	
+if you get error regarding database not available.
+	docker exec -it saurabh-mysql-container /bin/bash
+	
+	mysql -u root -p
+	root
+	
+	quit
+	
+	exit
+	
+run sql container now.
+	docker run --name saurabh-mysql-container --network saurabh-network -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -v mysql:/var/lib/mysql mysql:8
