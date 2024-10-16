@@ -1,0 +1,112 @@
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14$ ls
+commands  HelloWorld  Oct14.txt  SumOfTwoNumbers
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14$ cd SumOfTwoNumbers/
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/SumOfTwoNumbers$ touch IntegerSum.java
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/SumOfTwoNumbers$ touch Dockerfile
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/SumOfTwoNumbers$ docker build -t integer-sum
+ERROR: "docker buildx build" requires exactly 1 argument.
+See 'docker buildx build --help'.
+
+Usage:  docker buildx build [OPTIONS] PATH | URL | -
+
+Start a build
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/SumOfTwoNumbers$ docker build -t integerSum
+ERROR: "docker buildx build" requires exactly 1 argument.
+See 'docker buildx build --help'.
+
+Usage:  docker buildx build [OPTIONS] PATH | URL | -
+
+Start a build
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/SumOfTwoNumbers$ ls
+Dockerfile  IntegerSum.java
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/SumOfTwoNumbers$ docker build -t integer-sum .
+[+] Building 2.9s (8/8) FINISHED                                            docker:default
+ => [internal] load build definition from Dockerfile                                  0.0s
+ => => transferring dockerfile: 135B                                                  0.0s
+ => [internal] load metadata for docker.io/library/openjdk:latest                     2.0s
+ => [internal] load .dockerignore                                                     0.0s
+ => => transferring context: 2B                                                       0.0s
+ => [1/4] FROM docker.io/library/openjdk:latest@sha256:9b448de897d211c9e0ec635a48565  0.0s
+ => [internal] load build context                                                     0.0s
+ => => transferring context: 513B                                                     0.0s
+ => CACHED [2/4] WORKDIR /app                                                         0.0s
+ => [3/4] COPY . /app                                                                 0.0s
+ => ERROR [4/4] RUN javac.IntegerSum.java                                             0.7s
+------                                                                                     
+ > [4/4] RUN javac.IntegerSum.java:
+0.492 /bin/sh: javac.IntegerSum.java: command not found
+------
+Dockerfile:4
+--------------------
+   2 |     WORKDIR /app
+   3 |     COPY . /app
+   4 | >>> RUN javac.IntegerSum.java
+   5 |     CMD ["java", "IntegerSum"]
+   6 |     
+--------------------
+ERROR: failed to solve: process "/bin/sh -c javac.IntegerSum.java" did not complete successfully: exit code: 127
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/SumOfTwoNumbers$ docker build -t integer-sum .
+[+] Building 2.3s (8/8) FINISHED                                            docker:default
+ => [internal] load build definition from Dockerfile                                  0.0s
+ => => transferring dockerfile: 135B                                                  0.0s
+ => [internal] load metadata for docker.io/library/openjdk:latest                     0.9s
+ => [internal] load .dockerignore                                                     0.0s
+ => => transferring context: 2B                                                       0.0s
+ => [1/4] FROM docker.io/library/openjdk:latest@sha256:9b448de897d211c9e0ec635a48565  0.0s
+ => [internal] load build context                                                     0.0s
+ => => transferring context: 170B                                                     0.0s
+ => CACHED [2/4] WORKDIR /app                                                         0.0s
+ => [3/4] COPY . /app                                                                 0.0s
+ => ERROR [4/4] RUN javac IntegerSum.java                                             1.2s
+------                                                                                     
+ > [4/4] RUN javac IntegerSum.java:
+1.077 IntegerSum.java:3: error: cannot find symbol
+1.077 		try(Scanner sc = new Scanner(System.in)) {
+1.077 		    ^
+1.078   symbol:   class Scanner
+1.078   location: class IntegerSum
+1.080 IntegerSum.java:3: error: cannot find symbol
+1.080 		try(Scanner sc = new Scanner(System.in)) {
+1.080 		                     ^
+1.080   symbol:   class Scanner
+1.080   location: class IntegerSum
+1.124 2 errors
+------
+Dockerfile:4
+--------------------
+   2 |     WORKDIR /app
+   3 |     COPY . /app
+   4 | >>> RUN javac IntegerSum.java
+   5 |     CMD ["java", "IntegerSum"]
+   6 |     
+--------------------
+ERROR: failed to solve: process "/bin/sh -c javac IntegerSum.java" did not complete successfully: exit code: 1
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/SumOfTwoNumbers$ docker build -t integer-sum .
+[+] Building 2.5s (9/9) FINISHED                                            docker:default
+ => [internal] load build definition from Dockerfile                                  0.0s
+ => => transferring dockerfile: 135B                                                  0.0s
+ => [internal] load metadata for docker.io/library/openjdk:latest                     1.0s
+ => [internal] load .dockerignore                                                     0.0s
+ => => transferring context: 2B                                                       0.0s
+ => [1/4] FROM docker.io/library/openjdk:latest@sha256:9b448de897d211c9e0ec635a48565  0.0s
+ => [internal] load build context                                                     0.0s
+ => => transferring context: 435B                                                     0.0s
+ => CACHED [2/4] WORKDIR /app                                                         0.0s
+ => [3/4] COPY . /app                                                                 0.0s
+ => [4/4] RUN javac IntegerSum.java                                                   1.3s
+ => exporting to image                                                                0.1s
+ => => exporting layers                                                               0.0s
+ => => writing image sha256:c96d0017d511ca268cd653f039c730e7432e845d6d33ee5e88a2c928  0.0s
+ => => naming to docker.io/library/integer-sum                                        0.0s
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/SumOfTwoNumbers$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED              SIZE
+integer-sum   latest    c96d0017d511   About a minute ago   470MB
+s_hello       latest    7c04a1a9684b   8 hours ago          470MB
+ubuntu        latest    dc4c1391d370   5 days ago           78.1MB
+saurabh@ubuntu:~/Desktop/CDAC_ACTS/PRACTICE/MODULES/DevOps/DailyPractice/Oct14/SumOfTwoNumbers$ docker run -it integer-sum
+Enter number 1 : 
+45
+Enter number 2 : 
+65
+Sum to two number is : 110
+
