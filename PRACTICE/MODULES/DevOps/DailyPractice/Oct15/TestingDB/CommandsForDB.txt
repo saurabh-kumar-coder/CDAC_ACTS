@@ -55,3 +55,15 @@ try to run simple commands
 	
 -> run docker container
 	docker run --network saurabh-network saurabh-build-mysql
+	
+	
+	
+HISTORY
+ 1715  cd TestingDB/
+ 1716  docker network create saurabh-network
+ 1717  docker run --name saurabh-mysql-container --network saurabh-network -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -v mysql:/var/lib/mysql mysql:8
+ 1718  docker exec -it saurabh-mysql-container /bin/bash
+ 1719  docker build -t saurabh-build-mysql .
+ 1720  docker run --network saurabh-network saurabh-build-mysql
+ 1721  docker build -t saurabh-build-mysql .
+ 1722  docker run --network saurabh-network saurabh-build-mysql

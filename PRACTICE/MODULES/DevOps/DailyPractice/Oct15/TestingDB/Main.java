@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public class Main {
     // Database credentials
-    private static final String DB_URL = "jdbc:mysql://saurabh-mysql-container:3306/student";
+    private static final String DB_URL = "jdbc:mysql://saurabh-mysql-container:3306/students";
     private static final String USER = "root";
     private static final String PASSWORD = "root";
 
