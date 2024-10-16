@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM openjdk:latest
 WORKDIR /com/student/
 COPY . .
 RUN javac -cp mysql-connector-j-8.0.31.jar StudentSQL.java
