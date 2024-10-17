@@ -12,6 +12,7 @@ public class StudentSQL {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Establish the initial connection to create the database
+            // mysql-container this name is to be container name of mysql
             con = DriverManager.getConnection("jdbc:mysql://mysql-container:3306?useSSL=false&allowPublicKeyRetrieval=true", "root", "root");
 
             stmt = con.createStatement();
@@ -25,7 +26,8 @@ public class StudentSQL {
             con.close();
 
             // Establish the connection to the newly created database
-            con = DriverManager.getConnection("jdbc:mysql://mysql:3306/cdac?useSSL=false", "root", "root");
+            // mysql-container this name is to be container name of mysql
+            con = DriverManager.getConnection("jdbc:mysql://mysql-container:3306/cdac?useSSL=false", "root", "root");
 
             // Create the student table
             String createTableSQL = "CREATE TABLE IF NOT EXISTS student ("

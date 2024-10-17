@@ -1,0 +1,6 @@
+ 1877  docker ps -a
+ 1878  docker run --name mysql-container --network s-network -d -e MYSQL_ROOT_PASSWORD=root mysql:latest
+ 1879  docker build -t saurabh-build .
+ 1880  docker run --network s-network saurabh-build
+ 1881  history 15
+ 1882  history 15 > commands.txt 
