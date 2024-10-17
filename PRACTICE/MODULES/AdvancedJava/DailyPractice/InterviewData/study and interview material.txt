@@ -1,0 +1,35 @@
+1. Collections interface
+2. Acid properties 
+3. Cap theorem
+4. Multithreading
+5. Threads implementation 
+6. Executor Framework
+7. Immutable classes
+8. OOPS principles
+9. Garbage Collection 
+10. final vs finally vs finalize
+11. Singleton Class
+12. WAP for Singleton class
+13. Volatile keyword
+14. Optional class
+15. Dependency injection and IOC
+16. Deadlock in Multithreading and program for both deadlock and remove deadlock
+17. Marker interfaces
+18. String vs StringBuilder vs StringBuffer
+
+
+
+Mere se 
+1) what is dependency injection, 
+2) why are strings immutable in java, 
+3) difference between hashtable and Hashmap
+4) what is a micro service and what are other ways to communicate with it other than apis in async
+5) mention a few design patterns you’ve used and he’lol ask to elaborate one of them
+
+
+
+https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/
+https://youtu.be/lX0PzE0Dho0
+https://www.youtube.com/watch?v=gktZsX9Z8Kw&list=PLMCXHnjXnTnvQVh7WsgZ8SurU1O2v_UM7&index=1
+https://youtube.com/playlist?list=PL6W8uoQQ2c61X_9e6Net0WdYZidm7zooW
+https://youtu.be/rzA7UJ-hQn4
