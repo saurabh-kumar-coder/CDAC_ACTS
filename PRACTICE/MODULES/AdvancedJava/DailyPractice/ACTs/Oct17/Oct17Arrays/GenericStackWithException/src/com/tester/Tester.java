@@ -13,7 +13,8 @@ public class Tester {
 		stack.push(50);
 		stack.push(23);
 		Integer val;
-		val = stack.peek();
+		val = stack.pop();
+		System.out.println("Poped value is : " + val);val = stack.peek();
 		System.out.println("Peek value is : " + val);
 		val = stack.pop();
 		System.out.println("Poped value is : " + val);
