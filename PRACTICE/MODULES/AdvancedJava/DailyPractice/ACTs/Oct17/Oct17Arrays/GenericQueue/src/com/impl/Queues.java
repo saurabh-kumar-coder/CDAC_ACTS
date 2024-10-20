@@ -16,11 +16,9 @@ public class Queues<T> implements QueuesService<T> {
 //	delete from the queue
 	@Override
 	public T deQueue() {
-		// TODO Auto-generated method stub
-		if(front != queue.length - 1 && front <= rear) {
-			T val = queue[front];
-			front++;
-			System.out.println("item removed");
+		if(!isEmpty()) {
+			T val = queue[front++];
+//			System.out.println("val removed is : " + val);
 			return val;
 		}
 		return null;
@@ -29,11 +27,8 @@ public class Queues<T> implements QueuesService<T> {
 //	insert into queue
 	@Override
 	public T enQueue(T item) {
-		// TODO Auto-generated method stub
-		if(rear != queue.length - 1) {
-			queue[rear] = item;
-			rear++;
-			System.out.println("item added");
+		if(!isFull()) {
+			queue[rear++] = item;
 			return item;
 		}
 		return null;
@@ -41,20 +36,31 @@ public class Queues<T> implements QueuesService<T> {
 
 	@Override
 	public T front() {
-		// TODO Auto-generated method stub
+		if(!isEmpty()) {
+			return queue[front];
+		}
 		return null;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
+		if(front == rear) { 
+			return true;
+		}
 		return false;
 	}
 
 	@Override
 	public boolean isFull() {
-		// TODO Auto-generated method stub
+		if(rear == queue.length) {
+			return true;
+		}
 		return false;
+	}
+
+	public void printElements() {
+		for(int i = front; i <= rear; i++)
+			System.out.println(queue[i]);
 	}
 
 }
