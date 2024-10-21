@@ -123,24 +123,26 @@ public class SinglyList<T> implements List<T> {
 	public int findSecondLargestElement() {
 		// TODO Auto-generated method stub
 		Node current = head;
-		int sndLarge = 0;
-		int large = 0;
-		if (isEmpty()) {
+		Node large = head;
+		Node sndLarge = null;
+		if (isEmpty() && head.next != null) {
 			System.out.println("List is empty");
 			return -1;
-		} else if (current.next != null) {
-			return current.data;
-		} else if (current.next.next != null) {
-			if (current.data > current.next.data) {
-				return current.next.data;
-			} else {
-				return current.data;
-			}
-		}
-		while (current.next != null) {
-//			large = 
-		}
-		return 0;
+		} 
+		while (current != null) {
+	        if (current.data > large.data) {
+	            sndLarge = large;
+	            large = current;
+	        } else if (current.data > sndLarge.data && current != large) {
+	            sndLarge = current;
+	        }
+	        current = current.next;
+	    }
+		if (sndLarge == null) {
+	        System.out.println("List has less than two elements");
+	        return -1;
+	    }
+		return sndLarge.data;
 	}
 
 	@Override
@@ -191,9 +193,22 @@ public class SinglyList<T> implements List<T> {
 	@Override
 	public Node reverseALinkedList() {
 		// TODO Auto-generated method stub
-		return null;
+		if(isEmpty()) {
+			return null;
+		} else {
+			Node current = head;
+			Node prev = null;
+			while(current != null) {
+				Node front = current.next;
+				current.next = prev;
+				prev = current;
+				current = front;
+			}
+			head = prev;
+			return head;
+		}
 	}
-
+	
 	@Override
 	public int deleteAtASpecificPosition(int position) {
 		// TODO Auto-generated method stub
@@ -222,7 +237,6 @@ public class SinglyList<T> implements List<T> {
 			Node newNode = new Node();
 			newNode.data = element;
 			newNode.next = null;
-//			int ctr = 1;
 			if(position == 1) {
 				addAtFirst(element);
 				return;
@@ -230,10 +244,6 @@ public class SinglyList<T> implements List<T> {
 			for(int i = 1; i < position -1; i++) {
 				current = current.next;
 			}
-//			while(ctr < position - 1 && current != null) {
-//				current = current.next;
-//				++ctr;
-//			}
 			newNode.next = current.next;
 			current.next = newNode;
 			return;
@@ -241,9 +251,22 @@ public class SinglyList<T> implements List<T> {
 	}
 
 	@Override
-	public void addElementAfterASpecificPosition(int position) {
+	public void addElementAfterASpecificPosition(int element, int position) {
 		// TODO Auto-generated method stub
-
+		System.out.println();
+		if(isEmpty()) {
+			return;
+		} else if(position > 0 && getNumberOfElementsInList() >= position) {
+			Node current = head;
+			for(int i = 1; i < position; i++) {
+				current = current.next;
+			}
+			Node newNode = new Node();
+			newNode.data = element;
+			newNode.next = null;
+			newNode.next = current.next;
+			current.next = newNode;
+		}
 	}
 
 }

@@ -77,6 +77,18 @@ public class Tester {
 		sl.addAtFirst(6);
 		System.out.println(sl.findKthLastElement(2));
 */
+		sl.addAtFirst(1);
+		sl.addAtFirst(2);
+		sl.addAtFirst(3);
+		sl.addAtFirst(8);
+		sl.addAtFirst(7);
+		sl.addAtFirst(6);
+//		sl.printList();
+		sl.addElementAfterASpecificPosition(34, 2);
+//		sl.printList();
+		sl.reverseALinkedList();
+		sl.printList();
 		
+		System.out.println(sl.findSecondLargestElement());
 	}
 }
