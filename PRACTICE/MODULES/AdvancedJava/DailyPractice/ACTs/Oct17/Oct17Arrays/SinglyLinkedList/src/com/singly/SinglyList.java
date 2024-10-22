@@ -269,4 +269,26 @@ public class SinglyList<T> implements List<T> {
 		}
 	}
 
+	@Override
+	public Node deleteDublicateFromSortedList() {
+		// TODO Auto-generated method stub
+		if(head == null || head.next == null) {
+			return head;
+		}
+		Node current = head;
+		Node prev = null;
+		while(current != null) {
+			prev = current;
+			current = current.next;
+			if(current.data == prev.data && current.next != null) {
+				prev.next = current.next;
+				continue;
+			}
+			current = current.next;
+		}
+		return head;
+	}
+	
 }
+
+

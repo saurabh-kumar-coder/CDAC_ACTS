@@ -24,4 +24,6 @@ public interface List<T> {
 	public int deleteAtASpecificPosition(int position);
 	public void addAtASpecificPosition(int element, int position);
 	public void addElementAfterASpecificPosition(int element, int position);
+//	delete dublicates from list
+	public Node deleteDublicateFromSortedList();
 }
