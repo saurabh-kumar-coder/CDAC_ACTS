@@ -215,7 +215,7 @@ public class SinglyList<T> implements List<T> {
 			rabbit = rabbit.next.next;
 		}
 
-		ListNode<T> revHead = reverse(turtoise);
+		ListNode<T> revHead = reverseUsingLoop(turtoise);
 		ListNode first = head;
 		ListNode second = revHead;
 		while(second != null) {
@@ -238,6 +238,22 @@ public class SinglyList<T> implements List<T> {
 		F.next = head;
 		head.next = null;
 		return newNode;
+	}
+	
+	private ListNode reverseUsingLoop(ListNode<T> head) {
+		// TODO Auto-generated method stub
+		if (head == null || head.next == null)
+			return head;
+		ListNode<T> C = head;
+		ListNode<T> N = head;
+		ListNode<T> P = null;
+		while(C != null) {
+			N = C.next;
+			C.next = P;
+			P = C;
+			C = N;
+		}
+		return P;
 	}
 
 }
