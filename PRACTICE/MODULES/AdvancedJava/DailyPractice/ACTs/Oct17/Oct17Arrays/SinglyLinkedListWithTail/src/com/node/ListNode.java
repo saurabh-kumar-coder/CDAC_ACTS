@@ -1,6 +1,6 @@
 package com.node;
 
-public class ListNode {
-	public int val;
+public class ListNode<T> {
+	public T val;
 	public ListNode next;
 }
