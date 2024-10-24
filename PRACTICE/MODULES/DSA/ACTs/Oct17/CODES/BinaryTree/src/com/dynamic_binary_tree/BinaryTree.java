@@ -11,7 +11,6 @@ public class BinaryTree {
 		this.root = null;
 	}
 	
-	
 	public void createBinaryTree(Node node){
 		Queue<Node> list = new LinkedList<Node>();
 		if(root == null) {
