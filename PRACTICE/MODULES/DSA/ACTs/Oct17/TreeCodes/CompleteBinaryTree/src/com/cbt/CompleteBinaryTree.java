@@ -54,7 +54,6 @@ public class CompleteBinaryTree {
 		if(root != null) {
 			nodeQueue.add(root);
 		}
-//		nodeQueue.add(root);
 		while(!nodeQueue.isEmpty()) {
 			Node current = nodeQueue.poll();
 			if(current == null) {
