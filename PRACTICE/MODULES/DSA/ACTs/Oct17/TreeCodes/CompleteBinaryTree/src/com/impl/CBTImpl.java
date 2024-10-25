@@ -16,5 +16,9 @@ public class CBTImpl {
 		cbt.createCompleteBinaryTree(new Node(8));
 		cbt.inOrderTraversal();
 		cbt.searchInCBT(8);
+		int max = cbt.findMaximumInCBT();
+		System.out.println("Maximum node is : " + max);
+		int min = cbt.findMinimumInCBT();
+		System.out.println("Minimum element is : " + min);
 	}
 }

@@ -82,4 +82,34 @@ public class CompleteBinaryTree {
 		// TODO Auto-generated method stub
 		System.out.println(searchInCBT(root, i));
 	}
+
+	public int findMaximumInCBT() {
+		// TODO Auto-generated method stub
+		return findMaximumInCBT(root);
+	}
+
+	private int findMaximumInCBT(Node root) {
+		// TODO Auto-generated method stub
+		if(root == null) {
+			return 0;
+		}
+		int max = root.data;
+		int left = findMaximumInCBT(root.left);
+		int right = findMaximumInCBT(root.right);
+		return Math.max(max, Math.max(left, right));
+	}
+	
+	private int findMinimumInCBT(Node root) {
+		if(root == null) {
+			return Integer.MAX_VALUE;
+		}
+		int min = root.data;
+		int left = findMinimumInCBT(root.left);
+		int right = findMinimumInCBT(root.right);
+		return Math.min(min, Math.min(left, right));
+	}
+	
+	public int findMinimumInCBT() {
+		return findMinimumInCBT(root);
+	}
 }
