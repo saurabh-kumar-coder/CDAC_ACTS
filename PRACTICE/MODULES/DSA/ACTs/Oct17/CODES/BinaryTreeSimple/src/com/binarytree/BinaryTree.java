@@ -24,7 +24,7 @@ public class BinaryTree {
 			return;
 		} 
 		inOrderTraversal(root.left);
-		System.out.println(root.data);
+		System.out.print(root.data + " ");
 		inOrderTraversal(root.right);
 	}
 	
