@@ -83,6 +83,7 @@ public class CompleteBinaryTree {
 		System.out.println(searchInCBT(root, i));
 	}
 
+	
 	public int findMaximumInCBT() {
 		// TODO Auto-generated method stub
 		return findMaximumInCBT(root);
@@ -110,6 +111,63 @@ public class CompleteBinaryTree {
 	}
 	
 	public int findMinimumInCBT() {
-		return findMinimumInCBT(root);
+		int val = findMinimumInCBT(root);
+		return val == Integer.MAX_VALUE ? -1 : val;
 	}
+
+	public void printAllLeafNodes() {
+		// TODO Auto-generated method stub
+		printAllLeafNodes(root);
+	}
+
+	private void printAllLeafNodes(Node root) {
+		// TODO Auto-generated method stub
+		if(root == null) {
+			return;
+		}
+		if(root.left == null && root.right == null) {
+			System.out.println(root.data);
+			return;
+		}
+		printAllLeafNodes(root.left);
+		printAllLeafNodes(root.right);
+	}
+
+	
+	public void printAllNonLeafNodes() {
+		// TODO Auto-generated method stub
+		printAllNonLeafNodes(root);
+	}
+
+	private void printAllNonLeafNodes(Node root) {
+		// TODO Auto-generated method stub
+		if(root == null) {
+			return;
+		}
+		
+		if(root.left != null || root.right != null) {
+			System.out.println(root.data);
+		}
+		
+		printAllNonLeafNodes(root.left);
+		printAllNonLeafNodes(root.right);
+	}
+
+
+	public int maximumHeightOfCBT() {
+		// TODO Auto-generated method stub
+		int height = maximumHeightOfCBT(root);
+		return height;
+	}
+
+	private int maximumHeightOfCBT(Node root) {
+		// TODO Auto-generated method stub
+		if(root == null) {
+			return 0;
+		}
+		int l = 1 + maximumHeightOfCBT(root.left);
+		int r = 1 + maximumHeightOfCBT(root.right);
+		return Math.max(l, r);
+	}
+
 }

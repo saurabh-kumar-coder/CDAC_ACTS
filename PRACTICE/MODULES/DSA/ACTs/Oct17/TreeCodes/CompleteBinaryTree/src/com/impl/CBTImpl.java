@@ -20,5 +20,11 @@ public class CBTImpl {
 		System.out.println("Maximum node is : " + max);
 		int min = cbt.findMinimumInCBT();
 		System.out.println("Minimum element is : " + min);
+		System.out.println("printing all leaf nodes : ");
+		cbt.printAllLeafNodes();
+		System.out.println("printing all non leaf nodes : ");
+		cbt.printAllNonLeafNodes();
+		int height = cbt.maximumHeightOfCBT();
+		System.out.println("HEIGHT IS : " + height);
 	}
 }
