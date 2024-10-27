@@ -55,4 +55,80 @@ public class BinarySearchTreeImpl {
 			return searchInBST(root.right, node);
 		}
 	}
+
+	public static Node findMaximumNode(Node root) {
+		// TODO Auto-generated method stub
+		if(root == null) {
+			return null;
+		}
+		if(root.right == null) {
+			return root;
+		}
+		if(root.right != null)
+			return findMaximumNode(root.right);
+		return null;
+	}
+
+	public static Node findMinimumNode(Node root) {
+		// TODO Auto-generated method stub
+		if(root == null) {
+			return null;
+		}
+		if(root.left == null) {
+			return root;
+		}
+		if(root.left != null) {
+			return findMinimumNode(root.left);
+		}
+		return null;
+	}
+
+	public static void getAllLeafNodes(Node root) {
+		// TODO Auto-generated method stub
+		if(root == null) {
+			return;
+		}
+		if(root.left == null && root.right == null) {
+			System.out.println(root.data);
+		}
+		if(root.left != null)
+			getAllLeafNodes(root.left);
+		if(root.right != null)
+			getAllLeafNodes(root.right);
+	}
+
+	public static void getAllNonLeafNodes(Node root) {
+		// TODO Auto-generated method stub
+		if(root == null) {
+			return;
+		}
+		if(root.left != null && root.right != null) {
+			System.out.println(root.data);
+		}
+		if(root.left != null) {
+			getAllNonLeafNodes(root.left);
+		}
+		if(root.right != null) {
+			getAllNonLeafNodes(root.right);
+		}
+	}
+
+	public static int getHeightOfBST(Node root) {
+		// TODO Auto-generated method stub
+		if(root == null)
+			return 0;
+		int left = 1 + getHeightOfBST(root.left);
+		int right = 1 + getHeightOfBST(root.right);
+		return Math.max(left, right);
+	}
+
+	public static int getSumOfAllNodes(Node root, int i) {
+		// TODO Auto-generated method stub
+		if(root == null) {
+			return 0;
+		}
+		int leftSum = getSumOfAllNodes(root.left, i + root.data);
+		int rightSum = getSumOfAllNodes(root.right, i + root.data);
+		return root.data + leftSum + rightSum;
+	}
 }
