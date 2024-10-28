@@ -1,5 +1,7 @@
 package com.utility;
 
+import java.util.List;
+
 import com.impl.BinarySearchTreeImpl;
 import com.node.Node;
 
@@ -74,6 +76,23 @@ public class BinarySearchTreeUtility {
 		// TODO Auto-generated method stub
 		int sum = BinarySearchTreeImpl.getSumOfAllNodes(root, 0);
 		System.out.println("Sum of all the nodes is : " + sum);
+	}
+
+	public void levelOrderTraversal() {
+		// TODO Auto-generated method stub
+		BinarySearchTreeImpl.levelOrderTraversal(root);
+	}
+
+	public void levelOrderTraversalViaArrayList() {
+		// TODO Auto-generated method stub
+		List<List<Integer>> list = BinarySearchTreeImpl.levelOrderTraversalViaArrayList(root);
+		System.out.println("\n" + list);
+	}
+
+	public void levelOrderTraversalZigZag() {
+		// TODO Auto-generated method stub
+		List<List<Integer>> list = BinarySearchTreeImpl.levelOrderTraversalZigZag(root);
+		System.out.println("\n" + list);
 	}
 	
 }
