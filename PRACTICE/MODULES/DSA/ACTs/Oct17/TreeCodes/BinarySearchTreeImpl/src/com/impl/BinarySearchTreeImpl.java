@@ -213,4 +213,18 @@ public class BinarySearchTreeImpl {
 		}
 		return ll;
 	}
+
+	public static int maxi = Integer.MIN_VALUE;
+	public static int calculateTreeDiameter(Node root) {
+		// TODO Auto-generated method stub
+		if(root == null) {
+			return 0;
+		}
+		int left = calculateTreeDiameter(root.left);
+		int right = calculateTreeDiameter(root.right);
+		maxi = Math.max(maxi, left + right);
+//		calculateTreeDiameter(root.left);
+//		calculateTreeDiameter(root.right);
+		return Math.max(left, right) + 1;
+	}
 }

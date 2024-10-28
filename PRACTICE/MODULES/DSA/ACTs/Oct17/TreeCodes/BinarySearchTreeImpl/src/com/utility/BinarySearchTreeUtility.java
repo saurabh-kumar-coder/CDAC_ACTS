@@ -94,5 +94,11 @@ public class BinarySearchTreeUtility {
 		List<List<Integer>> list = BinarySearchTreeImpl.levelOrderTraversalZigZag(root);
 		System.out.println("\n" + list);
 	}
+
+	public void calculateTreeDiameter() {
+		// TODO Auto-generated method stub
+		int diameter = BinarySearchTreeImpl.calculateTreeDiameter(root);
+		System.out.println(diameter);
+	}
 	
 }

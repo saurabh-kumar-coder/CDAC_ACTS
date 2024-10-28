@@ -23,5 +23,7 @@ public class Tester {
 		bstu.levelOrderTraversal();
 		bstu.levelOrderTraversalViaArrayList();
 		bstu.levelOrderTraversalZigZag();
+		System.out.println("printing the maximum diameter of the tree");
+		bstu.calculateTreeDiameter();
 	}
 }
