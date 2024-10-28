@@ -1,4 +1,4 @@
-package com.lcwd.hotel.service.exception;
+package com.lcwd.rating.service.exception;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,11 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-//	this method will always run when resource not found exception will come.
-
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-	public ResponseEntity<Map<String, Object>> notFoundHandler(ResourceNotFoundException ex){
+	public ResponseEntity<Map<String, Object>> notFoundHandler(ResourceNotFoundException ex) {
 		Map map = new HashMap();
 		map.put("Message", ex.getMessage());
 		map.put("Success", false);
