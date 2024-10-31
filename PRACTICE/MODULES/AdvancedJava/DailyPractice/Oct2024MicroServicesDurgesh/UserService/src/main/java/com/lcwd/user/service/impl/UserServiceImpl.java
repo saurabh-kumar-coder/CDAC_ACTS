@@ -1,6 +1,5 @@
 package com.lcwd.user.service.impl;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -9,7 +8,6 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -62,7 +60,6 @@ public class UserServiceImpl implements UserService {
 		User user = userRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User with given id is not found on server!"));
 //		fetch the rating of the above user from rating service
-//		ArrayList<Rating> ratingsOfUser = restTemplate.getForObject("http://localhost:8083/ratings/users/b90b3e10-a40c-4837-88af-ee9c18721000", ArrayList.class);
 		Rating[] ratingsOfUser = restTemplate
 				.getForObject("http://RATINGSERVICE/ratings/users/" + user.getUserId(), Rating[].class);
 
@@ -70,11 +67,7 @@ public class UserServiceImpl implements UserService {
 		
 		List<Rating> ratingList = ratings.stream().map(rating -> {
 			// api call to hotel service to get the hotel
-//			ResponseEntity<Hotel> forEntity = restTemplate
-//					.getForEntity("http://HOTELSERVICE/hotels/" + rating.getHotelId(), Hotel.class);
-//			Hotel hotel = forEntity.getBody();
 			Hotel hotel = hotelService.getHotel(rating.getHotelId());
-//			logger.info("http status code : {} ", forEntity.getStatusCode());
 			// set the hotel to rating
 			rating.setHotel(hotel);
 			// return the rating
