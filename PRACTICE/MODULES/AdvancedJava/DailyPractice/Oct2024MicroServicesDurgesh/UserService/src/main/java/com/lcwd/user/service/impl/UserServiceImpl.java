@@ -47,12 +47,6 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findAll();
 	}
 
-//	@Override
-//	public User getUser(String userId) {
-//		// TODO Auto-generated method stub
-//		return userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User with given id is not found on server!"));
-//	}
-
 	@Override
 	public User getUser(String userId) {
 		// TODO Auto-generated method stub
