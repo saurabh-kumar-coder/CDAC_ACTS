@@ -17,6 +17,7 @@ import com.lcwd.user.service.entity.Hotel;
 import com.lcwd.user.service.entity.Rating;
 import com.lcwd.user.service.entity.User;
 import com.lcwd.user.service.exception.ResourceNotFoundException;
+import com.lcwd.user.service.external.services.HotelService;
 import com.lcwd.user.service.repository.UserRepository;
 import com.lcwd.user.service.services.UserService;
 
@@ -28,6 +29,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private RestTemplate restTemplate;
+
+	@Autowired
+	private HotelService hotelService;
 
 	private Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -66,10 +70,11 @@ public class UserServiceImpl implements UserService {
 		
 		List<Rating> ratingList = ratings.stream().map(rating -> {
 			// api call to hotel service to get the hotel
-			ResponseEntity<Hotel> forEntity = restTemplate
-					.getForEntity("http://HOTELSERVICE/hotels/" + rating.getHotelId(), Hotel.class);
-			Hotel hotel = forEntity.getBody();
-			logger.info("http status code : {} ", forEntity.getStatusCode());
+//			ResponseEntity<Hotel> forEntity = restTemplate
+//					.getForEntity("http://HOTELSERVICE/hotels/" + rating.getHotelId(), Hotel.class);
+//			Hotel hotel = forEntity.getBody();
+			Hotel hotel = hotelService.getHotel(rating.getHotelId());
+//			logger.info("http status code : {} ", forEntity.getStatusCode());
 			// set the hotel to rating
 			rating.setHotel(hotel);
 			// return the rating
