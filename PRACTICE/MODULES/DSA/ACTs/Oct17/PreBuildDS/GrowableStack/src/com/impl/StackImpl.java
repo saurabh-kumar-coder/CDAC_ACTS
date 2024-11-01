@@ -19,8 +19,7 @@ public class StackImpl<T> implements GrowableStack<T> {
 	@Override
 	public void push(T value) {
 		// TODO Auto-generated method stub
-		if(!isEmpty() && size == capacity) {
-//			System.out.println("cannot push value : " + value);
+		if(!isEmpty() && isFull()) {
 			stack = growableStack(size);
 			stack[++top] = value;
 			size++;
