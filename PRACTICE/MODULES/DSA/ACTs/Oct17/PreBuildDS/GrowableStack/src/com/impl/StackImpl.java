@@ -21,10 +21,9 @@ public class StackImpl<T> implements GrowableStack<T> {
 		// TODO Auto-generated method stub
 		if(isFull()) {
 			stack = growableStack(size);
-			stack[++top] = value;
-			size++;
 		}
 		stack[++top] = value;
+		System.out.println(stack[top]);
 		size++;
 		return;
 	}
@@ -37,7 +36,7 @@ public class StackImpl<T> implements GrowableStack<T> {
 		capacity = capacity * 2;
 		while(i > -1) {
 			growableStack[ctr] = stack[ctr];
-			System.out.println(growableStack[ctr]);
+//			System.out.println(growableStack[ctr]);
 			ctr++;
 			i--;
 		}

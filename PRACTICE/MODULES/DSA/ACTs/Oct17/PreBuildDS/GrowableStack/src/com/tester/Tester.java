@@ -12,6 +12,13 @@ public class Tester {
 		stack.push(3);
 		stack.push(4);
 		stack.push(6);
+		stack.push(7);
+		stack.push(10);
+		stack.push(24);
+		stack.push(45);
+		stack.push(13);
+		stack.push(19);
+		stack.push(87);
 		System.out.println("Peek value is : " + stack.peek());
 		
 //		System.out.println("Pop value is : " + stack.pop());
