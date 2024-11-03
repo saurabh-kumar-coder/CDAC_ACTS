@@ -19,14 +19,12 @@ public class StackImpl<T> implements GrowableStack<T> {
 	@Override
 	public void push(T value) {
 		// TODO Auto-generated method stub
-		if(!isEmpty() && isFull()) {
+		if(isFull()) {
 			stack = growableStack(size);
 			stack[++top] = value;
 			size++;
-			return ;
 		}
 		stack[++top] = value;
-		System.out.println("value added is : " + value);
 		size++;
 		return;
 	}
@@ -38,9 +36,10 @@ public class StackImpl<T> implements GrowableStack<T> {
 		T[] growableStack = (T[]) new Object[capacity * 2];
 		capacity = capacity * 2;
 		while(i > -1) {
-			growableStack[ctr] = stack[i--];
+			growableStack[ctr] = stack[ctr];
 			System.out.println(growableStack[ctr]);
 			ctr++;
+			i--;
 		}
 		return growableStack;
 	}
@@ -78,6 +77,7 @@ public class StackImpl<T> implements GrowableStack<T> {
 		// TODO Auto-generated method stub
 		if(size == capacity) {
 			System.out.println("capacity full");
+			return true;
 		}
 		return false;
 	}
