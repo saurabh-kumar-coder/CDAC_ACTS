@@ -4,7 +4,7 @@ public class Partitioning {
 
 	public static int partitioning(int[] array, int lb, int ub) {
 		// TODO Auto-generated method stub
-//		set pivot
+//		set pivot to lb
 		int pivot = array[lb];
 //		set left = lb + 1
 		int left = lb + 1;
@@ -22,6 +22,7 @@ public class Partitioning {
 			}
 //			if left and right have moved and left < right swap(array[left], array[right])
 			if (left < right) {
+//				swap(array[left], array[right])
 				int temp = array[left];
 				array[left] = array[right];
 				array[right] = temp;
