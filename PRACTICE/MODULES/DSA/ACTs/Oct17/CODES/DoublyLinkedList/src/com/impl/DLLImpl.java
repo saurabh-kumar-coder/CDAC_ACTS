@@ -37,6 +37,10 @@ public class DLLImpl {
 
 	public static void printDLL() {
 		// TODO Auto-generated method stub
+		if(head == null) {
+			System.out.println("List is null");
+			return;
+		}
 		Node current = head;
 		while (current != null) {
 			System.out.print(current.data + " -> ");
@@ -58,6 +62,32 @@ public class DLLImpl {
 		current.next.prev = node;
 		current.next = node;
 		node.prev = current;
+	}
+
+	public static int deleteAtPosition(int pos) {
+		// TODO Auto-generated method stub
+		if(pos == 1) {
+			int value = deleteAtFirst();
+			return value;
+		}
+		Node current = head;
+		for(int i = 1; i < pos - 1; i++) {
+			current = current.next;
+		}
+		int value  = current.next.data;
+		current.next = current.next.next;
+		return value;
+	}
+
+	private static int deleteAtFirst() {
+		// TODO Auto-generated method stub
+		if(head.next == null) {
+			head = null;
+			return -1;
+		}
+		int value = head.data;
+		head = head.next;
+		return value;
 	}
 
 }

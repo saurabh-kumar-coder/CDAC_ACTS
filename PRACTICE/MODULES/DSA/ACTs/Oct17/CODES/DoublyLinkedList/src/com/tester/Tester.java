@@ -7,12 +7,18 @@ public class Tester {
 		boolean isEmpty = DLLUtility.isEmpty();
 		System.out.println("DLL is Empty ? " + isEmpty);
 		
-		int[] array = {1,2,5};
+		int[] array = {1};
 		for (int i = 0; i < array.length; i++) {
 			DLLUtility.insert(array[i]);
 			DLLUtility.printDLL();
 		}
-		DLLUtility.insertAtPosition(4, 3);
+//		DLLUtility.insertAtPosition(4, 3);
+//		DLLUtility.printDLL();
+//		int value = DLLUtility.deleteAtPosition(2);
+//		System.out.println("deleted item is : " + value);
+//		DLLUtility.printDLL();
+		int value = DLLUtility.deleteAtPosition(1);
+		System.out.println("deleted item is : " + value);
 		DLLUtility.printDLL();
 	}
 }

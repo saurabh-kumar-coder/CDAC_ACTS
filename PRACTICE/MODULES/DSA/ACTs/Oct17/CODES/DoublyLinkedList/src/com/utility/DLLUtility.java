@@ -26,4 +26,10 @@ public class DLLUtility {
 		DLLImpl.insertAtPosition(new Node(i), pos);
 	}
 
+	public static int deleteAtPosition(int i) {
+		// TODO Auto-generated method stub
+		int value = DLLImpl.deleteAtPosition(i);
+		return value;
+	}
+
 }
