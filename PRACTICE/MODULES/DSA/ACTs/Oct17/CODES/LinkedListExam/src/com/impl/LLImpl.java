@@ -64,32 +64,55 @@ public class LLImpl {
 	public static void sort(int count) {
 		// TODO Auto-generated method stub
 		
-		for (int i = 0; i < count - 1; i++) {
-	        Node current = head;
-	        Node previous = null;
-
-	        // Inner loop: Perform bubble sort comparisons and swaps
-	        for (int j = 0; j < count - i - 1; j++) {
-	            if (current != null && current.next != null && current.user.getUserId() > current.next.user.getUserId()) {
-	                // Swap the nodes by adjusting their links
-	                Node nextNode = current.next;
-	                current.next = nextNode.next;
-	                nextNode.next = current;
-
-	                // Fix previous node's next pointer if not at the head
-	                if (previous == null) {
-	                    head = nextNode; // Head node change
-	                } else {
-	                    previous.next = nextNode;
-	                }
-
-	                // Move to the next node in the list
-	                current = nextNode;
-	            }
-	            previous = current;
-	            current = current.next;
-	        }
-	    }
+		if(isEmpty()) {
+			System.out.println("list is empty");
+			return;
+		}
+		Node lastSwapper = null;
+		boolean swapped = true;
+		
+		while(swapped) {
+			swapped = false;
+			Node current = head;
+			
+			while(current.next != lastSwapper) {
+				if(current.user.getUserId() > current.next.user.getUserId()) {
+					User t = current.user;
+					current.user = current.next.user;
+					current.next.user = t;
+					swapped = true;
+				}
+				current = current.next;
+			}
+			lastSwapper = current;
+		}
+		
+//		for (int i = 0; i < count - 1; i++) {
+//	        Node current = head;
+//	        Node previous = null;
+//
+//	        // Inner loop: Perform bubble sort comparisons and swaps
+//	        for (int j = 0; j < count - i - 1; j++) {
+//	            if (current != null && current.next != null && current.user.getUserId() > current.next.user.getUserId()) {
+//	                // Swap the nodes by adjusting their links
+//	                Node nextNode = current.next;
+//	                current.next = nextNode.next;
+//	                nextNode.next = current;
+//
+//	                // Fix previous node's next pointer if not at the head
+//	                if (previous == null) {
+//	                    head = nextNode; // Head node change
+//	                } else {
+//	                    previous.next = nextNode;
+//	                }
+//
+//	                // Move to the next node in the list
+//	                current = nextNode;
+//	            }
+//	            previous = current;
+//	            current = current.next;
+//	        }
+//	    }
 	}
 
 	public static int countInList() {
