@@ -21,3 +21,7 @@ PRACTICE/MODULES/AdvancedJava/DailyPractice/Oct2024MicroServicesDurgesh/.metadat
 *\modules.xml
 *\vcs.xml
 *\.iml
+*\.sonarlint
+*\.gitattributes
+*\mvnw
+*\mvnw.cmd
