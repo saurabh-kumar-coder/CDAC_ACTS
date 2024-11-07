@@ -1,0 +1,434 @@
+mysql> show databases;
+
+create database CDAC_Acts;
+Database changed
+mysql> show tables;
+
+mysql> describe vehicle;
+mysql> insert into vehicle
+    -> values (1, "Activa", 80000, 10, 35, "Two  wheeler. Sturdy.Milage 30 km"),
+    -> (2, "Santro", 95000, 20, 20, "Product of Hyandai."),
+    -> (3, "Yamaha", 160000, 5, 70, "Sturdy and good milage "),
+    -> (4, "i-10", 300000, 8, 18, "Good small car"),
+    -> (5, "WaganR", 250000, 10, 25, "Good milage car"),
+    -> (6, "Hero Splendor", 75000, 9, 65, "Best bike"),
+    -> (7, "Royal Enfild", 190000, 5, 40, "a royal bike");
+Query OK, 7 rows affected (0.08 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from vehicle;
++------+---------------+-----------+----------+--------+-----------------------------------+
+| vid  | vname         | price     | discount | milage | details                           |
++------+---------------+-----------+----------+--------+-----------------------------------+
+|    1 | Activa        |  80000.00 |    10.00 |  35.00 | Two  wheeler. Sturdy.Milage 30 km |
+|    2 | Santro        |  95000.00 |    20.00 |  20.00 | Product of Hyandai.               |
+|    3 | Yamaha        | 160000.00 |     5.00 |  70.00 | Sturdy and good milage            |
+|    4 | i-10          | 300000.00 |     8.00 |  18.00 | Good small car                    |
+|    5 | WaganR        | 250000.00 |    10.00 |  25.00 | Good milage car                   |
+|    6 | Hero Splendor |  75000.00 |     9.00 |  65.00 | Best bike                         |
+|    7 | Royal Enfild  | 190000.00 |     5.00 |  40.00 | a royal bike                      |
++------+---------------+-----------+----------+--------+-----------------------------------+
+7 rows in set (0.00 sec)
+
+mysql> create table customer (custid int, cname varchar(20), location varchar(50));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_cdac_acts |
++---------------------+
+| customer            |
+| vehicle             |
++---------------------+
+2 rows in set (0.01 sec)
+
+mysql> insert into customer
+    -> values (1, "Nilima", "Pimpri"),
+    -> (2, "Ganesh", "Pune"),
+    -> (3, "Kishor", "Kothrud"),
+    -> (4, "Priya", "Aundh");
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from customer;
++--------+--------+----------+
+| custid | cname  | location |
++--------+--------+----------+
+|      1 | Nilima | Pimpri   |
+|      2 | Ganesh | Pune     |
+|      3 | Kishor | Kothrud  |
+|      4 | Priya  | Aundh    |
++--------+--------+----------+
+4 rows in set (0.01 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_cdac_acts |
++---------------------+
+| customer            |
+| vehicle             |
++---------------------+
+2 rows in set (0.04 sec)
+
+mysql> create table salesman(sid int, sname varchar(20), city varchar(10), experience int);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> describe salesman;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| sid        | int         | YES  |     | NULL    |       |
+| sname      | varchar(20) | YES  |     | NULL    |       |
+| city       | varchar(10) | YES  |     | NULL    |       |
+| experience | int         | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> insert into salesman
+    -> values (10, "Rajesh", "mumbai", 5),
+    -> (11, "Seema", "Pune", 8),
+    -> (12, "Shailesh", "Nagpur", 7),
+    -> (13, "Rakhi", "Pune", 2);
+Query OK, 4 rows affected (0.03 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from salesman;
++------+----------+--------+------------+
+| sid  | sname    | city   | experience |
++------+----------+--------+------------+
+|   10 | Rajesh   | mumbai |          5 |
+|   11 | Seema    | Pune   |          8 |
+|   12 | Shailesh | Nagpur |          7 |
+|   13 | Rakhi    | Pune   |          2 |
++------+----------+--------+------------+
+4 rows in set (0.00 sec)
+
+Questions : 
+------------------------------------------------
+1. Display names of salesmen who work in Pune.   
+mysql> SELECT sname
+    -> FROM SALESMAN
+    -> WHERE city = "Pune";
++-------+
+| sname |
++-------+
+| Seema |
+| Rakhi |
++-------+
+2 rows in set (0.00 sec)
+------------------------------------------------
+2. Delete customer from Pimpri area.
+mysql> DELETE FROM customer
+    -> WHERE location = "Pimpri";
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from customer;
++--------+--------+----------+
+| custid | cname  | location |
++--------+--------+----------+
+|      3 | Kishor | Kothrud  |
+|      4 | Priya  | Aundh    |
+|      2 | Ganesh | Pune     |
++--------+--------+----------+
+3 rows in set (0.03 sec)
+------------------------------------------------
+3. Add some new customers 
+ 'Geeta' with custid 5 and area as 'Pimpri'. 
+ 'Raj'   with custid 6 and area as 'Aundh'  
+ 'Yash'  with custid 7 and area as 'Aundh'
+mysql> insert into customer
+    -> values(5, "Geeta", "Pimpri"),
+    -> (6, "Raj", "Aundh"),
+    -> (7, "Yash", "Aundh");
+Query OK, 3 rows affected (0.28 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from customer;
++--------+--------+----------+
+| custid | cname  | location |
++--------+--------+----------+
+|      3 | Kishor | Kothrud  |
+|      4 | Priya  | Aundh    |
+|      2 | Ganesh | Pune     |
+|      5 | Geeta  | Pimpri   |
+|      6 | Raj    | Aundh    |
+|      7 | Yash   | Aundh    |
++--------+--------+----------+
+6 rows in set (0.02 sec)
+------------------------------------------------
+4. Delete customer from area Aundh whose name is Priya. 
+mysql> DELETE FROM Customer
+    -> WHERE location = 'Aundh' AND Cname = 'Priya';
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from customer;
++--------+--------+----------+
+| custid | cname  | location |
++--------+--------+----------+
+|      3 | Kishor | Kothrud  |
+|      2 | Ganesh | Pune     |
+|      5 | Geeta  | Pimpri   |
+|      6 | Raj    | Aundh    |
+|      7 | Yash   | Aundh    |
++--------+--------+----------+
+5 rows in set (0.67 sec)
+------------------------------------------------
+5. Display information of vehicle , Royal Enfild.
+mysql> select *
+    -> from vehicle
+    -> where vname = "royal enfild";
++------+--------------+-----------+----------+--------+--------------+
+| vid  | vname        | price     | discount | milage | details      |
++------+--------------+-----------+----------+--------+--------------+
+|    7 | Royal Enfild | 190000.00 |     5.00 |  40.00 | a royal bike |
++------+--------------+-----------+----------+--------+--------------+
+1 row in set (0.00 sec)
+------------------------------------------------
+
+6. Display information of all Bikes.
+mysql> select * from vehicle;
++------+---------------+-----------+----------+--------+-----------------------------------+
+| vid  | vname         | price     | discount | milage | details                           |
++------+---------------+-----------+----------+--------+-----------------------------------+
+|    1 | Activa        |  80000.00 |    10.00 |  35.00 | Two  wheeler. Sturdy.Milage 30 km |
+|    2 | Santro        |  95000.00 |    20.00 |  20.00 | Product of Hyandai.               |
+|    3 | Yamaha        | 160000.00 |     5.00 |  70.00 | Sturdy and good milage            |
+|    4 | i-10          | 300000.00 |     8.00 |  18.00 | Good small car                    |
+|    5 | WaganR        | 250000.00 |    10.00 |  25.00 | Good milage car                   |
+|    6 | Hero Splendor |  75000.00 |     9.00 |  65.00 | Best bike                         |
+|    7 | Royal Enfild  | 190000.00 |     5.00 |  40.00 | a royal bike                      |
++------+---------------+-----------+----------+--------+-----------------------------------+
+7 rows in set (0.52 sec)
+------------------------------------------------
+7. If buying price of the vehicle is 75000 then change it to 80000.
+mysql> update vehicle
+    -> set price = 80000
+    -> where price = 75000;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from vehicle;
++------+---------------+-----------+----------+--------+-----------------------------------+
+| vid  | vname         | price     | discount | milage | details                           |
++------+---------------+-----------+----------+--------+-----------------------------------+
+|    1 | Activa        |  80000.00 |    10.00 |  35.00 | Two  wheeler. Sturdy.Milage 30 km |
+|    2 | Santro        |  95000.00 |    20.00 |  20.00 | Product of Hyandai.               |
+|    3 | Yamaha        | 160000.00 |     5.00 |  70.00 | Sturdy and good milage            |
+|    4 | i-10          | 300000.00 |     8.00 |  18.00 | Good small car                    |
+|    5 | WaganR        | 250000.00 |    10.00 |  25.00 | Good milage car                   |
+|    6 | Hero Splendor |  80000.00 |     9.00 |  65.00 | Best bike                         |
+|    7 | Royal Enfild  | 190000.00 |     5.00 |  40.00 | a royal bike                      |
++------+---------------+-----------+----------+--------+-----------------------------------+
+
+------------------------------------------------
+
+8. Display information of vehicle i-10.
+mysql> select * from vehicle
+    -> where vname = "i-10";
++------+-------+-----------+----------+--------+----------------+
+| vid  | vname | price     | discount | milage | details        |
++------+-------+-----------+----------+--------+----------------+
+|    4 | i-10  | 300000.00 |     8.00 |  18.00 | Good small car |
++------+-------+-----------+----------+--------+----------------+
+1 row in set (0.00 sec)
+
+------------------------------------------------
+
+9. Display vid, vname, price, details and total price for each vehicle. total price = price - discount
+mysql> select vid, vname, price, details, (price - discount) as total_price
+    -> from vehicle;
++------+---------------+-----------+-----------------------------------+-------------+
+| vid  | vname         | price     | details                           | total_price |
++------+---------------+-----------+-----------------------------------+-------------+
+|    1 | Activa        |  80000.00 | Two  wheeler. Sturdy.Milage 30 km |    79990.00 |
+|    2 | Santro        |  95000.00 | Product of Hyandai.               |    94980.00 |
+|    3 | Yamaha        | 160000.00 | Sturdy and good milage            |   159995.00 |
+|    4 | i-10          | 300000.00 | Good small car                    |   299992.00 |
+|    5 | WaganR        | 250000.00 | Good milage car                   |   249990.00 |
+|    6 | Hero Splendor |  80000.00 | Best bike                         |    79991.00 |
+|    7 | Royal Enfild  | 190000.00 | a royal bike                      |   189995.00 |
++------+---------------+-----------+-----------------------------------+-------------+
+7 rows in set (0.03 sec)
+
+------------------------------------------------
+
+10. Display all vehicles whose price is less than 100000.
+mysql> select * from vehicle
+    -> where price < 100000;
++------+---------------+----------+----------+--------+-----------------------------------+
+| vid  | vname         | price    | discount | milage | details                           |
++------+---------------+----------+----------+--------+-----------------------------------+
+|    1 | Activa        | 80000.00 |    10.00 |  35.00 | Two  wheeler. Sturdy.Milage 30 km |
+|    2 | Santro        | 95000.00 |    20.00 |  20.00 | Product of Hyandai.               |
+|    6 | Hero Splendor | 80000.00 |     9.00 |  65.00 | Best bike                         |
++------+---------------+----------+----------+--------+-----------------------------------+
+3 rows in set (0.00 sec)
+
+------------------------------------------------
+
+11. Display all the information of salesmen having experience more than 5 years.
+mysql> select * from salesman
+    -> where experience > 5;
++------+----------+--------+------------+
+| sid  | sname    | city   | experience |
++------+----------+--------+------------+
+|   11 | Seema    | Pune   |          8 |
+|   12 | Shailesh | Nagpur |          7 |
++------+----------+--------+------------+
+2 rows in set (0.04 sec)
+
+------------------------------------------------
+
+12. Create a copy of table salesman as salesman1.
+mysql> create table salesman1 AS
+    -> SELECT * FROM salesman;
+Query OK, 4 rows affected (0.13 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++---------------------+
+| Tables_in_cdac_acts |
++---------------------+
+| customer            |
+| salesman            |
+| salesman1           |
+| vehicle             |
++---------------------+
+4 rows in set (0.01 sec)
+
+mysql> select * from salesman1;
++------+----------+--------+------------+
+| sid  | sname    | city   | experience |
++------+----------+--------+------------+
+|   10 | Rajesh   | mumbai |          5 |
+|   11 | Seema    | Pune   |          8 |
+|   12 | Shailesh | Nagpur |          7 |
+|   13 | Rakhi    | Pune   |          2 |
++------+----------+--------+------------+
+4 rows in set (0.00 sec)
+
+------------------------------------------------
+
+13. For the given schema, create the table and solve following queries
+
+employee(eno, ename, basic, incentives)  
+mysql> create table employee (eno int, ename varchar(20), basic decimal(8, 2), incentives decimal(7, 2));
+Query OK, 0 rows affected (0.07 sec)
+eno    ename      basic        incentives
+------------------------------------------
+1      Rajesh     20000         1500
+2      Sarita     25000         1000
+3      Meera      15000         3000
+4      Jitesh     30000         500
+5      Ramesh     12000         3000
+
+ 1. List all employees having basic>15000
+mysql> select * from employee where basic > 15000;
++------+--------+----------+------------+
+| eno  | ename  | basic    | incentives |
++------+--------+----------+------------+
+|    1 | Rajesh | 20000.00 |    1500.00 |
+|    2 | Sarita | 25000.00 |    1000.00 |
+|    4 | Jitesh | 30000.00 |     500.00 |
++------+--------+----------+------------+
+3 rows in set (0.00 sec)
+
+------------------------------------------------
+ 2. Change incentive of Jitesh to 1000.
+mysql> update employee
+    -> set incentives = incentives + 1000
+    -> where ename = "Jitesh";
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++------+--------+----------+------------+
+| eno  | ename  | basic    | incentives |
++------+--------+----------+------------+
+|    1 | Rajesh | 20000.00 |    1500.00 |
+|    2 | Sarita | 25000.00 |    1000.00 |
+|    3 | Meera  | 15000.00 |    3000.00 |
+|    4 | Jitesh | 30000.00 |    1500.00 |
+|    5 | Ramesh | 12000.00 |    3000.00 |
++------+--------+----------+------------+
+5 rows in set (0.04 sec)
+
+------------------------------------------------
+ 3. Increase the salary of all employees by 5% who are earning less than 20000 as a basic pay. Update in the table.
+mysql> update employee
+    -> set basic = basic + (basic * 5)/100
+    -> where basic < 20000;
+Query OK, 2 rows affected (0.07 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from employee;
++------+--------+----------+------------+
+| eno  | ename  | basic    | incentives |
++------+--------+----------+------------+
+|    1 | Rajesh | 20000.00 |    1500.00 |
+|    2 | Sarita | 25000.00 |    1000.00 |
+|    3 | Meera  | 15750.00 |    3000.00 |
+|    4 | Jitesh | 30000.00 |    1500.00 |
+|    5 | Ramesh | 12600.00 |    3000.00 |
++------+--------+----------+------------+
+5 rows in set (0.01 sec)
+
+------------------------------------------------
+4. New employee Ajay joins the firm. His eno is 20, basic is 16000 and 
+he is not eligible for incentives. Store this information in table.
+mysql> INSERT INTO employee
+    -> values(20, "Ajay", 16000, null);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++------+--------+----------+------------+
+| eno  | ename  | basic    | incentives |
++------+--------+----------+------------+
+|    1 | Rajesh | 20000.00 |    1500.00 |
+|    2 | Sarita | 25000.00 |    1000.00 |
+|    3 | Meera  | 15750.00 |    3000.00 |
+|    4 | Jitesh | 30000.00 |    1500.00 |
+|    5 | Ramesh | 12600.00 |    3000.00 |
+|   20 | Ajay   | 16000.00 |       NULL |
++------+--------+----------+------------+
+6 rows in set (0.68 sec)
+
+------------------------------------------------
+5. Meera leaves the company. Make necessary changes in table.
+mysql> DELETE FROM EMPLOYEE
+    -> WHERE ename = "Meera";
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from employee;
++------+--------+----------+------------+
+| eno  | ename  | basic    | incentives |
++------+--------+----------+------------+
+|    1 | Rajesh | 20000.00 |    1500.00 |
+|    2 | Sarita | 25000.00 |    1000.00 |
+|    4 | Jitesh | 30000.00 |    1500.00 |
+|    5 | Ramesh | 12600.00 |    3000.00 |
+|   20 | Ajay   | 16000.00 |       NULL |
++------+--------+----------+------------+
+5 rows in set (0.00 sec)
+
+------------------------------------------------
+6. Ramesh is promoted as Head Clerk and now earns salary as 60000. Write a query. 
+mysql> update employee
+    -> set basic = 60000
+    -> where ename = "Ramesh";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++------+--------+----------+------------+
+| eno  | ename  | basic    | incentives |
++------+--------+----------+------------+
+|    1 | Rajesh | 20000.00 |    1500.00 |
+|    2 | Sarita | 25000.00 |    1000.00 |
+|    4 | Jitesh | 30000.00 |    1500.00 |
+|    5 | Ramesh | 60000.00 |    3000.00 |
+|   20 | Ajay   | 16000.00 |       NULL |
++------+--------+----------+------------+
+5 rows in set (0.00 sec)
+
+------------------------------------------------
