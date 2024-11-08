@@ -110,77 +110,418 @@ mysql> select ename, length(ename)
 
 
 6.Display email as  first  3 chacarters of ename, followed by dot, followed by 2 and 3rd character of  jobs,followed by @MyCompany
-
+mysql> select concat(substr(ename, 1, 3), substr(job, 2, 3), "@MyCompany") as email
+    -> from emp;
++------------------+
+| email            |
++------------------+
+| SMILER@MyCompany |
+| ALLALE@MyCompany |
+| WARALE@MyCompany |
+| JONANA@MyCompany |
+| MARALE@MyCompany |
+| BLAANA@MyCompany |
+| CLAANA@MyCompany |
+| SCONAL@MyCompany |
+| KINRES@MyCompany |
+| TURALE@MyCompany |
+| ADALER@MyCompany |
+| JAMLER@MyCompany |
+| FORNAL@MyCompany |
+| MILLER@MyCompany |
++------------------+
+14 rows in set (0.00 sec)
 
 
 7. Display name starting with upper case letter and job starting with upper case letter for all employees.   
  e.g Smith Clerk
- 
+mysql> select concat(
+    ->                 substr(upper(ename), 1, 1),
+    ->                 substr(lower(ename),2, length(ename)),
+    ->                 " ",
+    ->                 substr(upper(job), 1, 1),
+    ->                 substr(lower(job), 2, length(job))
+    ->             ) as name_with_job
+    -> from emp;
++-----------------+
+| name_with_job   |
++-----------------+
+| Smith Clerk     |
+| Allen Salesman  |
+| Ward Salesman   |
+| Jones Manager   |
+| Martin Salesman |
+| Blake Manager   |
+| Clark Manager   |
+| Scott Analyst   |
+| King President  |
+| Turner Salesman |
+| Adams Clerk     |
+| James Clerk     |
+| Ford Analyst    |
+| Miller Clerk    |
++-----------------+
+14 rows in set (0.00 sec)
 
 8. Display first 3 characters of ename in lower case and rest everything in upper case.  
    e.g smiTH
+mysql> select concat(
+    ->                  substr(lower(ename), 1, 3),
+    ->                  substr(ename, 4, length(ename))
+    ->                  ) as new_change
+    -> from emp;
++------------+
+| new_change |
++------------+
+| smiTH      |
+| allEN      |
+| warD       |
+| jonES      |
+| marTIN     |
+| blaKE      |
+| claRK      |
+| scoTT      |
+| kinG       |
+| turNER     |
+| adaMS      |
+| jamES      |
+| forD       |
+| milLER     |
++------------+
+14 rows in set (0.00 sec)
 
 9. Display last 3 letters of name.
+mysql> select substr(
+    ->          ename, length(ename) - 2, length(ename)
+    ->          ) as last3DigitOfName
+    -> from emp;
++------------------+
+| last3DigitOfName |
++------------------+
+| ITH              |
+| LEN              |
+| ARD              |
+| NES              |
+| TIN              |
+| AKE              |
+| ARK              |
+| OTT              |
+| ING              |
+| NER              |
+| AMS              |
+| MES              |
+| ORD              |
+| LER              |
++------------------+
+14 rows in set (0.00 sec)
 
 10. Generate an email-id for all employees and display. Email id is generated as follows    
 first 3 letters of name in lower case + last 2 letters of job in lower case + @knowit.com   
  eg name=SMITH   job=CLERK      email-id = smirk@knowit.com
+mysql> select ename, job, concat(
+    ->                  substr(lower(ename), 1,3),
+    ->                  substr(lower(job), length(job)-1, length(job)),
+    ->                  "@knowit.com") as email
+    -> from emp;
++--------+-----------+------------------+
+| ename  | job       | email            |
++--------+-----------+------------------+
+| SMITH  | CLERK     | smirk@knowit.com |
+| ALLEN  | SALESMAN  | allan@knowit.com |
+| WARD   | SALESMAN  | waran@knowit.com |
+| JONES  | MANAGER   | joner@knowit.com |
+| MARTIN | SALESMAN  | maran@knowit.com |
+| BLAKE  | MANAGER   | blaer@knowit.com |
+| CLARK  | MANAGER   | claer@knowit.com |
+| SCOTT  | ANALYST   | scost@knowit.com |
+| KING   | PRESIDENT | kinnt@knowit.com |
+| TURNER | SALESMAN  | turan@knowit.com |
+| ADAMS  | CLERK     | adark@knowit.com |
+| JAMES  | CLERK     | jamrk@knowit.com |
+| FORD   | ANALYST   | forst@knowit.com |
+| MILLER | CLERK     | milrk@knowit.com |
++--------+-----------+------------------+
+14 rows in set (0.00 sec)
 
 11. List all employees having experience greater than 40 years.
+mysql> select *, (year(curdate()) - year(hiredate)) as experience
+    -> from emp
+    -> where year(curdate()) - year(hiredate) > 40;
++-------+--------+-----------+------+------------+---------+---------+--------+------------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL     | COMM    | DEPTNO | experience |
++-------+--------+-----------+------+------------+---------+---------+--------+------------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800.00 |    NULL |     20 |         44 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |         43 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |         43 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |         43 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |         43 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |         43 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |         43 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000.00 |    NULL |     20 |         42 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |         43 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |         43 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100.00 |    NULL |     20 |         41 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |         43 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |         43 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |         42 |
++-------+--------+-----------+------+------------+---------+---------+--------+------------+
+14 rows in set (0.00 sec)
 
 12. Increase the salary by 10% in the database for all employees having experience more than 40 years  
+mysql> select *, (sal + sal * 0.10) as new_sal
+    -> from emp
+    -> where (year(curdate()) - year(hiredate)) > 40;
++-------+--------+-----------+------+------------+---------+---------+--------+-----------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL     | COMM    | DEPTNO | new_sal   |
++-------+--------+-----------+------+------------+---------+---------+--------+-----------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800.00 |    NULL |     20 |  880.0000 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 | 1760.0000 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 | 1375.0000 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 | 3272.5000 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 | 1375.0000 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 | 3135.0000 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 | 2695.0000 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000.00 |    NULL |     20 | 3300.0000 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 | 5500.0000 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 | 1650.0000 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100.00 |    NULL |     20 | 1210.0000 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 | 1045.0000 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 | 3300.0000 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 | 1430.0000 |
++-------+--------+-----------+------+------------+---------+---------+--------+-----------+
+14 rows in set (0.00 sec)
 
-13. Implement following using case statement. Use data from emp database.    If comm is null ‘need improvement’ If <500 “ok” If >=500 and < 1000 ‘good' ‘Excellent'
+13. Implement following using case statement. Use data from emp database. If comm is null ‘need improvement’ If <500 “ok” If >=500 and < 1000 ‘good' ‘Excellent'
+mysql> select *,
+    ->     case
+    ->         when comm = 0 then "need improvement"
+    ->         when comm < 500 then "OK"
+    ->         when comm >= 500 and comm < 1000 then "GOOD"
+    ->         else "Excellent"
+    ->     end as demo
+    -> from emp;
++-------+--------+-----------+------+------------+---------+---------+--------+------------------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL     | COMM    | DEPTNO | demo             |
++-------+--------+-----------+------+------------+---------+---------+--------+------------------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800.00 |    NULL |     20 | Excellent        |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 | OK               |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 | GOOD             |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 | Excellent        |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 | Excellent        |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 | Excellent        |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 | Excellent        |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000.00 |    NULL |     20 | Excellent        |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 | Excellent        |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 | need improvement |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100.00 |    NULL |     20 | Excellent        |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 | Excellent        |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 | Excellent        |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 | Excellent        |
++-------+--------+-----------+------+------------+---------+---------+--------+------------------+
+14 rows in set (0.00 sec)
 
 14.From the emp table, write a SQL query to find those employees whose salary is in the range of 1000, and 3000 (Begin and end values included.). Return all the fields.
+mysql> select *
+    -> from emp
+    -> where sal between 1000 and 3000;
++-------+--------+----------+------+------------+---------+---------+--------+
+| EMPNO | ENAME  | JOB      | MGR  | HIREDATE   | SAL     | COMM    | DEPTNO |
++-------+--------+----------+------+------------+---------+---------+--------+
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7566 | JONES  | MANAGER  | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |
+|  7654 | MARTIN | SALESMAN | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER  | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7782 | CLARK  | MANAGER  | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |
+|  7788 | SCOTT  | ANALYST  | 7566 | 1982-12-09 | 3000.00 |    NULL |     20 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7876 | ADAMS  | CLERK    | 7788 | 1983-01-12 | 1100.00 |    NULL |     20 |
+|  7902 | FORD   | ANALYST  | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
+|  7934 | MILLER | CLERK    | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+----------+------+------------+---------+---------+--------+
+11 rows in set (0.02 sec)
 
 15. Display all names. Length of each name should be 10 characters , add required spaces on left side of name, also display job, length of job should be 9 characters add required on the right side of job.
+mysql> SELECT
+    ->     LPAD(ename, 10, "_") AS formatted_name,
+    ->     RPAD(job, 9, "_") AS formatted_job
+    -> FROM emp;
++----------------+---------------+
+| formatted_name | formatted_job |
++----------------+---------------+
+| _____SMITH     | CLERK____     |
+| _____ALLEN     | SALESMAN_     |
+| ______WARD     | SALESMAN_     |
+| _____JONES     | MANAGER__     |
+| ____MARTIN     | SALESMAN_     |
+| _____BLAKE     | MANAGER__     |
+| _____CLARK     | MANAGER__     |
+| _____SCOTT     | ANALYST__     |
+| ______KING     | PRESIDENT     |
+| ____TURNER     | SALESMAN_     |
+| _____ADAMS     | CLERK____     |
+| _____JAMES     | CLERK____     |
+| ______FORD     | ANALYST__     |
+| ____MILLER     | CLERK____     |
++----------------+---------------+
+14 rows in set (0.00 sec)
 
 16. Display string “Hello” followed by name having first letter of name in capital, followed by ! for all  employees  who earned commission.
+mysql> select concat("Hello ", substr(ename, 1, 1), substr(lower(ename), 2, length(ename)), "!") as new_demo
+    -> from emp;
++---------------+
+| new_demo      |
++---------------+
+| Hello Smith!  |
+| Hello Allen!  |
+| Hello Ward!   |
+| Hello Jones!  |
+| Hello Martin! |
+| Hello Blake!  |
+| Hello Clark!  |
+| Hello Scott!  |
+| Hello King!   |
+| Hello Turner! |
+| Hello Adams!  |
+| Hello James!  |
+| Hello Ford!   |
+| Hello Miller! |
++---------------+
+14 rows in set (0.00 sec)
 
 17. Display all employee names from emp table in the following format. 
   Hello Allen . 
+mysql> select concat("Hello ", substr(ename, 1, 1), substr(lower(ename), 2, length(ename)), " .") as new_demo
+    -> from emp;
++----------------+
+| new_demo       |
++----------------+
+| Hello Smith .  |
+| Hello Allen .  |
+| Hello Ward .   |
+| Hello Jones .  |
+| Hello Martin . |
+| Hello Blake .  |
+| Hello Clark .  |
+| Hello Scott .  |
+| Hello King .   |
+| Hello Turner . |
+| Hello Adams .  |
+| Hello James .  |
+| Hello Ford .   |
+| Hello Miller . |
++----------------+
+14 rows in set (0.00 sec)
 
 18. Write a query to display name is a job. 
    e.g SMITH is a clerk 
    job should be in small letters
+mysql> select concat(ename, " is a ", substr(lower(job), 1, length(job))) as newString
+    -> from emp;
++----------------------+
+| newString            |
++----------------------+
+| SMITH is a clerk     |
+| ALLEN is a salesman  |
+| WARD is a salesman   |
+| JONES is a manager   |
+| MARTIN is a salesman |
+| BLAKE is a manager   |
+| CLARK is a manager   |
+| SCOTT is a analyst   |
+| KING is a president  |
+| TURNER is a salesman |
+| ADAMS is a clerk     |
+| JAMES is a clerk     |
+| FORD is a analyst    |
+| MILLER is a clerk    |
++----------------------+
+14 rows in set (0.00 sec)
 
 19. Display all columns by sperating with comma.
+mysql> select concat(EMPNO, ", ", ENAME, ", ", job, ", ", ifnull(MGR, "NULL"), ", ", HIREDATE, ", ", SAL, ", ", ifnull(COMM, 0), ", ", DEPTNO)
+    -> from emp;
++----------------------------------------------------------------------------------------------------------------------------------+
+| concat(EMPNO, ", ", ENAME, ", ", job, ", ", ifnull(MGR, "NULL"), ", ", HIREDATE, ", ", SAL, ", ", ifnull(COMM, 0), ", ", DEPTNO) |
++----------------------------------------------------------------------------------------------------------------------------------+
+| 7369, SMITH, CLERK, 7902, 1980-12-17, 800.00, 0.00, 20                                                                           |
+| 7499, ALLEN, SALESMAN, 7698, 1981-02-20, 1600.00, 300.00, 30                                                                     |
+| 7521, WARD, SALESMAN, 7698, 1981-02-22, 1250.00, 500.00, 30                                                                      |
+| 7566, JONES, MANAGER, 7839, 1981-04-02, 2975.00, 0.00, 20                                                                        |
+| 7654, MARTIN, SALESMAN, 7698, 1981-09-28, 1250.00, 1400.00, 30                                                                   |
+| 7698, BLAKE, MANAGER, 7839, 1981-05-01, 2850.00, 0.00, 30                                                                        |
+| 7782, CLARK, MANAGER, 7839, 1981-06-09, 2450.00, 0.00, 10                                                                        |
+| 7788, SCOTT, ANALYST, 7566, 1982-12-09, 3000.00, 0.00, 20                                                                        |
+| 7839, KING, PRESIDENT, NULL, 1981-11-17, 5000.00, 0.00, 10                                                                       |
+| 7844, TURNER, SALESMAN, 7698, 1981-09-08, 1500.00, 0.00, 30                                                                      |
+| 7876, ADAMS, CLERK, 7788, 1983-01-12, 1100.00, 0.00, 20                                                                          |
+| 7900, JAMES, CLERK, 7698, 1981-12-03, 950.00, 0.00, 30                                                                           |
+| 7902, FORD, ANALYST, 7566, 1981-12-03, 3000.00, 0.00, 20                                                                         |
+| 7934, MILLER, CLERK, 7782, 1982-01-23, 1300.00, 0.00, 10                                                                         |
++----------------------------------------------------------------------------------------------------------------------------------+
+14 rows in set (0.00 sec)
 
 20. Find how many analysts are there in each department.
+mysql> select count(*), deptno
+    -> from emp
+    -> where job = "analyst"
+    -> group by deptno;
++----------+--------+
+| count(*) | deptno |
++----------+--------+
+|        2 |     20 |
++----------+--------+
+1 row in set (0.00 sec)
 
 21. To find max, min and sum of salary for all employees whose sal > 1500 and < 3000
 
+
 22. Display ename,sal for dept 10 with max sal at the top.
+
 
 23. Write a query which will display name, department no and date of joining of all employees joined between  January 1, 1981 and March 31, 1983. Sort it based on date of joining (ascending). 
 
+
 24.Display the number of employees who has got the commission.
+
 
 25. Find sum of all the salaries in emp table.
 
+
 26. List Department wise total  salary.
+
 
 27. List department wise total sal only if the total sal is > 8000
 
+
 28. Count number of clerks in dept 10 and 20.   
+
 
 29. Display job wise sum of salary excluding dept 30 only if the sum salary is > 5000.
 
+
 30. Find all employees whose sal is divisible by 3.
+
 
 31.List emp working as managers and clerks with Salary at least 2000 except in dept 10 and 20.
 
+
 32. List all the clerks and analysts with salary at least 1000 in dept 20 and 30.
+
 
 33. Display all employees who works in either dept 10 or 30 or joined in year 1982.
 
+
 34.Write a query which will display name, department no and date of joining of   all employees joined between  January 1, 1981 and March 31, 1983.  Sort it based on date of   joining (ascending).
+
 
 35.List the employees in dept 20 and 30 who get no commission.
 
+
 36.Display job wise max sal only for managers, clerks, salesman working in dept 10 and 20. Sort the data by des order of the max salary.
 
+
 37.Write a query which will display name, department no and date of joining of   all employees joined between  January 1, 1981 and March 31, 1983. Sort it based on date of   joining (ascending).
+
 
 38.Display hiredate from emp table in different formats. 
