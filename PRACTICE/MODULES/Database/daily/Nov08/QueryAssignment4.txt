@@ -474,54 +474,269 @@ mysql> select count(*), deptno
 1 row in set (0.00 sec)
 
 21. To find max, min and sum of salary for all employees whose sal > 1500 and < 3000
-
+mysql> select max(sal) as max_sal, min(sal) as min_sal, sum(sal) as sum_sal
+    -> from emp
+    -> where sal > 1500 and sal < 3000;
++---------+---------+---------+
+| max_sal | min_sal | sum_sal |
++---------+---------+---------+
+| 2975.00 | 1600.00 | 9875.00 |
++---------+---------+---------+
+1 row in set (0.00 sec)
 
 22. Display ename,sal for dept 10 with max sal at the top.
-
+mysql> select ename, sal
+    -> from emp
+    -> where deptno = 10
+    -> order by sal desc;
++--------+---------+
+| ename  | sal     |
++--------+---------+
+| KING   | 5000.00 |
+| CLARK  | 2450.00 |
+| MILLER | 1300.00 |
++--------+---------+
+3 rows in set (0.00 sec)
 
 23. Write a query which will display name, department no and date of joining of all employees joined between  January 1, 1981 and March 31, 1983. Sort it based on date of joining (ascending). 
-
+mysql> select ename, deptno, hiredate
+    -> from emp
+    -> where hiredate between '1981-01-01' and '1983-03-31'
+    -> order by hiredate;
++--------+--------+------------+
+| ename  | deptno | hiredate   |
++--------+--------+------------+
+| ALLEN  |     30 | 1981-02-20 |
+| WARD   |     30 | 1981-02-22 |
+| JONES  |     20 | 1981-04-02 |
+| BLAKE  |     30 | 1981-05-01 |
+| CLARK  |     10 | 1981-06-09 |
+| TURNER |     30 | 1981-09-08 |
+| MARTIN |     30 | 1981-09-28 |
+| KING   |     10 | 1981-11-17 |
+| JAMES  |     30 | 1981-12-03 |
+| FORD   |     20 | 1981-12-03 |
+| MILLER |     10 | 1982-01-23 |
+| SCOTT  |     20 | 1982-12-09 |
+| ADAMS  |     20 | 1983-01-12 |
++--------+--------+------------+
+13 rows in set (0.00 sec)
 
 24.Display the number of employees who has got the commission.
-
+mysql> select count(*)
+    -> from emp
+    -> where comm is not null;
++----------+
+| count(*) |
++----------+
+|        4 |
++----------+
+1 row in set (0.00 sec)
 
 25. Find sum of all the salaries in emp table.
-
+mysql> select sum(sal)
+    -> from emp;
++----------+
+| sum(sal) |
++----------+
+| 29025.00 |
++----------+
+1 row in set (0.00 sec)
 
 26. List Department wise total  salary.
-
+mysql> select sum(sal), deptno
+    -> from emp
+    -> group by deptno;
++----------+--------+
+| sum(sal) | deptno |
++----------+--------+
+| 10875.00 |     20 |
+|  9400.00 |     30 |
+|  8750.00 |     10 |
++----------+--------+
+3 rows in set (0.00 sec)
 
 27. List department wise total sal only if the total sal is > 8000
-
+mysql> select sum(sal) as sumsal, deptno
+    -> from emp
+    -> group by deptno
+    -> having sumsal > 8000;
++----------+--------+
+| sumsal   | deptno |
++----------+--------+
+| 10875.00 |     20 |
+|  9400.00 |     30 |
+|  8750.00 |     10 |
++----------+--------+
+3 rows in set (0.00 sec)
 
 28. Count number of clerks in dept 10 and 20.   
-
+mysql> select count(*) , deptno
+    -> from emp
+    -> where deptno in (10, 20) and job = "CLERK"
+    -> group by deptno;
++----------+--------+
+| count(*) | deptno |
++----------+--------+
+|        2 |     20 |
+|        1 |     10 |
++----------+--------+
+2 rows in set (0.00 sec)
 
 29. Display job wise sum of salary excluding dept 30 only if the sum salary is > 5000.
-
+mysql> select sum(sal) as sumsal, job
+    -> from emp
+    -> where deptno <> 30
+    -> group by job
+    -> having sumsal > 5000;
++---------+---------+
+| sumsal  | job     |
++---------+---------+
+| 5425.00 | MANAGER |
+| 6000.00 | ANALYST |
++---------+---------+
+2 rows in set (0.00 sec)
 
 30. Find all employees whose sal is divisible by 3.
-
+mysql> select *
+    -> from emp
+    -> where mod(sal, 3) = 0;
++-------+--------+----------+------+------------+---------+------+--------+
+| EMPNO | ENAME  | JOB      | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
++-------+--------+----------+------+------------+---------+------+--------+
+|  7698 | BLAKE  | MANAGER  | 7839 | 1981-05-01 | 2850.00 | NULL |     30 |
+|  7788 | SCOTT  | ANALYST  | 7566 | 1982-12-09 | 3000.00 | NULL |     20 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500.00 | 0.00 |     30 |
+|  7902 | FORD   | ANALYST  | 7566 | 1981-12-03 | 3000.00 | NULL |     20 |
++-------+--------+----------+------+------------+---------+------+--------+
+4 rows in set (0.00 sec)
 
 31.List emp working as managers and clerks with Salary at least 2000 except in dept 10 and 20.
-
+mysql> select *
+    -> from emp
+    -> where job in ("manager", "clerk")
+    ->          AND sal >= 2000
+    ->          AND deptno NOT IN (10, 20);\
++-------+-------+---------+------+------------+---------+------+--------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7698 | BLAKE | MANAGER | 7839 | 1981-05-01 | 2850.00 | NULL |     30 |
++-------+-------+---------+------+------------+---------+------+--------+
+1 row in set (0.00 sec)
 
 32. List all the clerks and analysts with salary at least 1000 in dept 20 and 30.
-
+mysql> select ename, job, deptno, sal
+    -> from emp
+    -> where deptno in (10, 20)
+    ->  AND JOB IN ("CLERK", "ANALYST")
+    ->  AND SAL >= 1000;
++--------+---------+--------+---------+
+| ename  | job     | deptno | sal     |
++--------+---------+--------+---------+
+| SCOTT  | ANALYST |     20 | 3000.00 |
+| ADAMS  | CLERK   |     20 | 1100.00 |
+| FORD   | ANALYST |     20 | 3000.00 |
+| MILLER | CLERK   |     10 | 1300.00 |
++--------+---------+--------+---------+
+4 rows in set (0.00 sec)
 
 33. Display all employees who works in either dept 10 or 30 or joined in year 1982.
+mysql> select *
+    -> from emp
+    -> where deptno in (10, 30) OR year(hiredate) = 1982;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL     | COMM    | DEPTNO |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000.00 |    NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+10 rows in set (0.00 sec)
 
-
-34.Write a query which will display name, department no and date of joining of   all employees joined between  January 1, 1981 and March 31, 1983.  Sort it based on date of   joining (ascending).
-
+34.Write a query which will display name, department no and date of joining of all employees joined between January 1, 1981 and March 31, 1983. Sort it based on date of joining (ascending).
+mysql> select ename, deptno, hiredate
+    -> from emp
+    -> where hiredate between "1981-01-01" and" 1983-03-31"
+    -> order by hiredate;
++--------+--------+------------+
+| ename  | deptno | hiredate   |
++--------+--------+------------+
+| ALLEN  |     30 | 1981-02-20 |
+| WARD   |     30 | 1981-02-22 |
+| JONES  |     20 | 1981-04-02 |
+| BLAKE  |     30 | 1981-05-01 |
+| CLARK  |     10 | 1981-06-09 |
+| TURNER |     30 | 1981-09-08 |
+| MARTIN |     30 | 1981-09-28 |
+| KING   |     10 | 1981-11-17 |
+| JAMES  |     30 | 1981-12-03 |
+| FORD   |     20 | 1981-12-03 |
+| MILLER |     10 | 1982-01-23 |
+| SCOTT  |     20 | 1982-12-09 |
+| ADAMS  |     20 | 1983-01-12 |
++--------+--------+------------+
+13 rows in set (0.00 sec)
 
 35.List the employees in dept 20 and 30 who get no commission.
+mysql> select *
+    -> from emp
+    -> where deptno in (20, 30) and comm is null;
++-------+-------+---------+------+------------+---------+------+--------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7369 | SMITH | CLERK   | 7902 | 1980-12-17 |  800.00 | NULL |     20 |
+|  7566 | JONES | MANAGER | 7839 | 1981-04-02 | 2975.00 | NULL |     20 |
+|  7698 | BLAKE | MANAGER | 7839 | 1981-05-01 | 2850.00 | NULL |     30 |
+|  7788 | SCOTT | ANALYST | 7566 | 1982-12-09 | 3000.00 | NULL |     20 |
+|  7876 | ADAMS | CLERK   | 7788 | 1983-01-12 | 1100.00 | NULL |     20 |
+|  7900 | JAMES | CLERK   | 7698 | 1981-12-03 |  950.00 | NULL |     30 |
+|  7902 | FORD  | ANALYST | 7566 | 1981-12-03 | 3000.00 | NULL |     20 |
++-------+-------+---------+------+------------+---------+------+--------+
+7 rows in set (0.00 sec)
 
-
-36.Display job wise max sal only for managers, clerks, salesman working in dept 10 and 20. Sort the data by des order of the max salary.
-
+36.Display job wise max sal only for managers, clerks, salesman working in dept 10 and 20. Sort the data by desc order of the max salary.
+mysql> select ename, job, max(sal) as maxSal, deptno
+    -> from emp
+    -> where job in ('clerk', 'manager', 'salesman')
+    ->  and deptno in (10,20)
+    -> group by job, deptno
+    -> order by maxSal desc;
++--------+---------+---------+--------+
+| ename  | job     | maxSal  | deptno |
++--------+---------+---------+--------+
+| JONES  | MANAGER | 2975.00 |     20 |
+| CLARK  | MANAGER | 2450.00 |     10 |
+| MILLER | CLERK   | 1300.00 |     10 |
+| SMITH  | CLERK   | 1100.00 |     20 |
++--------+---------+---------+--------+
+4 rows in set (0.00 sec)
 
 37.Write a query which will display name, department no and date of joining of   all employees joined between  January 1, 1981 and March 31, 1983. Sort it based on date of   joining (ascending).
-
-
-38.Display hiredate from emp table in different formats. 
+mysql> select ename, deptno, hiredate
+    -> from emp
+    -> where hiredate between '1981-01-01' and '1983-03-31';
++--------+--------+------------+
+| ename  | deptno | hiredate   |
++--------+--------+------------+
+| ALLEN  |     30 | 1981-02-20 |
+| WARD   |     30 | 1981-02-22 |
+| JONES  |     20 | 1981-04-02 |
+| MARTIN |     30 | 1981-09-28 |
+| BLAKE  |     30 | 1981-05-01 |
+| CLARK  |     10 | 1981-06-09 |
+| SCOTT  |     20 | 1982-12-09 |
+| KING   |     10 | 1981-11-17 |
+| TURNER |     30 | 1981-09-08 |
+| ADAMS  |     20 | 1983-01-12 |
+| JAMES  |     30 | 1981-12-03 |
+| FORD   |     20 | 1981-12-03 |
+| MILLER |     10 | 1982-01-23 |
++--------+--------+------------+
+13 rows in set (0.00 sec)
