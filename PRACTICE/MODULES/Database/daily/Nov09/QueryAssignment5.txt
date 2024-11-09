@@ -1,0 +1,283 @@
+create table customer
+(
+    cid int,
+    cname varchar(20) not null,
+    location varchar(30) not null,
+    constraint pk_customer primary key(cid)
+);
+
+insert into customer
+values
+(1, "Nilima", "Pimpri"),
+(2, "Ganesh", "Pune"),
+(3, "Kishor", "Kothrud"),
+(4, "Priya", "Aundh");
+
+
+create table vehicle
+(
+    vid int,
+    vname varchar(15),
+    price decimal(10, 2),
+    discount decimal(10, 2),
+    mileage decimal(10, 2),
+    details varchar(50),
+    constraint pk_vehicles primary key(vid)
+);
+
+insert into vehicle
+values
+(1, "Activa", 80000 , 10, 35, "Two  wheeler. Sturdy.Milage 30 km"),
+(2, "Santro", 95000 , 20, 20, "Product of Hyandai."),
+(3, "Yamaha", 160000, 5 , 70, "Sturdy and good milage "),
+(4, "i-10", 300000, 8 , 18, "Good small car"),
+(5, "WaganR", 250000, 10, 25, "Good milage car"),
+(6, "Hero Splendor", 75000 , 9 , 65, "Best bike"),
+(7, "Royal Enfild", 190000, 5 , 40, "a royal bike");
+
+create table salesman
+(
+    sid int,
+    sname varchar(15),
+    city varchar(15),
+    exprience int,
+    constraint pk_salesman primary key(sid)
+);
+
+insert into salesman 
+values
+(10, "Rajesh", "mumbai", 5),
+(11, "Seema", "Pune", 8), 
+(12, "Shailesh", "Nagpur", 7), 
+(13, "Rakhi", "Pune", 2);
+
+create table transaction
+(
+    tid int,
+    custid int,
+    vid int,
+    sid int,
+    buy_price decimal(10, 2),
+    constraint pk_txn primary key(tid),
+    constraint fk_customer foreign key(custid) references customer(cid),
+    constraint fk_vehicle foreign key(vid) references vehicle(vid),
+    constraint fk_salesman foreign key(sid) references salesman(sid)
+);
+
+insert into transaction
+values
+(2,1,4,11, 77700),
+(3,3,2,11, 130000),
+(4,4,3,12, 80000),
+(5,3,5,13, 180000),
+(6,3,7,12, 50000),
+(7,2,7,10, 50000),
+(8,1,2,10, 50000),
+(9,1,6,13, 50000);
+
+1. Display tid, custid, customer name and buy_price.
+
+mysql> select t.tid, c.cid, c.cname, t.buy_price
+    -> from transaction t, customer c
+    -> where t.custid = c.cid;
++-----+-----+--------+-----------+
+| tid | cid | cname  | buy_price |
++-----+-----+--------+-----------+
+|   2 |   1 | Nilima |  77700.00 |
+|   8 |   1 | Nilima |  50000.00 |
+|   9 |   1 | Nilima |  50000.00 |
+|   1 |   2 | Ganesh | 250000.00 |
+|   7 |   2 | Ganesh |  50000.00 |
+|   3 |   3 | Kishor | 130000.00 |
+|   5 |   3 | Kishor | 180000.00 |
+|   6 |   3 | Kishor |  50000.00 |
+|   4 |   4 | Priya  |  80000.00 |
++-----+-----+--------+-----------+
+9 rows in set (0.00 sec)
+
+2.Display tid, custid, customer name, vid, vehicle name, sid, salesmen name and buy_price for vehicle.
+
+select tid, t.custid, c.cname, v.vid, v.vname, sm.sid, sm.sname, t.buy_price
+from transaction t, customer c, vehicle v, salesman sm
+where t.custid = c.cid and t.vid = v.vid and t.sid = sm.sid;
+
+mysql> select tid, t.custid, c.cname, v.vid, v.vname, sm.sid, sm.sname, t.buy_price
+    -> from transaction t, customer c, vehicle v, salesman sm
+    -> where t.custid = c.cid and t.vid = v.vid and t.sid = sm.sid;
++-----+--------+--------+-----+---------------+-----+----------+-----------+
+| tid | custid | cname  | vid | vname         | sid | sname    | buy_price |
++-----+--------+--------+-----+---------------+-----+----------+-----------+
+|   2 |      1 | Nilima |   4 | i-10          |  11 | Seema    |  77700.00 |
+|   8 |      1 | Nilima |   2 | Santro        |  10 | Rajesh   |  50000.00 |
+|   9 |      1 | Nilima |   6 | Hero Splendor |  13 | Rakhi    |  50000.00 |
+|   1 |      2 | Ganesh |   1 | Activa        |  10 | Rajesh   | 250000.00 |
+|   7 |      2 | Ganesh |   7 | Royal Enfild  |  10 | Rajesh   |  50000.00 |
+|   3 |      3 | Kishor |   2 | Santro        |  11 | Seema    | 130000.00 |
+|   5 |      3 | Kishor |   5 | WaganR        |  13 | Rakhi    | 180000.00 |
+|   6 |      3 | Kishor |   7 | Royal Enfild  |  12 | Shailesh |  50000.00 |
+|   4 |      4 | Priya  |   3 | Yamaha        |  12 | Shailesh |  80000.00 |
++-----+--------+--------+-----+---------------+-----+----------+-----------+
+9 rows in set (0.00 sec)
+
+
+Consider emp, dept and salgrade tables to answer following queries.
+
+1.List details of employees as ename,deptno,dname,sal,comm.
+
+select e.ename, d.deptno, d.dname, e.sal, e.comm
+from emp e, dept d 
+where e.deptno = d.deptno;
+
+mysql> select e.ename, d.deptno, d.dname, e.sal, e.comm
+    -> from emp e, dept d
+    -> where e.deptno = d.deptno;
++--------+--------+------------+---------+---------+
+| ename  | deptno | dname      | sal     | comm    |
++--------+--------+------------+---------+---------+
+| SMITH  |     20 | RESEARCH   |  800.00 |    NULL |
+| ALLEN  |     30 | SALES      | 1600.00 |  300.00 |
+| WARD   |     30 | SALES      | 1250.00 |  500.00 |
+| JONES  |     20 | RESEARCH   | 2975.00 |    NULL |
+| MARTIN |     30 | SALES      | 1250.00 | 1400.00 |
+| BLAKE  |     30 | SALES      | 2850.00 |    NULL |
+| CLARK  |     10 | ACCOUNTING | 2450.00 |    NULL |
+| SCOTT  |     20 | RESEARCH   | 3000.00 |    NULL |
+| KING   |     10 | ACCOUNTING | 5000.00 |    NULL |
+| TURNER |     30 | SALES      | 1500.00 |    0.00 |
+| ADAMS  |     20 | RESEARCH   | 1100.00 |    NULL |
+| JAMES  |     30 | SALES      |  950.00 |    NULL |
+| FORD   |     20 | RESEARCH   | 3000.00 |    NULL |
+| MILLER |     10 | ACCOUNTING | 1300.00 |    NULL |
++--------+--------+------------+---------+---------+
+14 rows in set (0.00 sec)
+
+============================================================================
+
+2. Display details of employees as empno,ename,sal,job, deptno and dept name for all employees working as a clerk or salesman and earning  
+
+select e.empno, e.ename, e.sal, e.job, e.deptno, d.dname
+from emp e, dept d
+where e.deptno = d.deptno;
+
+mysql> select e.empno, e.ename, e.sal, e.job, e.deptno, d.dname
+    -> from emp e, dept d
+    -> where e.deptno = d.deptno;
++-------+--------+---------+-----------+--------+------------+
+| empno | ename  | sal     | job       | deptno | dname      |
++-------+--------+---------+-----------+--------+------------+
+|  7369 | SMITH  |  800.00 | CLERK     |     20 | RESEARCH   |
+|  7499 | ALLEN  | 1600.00 | SALESMAN  |     30 | SALES      |
+|  7521 | WARD   | 1250.00 | SALESMAN  |     30 | SALES      |
+|  7566 | JONES  | 2975.00 | MANAGER   |     20 | RESEARCH   |
+|  7654 | MARTIN | 1250.00 | SALESMAN  |     30 | SALES      |
+|  7698 | BLAKE  | 2850.00 | MANAGER   |     30 | SALES      |
+|  7782 | CLARK  | 2450.00 | MANAGER   |     10 | ACCOUNTING |
+|  7788 | SCOTT  | 3000.00 | ANALYST   |     20 | RESEARCH   |
+|  7839 | KING   | 5000.00 | PRESIDENT |     10 | ACCOUNTING |
+|  7844 | TURNER | 1500.00 | SALESMAN  |     30 | SALES      |
+|  7876 | ADAMS  | 1100.00 | CLERK     |     20 | RESEARCH   |
+|  7900 | JAMES  |  950.00 | CLERK     |     30 | SALES      |
+|  7902 | FORD   | 3000.00 | ANALYST   |     20 | RESEARCH   |
+|  7934 | MILLER | 1300.00 | CLERK     |     10 | ACCOUNTING |
++-------+--------+---------+-----------+--------+------------+
+14 rows in set (0.00 sec)
+
+============================================================================
+
+3. List details of employees as ename,deptno,dname,sal,comm working in dept 20 and 30 who did not get any commission.   
+ 
+select e.ename, e.deptno, d.dname, e.sal, e.comm
+from emp e, dept d
+where e.deptno = d.deptno AND e.deptno IN (20, 30) AND e.comm IS NULL;
+
+mysql> select e.ename, e.deptno, d.dname, e.sal, e.comm
+    -> from emp e, dept d
+    -> where e.deptno = d.deptno AND e.deptno IN (20, 30) AND e.comm IS NULL;
++-------+--------+----------+---------+------+
+| ename | deptno | dname    | sal     | comm |
++-------+--------+----------+---------+------+
+| SMITH |     20 | RESEARCH |  800.00 | NULL |
+| JONES |     20 | RESEARCH | 2975.00 | NULL |
+| BLAKE |     30 | SALES    | 2850.00 | NULL |
+| SCOTT |     20 | RESEARCH | 3000.00 | NULL |
+| ADAMS |     20 | RESEARCH | 1100.00 | NULL |
+| JAMES |     30 | SALES    |  950.00 | NULL |
+| FORD  |     20 | RESEARCH | 3000.00 | NULL |
++-------+--------+----------+---------+------+
+7 rows in set (0.00 sec)
+
+============================================================================
+
+4. Display ename,sal and grade of employee(use salgrade table).
+
+select e.ename, e.sal, sg.grade
+from emp e, salgrade sg
+where e.sal between sg.losal and sg.hisal;
+
+mysql> select e.ename, e.sal, sg.grade
+    -> from emp e, salgrade sg
+    -> where e.sal between sg.losal and sg.hisal;
++--------+---------+-------+
+| ename  | sal     | grade |
++--------+---------+-------+
+| SMITH  |  800.00 |     1 |
+| ALLEN  | 1600.00 |     3 |
+| WARD   | 1250.00 |     2 |
+| JONES  | 2975.00 |     4 |
+| MARTIN | 1250.00 |     2 |
+| BLAKE  | 2850.00 |     4 |
+| CLARK  | 2450.00 |     4 |
+| SCOTT  | 3000.00 |     4 |
+| KING   | 5000.00 |     5 |
+| TURNER | 1500.00 |     3 |
+| ADAMS  | 1100.00 |     1 |
+| JAMES  |  950.00 |     1 |
+| FORD   | 3000.00 |     4 |
+| MILLER | 1300.00 |     2 |
++--------+---------+-------+
+14 rows in set (0.00 sec)
+
+============================================================================
+
+5. Display the information of department i.e deptno, dname and loc in which clerks are working. 
+
+select d.deptno, d.dname, d.loc 
+from dept d, emp e 
+where d.deptno = e.deptno AND e.job = "CLERK";
+
+mysql> select d.deptno, d.dname, d.loc
+    -> from dept d, emp e
+    -> where d.deptno = e.deptno AND e.job = "CLERK";
++--------+------------+----------+
+| deptno | dname      | loc      |
++--------+------------+----------+
+|     20 | RESEARCH   | DALLAS   |
+|     20 | RESEARCH   | DALLAS   |
+|     30 | SALES      | CHICAGO  |
+|     10 | ACCOUNTING | NEW YORK |
++--------+------------+----------+
+4 rows in set (0.00 sec)
+
+============================================================================
+
+to check constraint 
+
+select * from information_schema.table_constraints
+where constraint_schema = "saurabhdb";
+
+mysql> select * from information_schema.table_constraints
+    -> where constraint_schema = "saurabhdb";
++--------------------+-------------------+-----------------+--------------+------------+-----------------+----------+
+| CONSTRAINT_CATALOG | CONSTRAINT_SCHEMA | CONSTRAINT_NAME | TABLE_SCHEMA | TABLE_NAME | CONSTRAINT_TYPE | ENFORCED |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+----------+
+| def                | saurabhdb         | cname           | saurabhdb    | course     | UNIQUE          | YES      |
+| def                | saurabhdb         | PRIMARY         | saurabhdb    | course     | PRIMARY KEY     | YES      |
+| def                | saurabhdb         | PRIMARY         | saurabhdb    | customer   | PRIMARY KEY     | YES      |
+| def                | saurabhdb         | PRIMARY         | saurabhdb    | dept       | PRIMARY KEY     | YES      |
+| def                | saurabhdb         | PRIMARY         | saurabhdb    | dept100    | PRIMARY KEY     | YES      |
+| def                | saurabhdb         | PRIMARY         | saurabhdb    | emp100     | PRIMARY KEY     | YES      |
+| def                | saurabhdb         | PRIMARY         | saurabhdb    | trainer    | PRIMARY KEY     | YES      |
+| def                | saurabhdb         | fk_trainer      | saurabhdb    | trainer    | FOREIGN KEY     | YES      |
+| def                | saurabhdb         | trainer_chk_1   | saurabhdb    | trainer    | CHECK           | YES      |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+----------+
+9 rows in set (0.00 sec)

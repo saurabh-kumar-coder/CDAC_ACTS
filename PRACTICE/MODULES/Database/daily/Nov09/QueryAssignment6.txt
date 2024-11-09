@@ -1,0 +1,153 @@
+Constraints in RDBMS
+
+1. Create new table dept100 having same structure and data as that of dept table.
+mysql> create table dept100
+    -> as
+    -> select * from dept;
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+1. Create new table emp100 having same structure and data as that of emp table.
+mysql> create table emp100
+    -> as
+    -> select * from emp;
+Query OK, 14 rows affected (0.03 sec)
+Records: 14  Duplicates: 0  Warnings: 0
+
+2. Add primary key constraint on deptno for dept100 table.
+mysql> alter table dept100
+    -> add constraint pk_dept primary key(deptno);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe dept100;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| DEPTNO | int         | NO   | PRI | NULL    |       |
+| DNAME  | varchar(14) | YES  |     | NULL    |       |
+| LOC    | varchar(13) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+3. Add primary key constraint on empno for emp100 table. Check structure of both the tables.
+mysql> alter table emp100
+    -> add constraint pk_emp100 primary key(empno);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe emp100;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| EMPNO    | int          | NO   | PRI | NULL    |       |
+| ENAME    | varchar(12)  | YES  |     | NULL    |       |
+| JOB      | varchar(9)   | YES  |     | NULL    |       |
+| MGR      | int          | YES  |     | NULL    |       |
+| HIREDATE | date         | YES  |     | NULL    |       |
+| SAL      | decimal(7,2) | YES  |     | NULL    |       |
+| COMM     | decimal(7,2) | YES  |     | NULL    |       |
+| DEPTNO   | int          | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+================================================================================================
+2. Create following tables for given schema. Apply constraints as mentioned in the schema.
+trainer(tid PK, tname not null , cid fk, salary default 20000,experience in years check >10 )
+tid     tname            cid        salary      experience
+----------------------------------------------------------------
+t1      Amit             c2          your   own   data 
+t2      Rajan            c1          your   own   data  
+t3      Shruti           c2          your   own   data
+t4      Arti             c2          your   own   data 
+t5      Sameer           c3          your   own   data 
+t6      Sanjay           null        your   own   data 
+t7      Soha             null        your   own   data	
+
+create table trainer
+(
+    tid char(3),
+    tname varchar(30) not null,
+    cid char(3),
+    salary decimal(10, 2) default 20000,
+    experience int check(experience > 10),
+    constraint pk_trainer primary key(tid),
+    constraint fk_trainer foreign key(cid) references course(cid)
+);
+
+Use  on  delete set null clause on cid while creating table.
+
+course(cid pk, cname unique not null, fees default500)
+
+cid         cname                         fees
+----------------------------------------------------      
+ c1          Core                         7000 
+ c2          Linux                        8000 
+ c3          Data Structure              10000 
+ c4          Python                      12000    
+ c5          Dot Net                       null
+insert into course values("c2", "Linux", 8000), ("c3", "Data Structure", 10000),
+("c4", "Python", 12000),
+("c5", "Dot Net", null);
+
+create table course
+(
+    cid char(3),
+    cname varchar(10) unique not null,
+    fee decimal(7, 2) default 500,
+    constraint pk_course primary key(cid)
+);
+
+Try adding following data in the trainer table
+(t2,'Mahesh',null,16000,12),
+(t8,'Meena',c3,25000,11),
+(t9,null,c2,30000,10),
+(t10,'Soham',c2,35000,8),
+(t11,'Anil',c3,null,11);
+Try on delete set null.
+Drop table trainer and create it again with on delete cascade clause
+Try on delete  cascade on trainer table.
+
+mysql> insert into trainer
+    -> values
+    -> ("t1", "Amit", "c2", default, 12),
+    -> ("t2", "Rajan", "c1", 7000, 13),
+    -> ("t3", "Shruti", "c2", 34342, 11),
+    -> ("t4", "Arti", "c2", 10000, 15),
+    -> ("t5", "Sameer", "c3", 8000, 14),
+    -> ("t6", "Sanjay", null, 121212, 13),
+    -> ("t7", "Soha" , null, 55555, 18);
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from trainer;
++-----+--------+------+-----------+------------+
+| tid | tname  | cid  | salary    | experience |
++-----+--------+------+-----------+------------+
+| t1  | Amit   | c2   |  20000.00 |         12 |
+| t2  | Rajan  | c1   |   7000.00 |         13 |
+| t3  | Shruti | c2   |  34342.00 |         11 |
+| t4  | Arti   | c2   |  10000.00 |         15 |
+| t5  | Sameer | c3   |   8000.00 |         14 |
+| t6  | Sanjay | NULL | 121212.00 |         13 |
+| t7  | Soha   | NULL |  55555.00 |         18 |
++-----+--------+------+-----------+------------+
+7 rows in set (0.00 sec)
+
+insert into trainer
+values
+("t1", "Amit", "c2", default, 12),
+("t2", "Rajan", "c1", 7000, 13), 
+("t3", "Shruti", "c2", 34342, 11),
+("t4", "Arti", "c2", 10000, 15),
+("t5", "Sameer", "c3", 8000, 14),
+("t6", "Sanjay", null, 121212, 13),
+("t7", "Soha" , null, 55555, 18);
+
+insert into trainer
+values
+("t17",'Mahesh',null,16000,12),
+("t8",'Meena',"c3",25000,11),
+("t9",'HERO',"c2",30000,12),
+("t10",'Soham',"c2",35000,18),
+("t11",'Anil',"c3",null,11);
