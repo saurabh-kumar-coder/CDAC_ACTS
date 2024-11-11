@@ -1,0 +1,98 @@
+# USE ON UPDATE SET NULL file first
+
+customer_test(cid, cname, cemail);
+create table customer_test
+(
+         cid int,
+         cname varchar(20),
+         cemail varchar(25),
+         constraint pk_c primary key(cid)
+);
+
+mysql> create table customer_test
+    -> (
+    ->          cid int,
+    ->          cname varchar(20),
+    ->          cemail varchar(25),
+    ->          constraint pk_c primary key(cid)
+    -> );
+Query OK, 0 rows affected (0.23 sec)
+
+order_test(oid, cid, pname);
+create table order_test
+(
+        oid int,
+        cid int,
+        pname varchar(20),
+        constraint pk_o primary key(oid),
+        constraint fk_o foreign key(cid) references customer_test(cid) on update cascade
+);
+
+mysql> create table order_test
+    -> (
+    ->          oid int,
+    ->          cid int,
+    ->          pname varchar(20),
+    ->          constraint pk_o primary key(oid),
+    ->          constraint fk_o foreign key(cid) references customer_test(cid) on update cascade
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+
+alter table order_test
+drop constraint fk_ot;
+
+alter table order_test
+add constraint fk_ott foreign key(cid) references customer_test(cid) on update cascade;
+
+mysql> alter table order_test
+    -> drop constraint fk_ot;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table order_test
+    -> drop constraint fk_ot;
+ERROR 3940 (HY000): Constraint 'fk_ot' does not exist.
+mysql> alter table order_test
+    -> add constraint fk_ott foreign key(cid) references customer_test(cid) on update cascade;
+Query OK, 1 row affected (0.16 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> select * from order_test;
++-----+------+------------+
+| oid | cid  | pname      |
++-----+------+------------+
+| 102 |    5 | Smartphone |
++-----+------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from customer_test;
++-----+-------+----------------+
+| cid | cname | cemail         |
++-----+-------+----------------+
+|   3 | Mark  | mark@gmail.com |
+|   5 | Jane  | Jane@gmail.com |
++-----+-------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> update customer_test
+    -> set cid = 2 where cname = 'jane';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from order_test;
++-----+------+------------+
+| oid | cid  | pname      |
++-----+------+------------+
+| 102 |    2 | Smartphone |
++-----+------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from customer_test;
++-----+-------+----------------+
+| cid | cname | cemail         |
++-----+-------+----------------+
+|   2 | Jane  | Jane@gmail.com |
+|   3 | Mark  | mark@gmail.com |
++-----+-------+----------------+
+2 rows in set (0.00 sec)

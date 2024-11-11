@@ -1,0 +1,58 @@
+# USE ON DELETE SET NULL file first
+
+alter table order_test
+add constraint fk_ot foreign key(cid) references customer_test(cid) on Update set null;
+
+mysql> select * from customer_test;
++-----+-------+----------------+
+| cid | cname | cemail         |
++-----+-------+----------------+
+|   2 | Jane  | Jane@gmail.com |
+|   3 | Mark  | mark@gmail.com |
++-----+-------+----------------+
+2 rows in set (0.01 sec)
+
+mysql> select * from order_test;
++-----+------+------------+
+| oid | cid  | pname      |
++-----+------+------------+
+| 102 |    2 | Smartphone |
++-----+------+------------+
+1 row in set (0.21 sec)
+
+mysql> alter table order_test
+    -> add constraint fk_ot foreign key(cid) references customer_test(cid) on Update set null;
+Query OK, 1 row affected (0.24 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> desc order_test;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| oid   | int         | NO   | PRI | NULL    |       |
+| cid   | int         | YES  | MUL | NULL    |       |
+| pname | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.03 sec)
+
+mysql> update customer_test
+    -> set cid = 5 where cname = 'jane';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from customer_test;
++-----+-------+----------------+
+| cid | cname | cemail         |
++-----+-------+----------------+
+|   3 | Mark  | mark@gmail.com |
+|   5 | Jane  | Jane@gmail.com |
++-----+-------+----------------+
+2 rows in set (0.01 sec)
+
+mysql> select * from order_test;
++-----+------+------------+
+| oid | cid  | pname      |
++-----+------+------------+
+| 102 | NULL | Smartphone |
++-----+------+------------+
+1 row in set (0.01 sec)
