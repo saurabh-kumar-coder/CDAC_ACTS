@@ -40,8 +40,8 @@ Coding Questions:
 36.	Write a Program to convert date from yyyy-mm-dd format to dd-mm-yyyy format.
 37.	Write a Program to combine two different dictionaries. While combining, if you find the same keys, you can add the values of these same keys. Output the new dictionary
 38.	How will you access the dataset of a publicly shared spreadsheet in CSV format stored in Google Drive?
-39. 	How to reverse the order of words in a given string?
-40. 	How to reverse each word in a given string?
+39. How to reverse the order of words in a given string?
+40. How to reverse each word in a given string?
 41.	How to count the occurrence of each character in a string?
 42.	How to find all possible substring of a given string?
 43.	How to perform Left and Right circular rotation of an array?
