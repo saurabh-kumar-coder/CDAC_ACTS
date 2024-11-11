@@ -1,0 +1,109 @@
+customer_test(cid, cname, cemail);
+create table customer_test
+(
+         cid int,
+         cname varchar(20),
+         cemail varchar(25),
+         constraint pk_c primary key(cid)
+);
+
+mysql> create table customer_test
+    -> (
+    ->          cid int,
+    ->          cname varchar(20),
+    ->          cemail varchar(25),
+    ->          constraint pk_c primary key(cid)
+    -> );
+Query OK, 0 rows affected (0.23 sec)
+
+order_test(oid, cid, pname);
+create table order_test
+(
+        oid int,
+        cid int,
+        pname varchar(20),
+        constraint pk_o primary key(oid),
+        constraint fk_o foreign key(cid) references customer_test(cid) on delete cascade
+);
+
+mysql> create table order_test
+    -> (
+    ->          oid int,
+    ->          cid int,
+    ->          pname varchar(20),
+    ->          constraint pk_o primary key(oid),
+    ->          constraint fk_o foreign key(cid) references customer_test(cid) on delete cascade
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+# insert into customer_test
+
+insert into customer_test
+values(1, "John", "john@gmail.com"),
+(2, "Jane", "Jane@gmail.com"),
+(3, "Mark", "mark@gmail.com");
+
+mysql> insert into customer_test
+    -> values(1, "John", "john@gmail.com"),
+    -> (2, "Jane", "Jane@gmail.com"),
+    -> (3, "Mark", "mark@gmail.com");
+Query OK, 3 rows affected (0.04 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+# insert into order_test
+
+insert into order_test
+values(101, 1, "Laptop"),
+(102, 2, "Smartphone"),
+(103, 1, "tablet");
+
+mysql> insert into order_test
+    -> values(101, 1, "Laptop"),
+    -> (102, 2, "Smartphone"),
+    -> (103, 1, "tablet");
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from customer_test;
++-----+-------+----------------+
+| cid | cname | cemail         |
++-----+-------+----------------+
+|   1 | John  | john@gmail.com |
+|   2 | Jane  | Jane@gmail.com |
+|   3 | Mark  | mark@gmail.com |
++-----+-------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from order_test;
++-----+------+------------+
+| oid | cid  | pname      |
++-----+------+------------+
+| 101 |    1 | Laptop     |
+| 102 |    2 | Smartphone |
+| 103 |    1 | tablet     |
++-----+------+------------+
+3 rows in set (0.00 sec)
+
+delete from customer_test
+where cid = 1;
+
+mysql> delete from customer_test
+    -> where cid = 1;
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from customer_test;
++-----+-------+----------------+
+| cid | cname | cemail         |
++-----+-------+----------------+
+|   2 | Jane  | Jane@gmail.com |
+|   3 | Mark  | mark@gmail.com |
++-----+-------+----------------+
+2 rows in set (0.01 sec)
+
+mysql> select * from order_test;
++-----+------+------------+
+| oid | cid  | pname      |
++-----+------+------------+
+| 102 |    2 | Smartphone |
++-----+------+------------+
+1 row in set (0.21 sec)
