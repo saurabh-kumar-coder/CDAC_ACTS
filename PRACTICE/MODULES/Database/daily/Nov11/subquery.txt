@@ -1,0 +1,295 @@
+1. Find the employees who have a salary greater than the average salary in the company.
+
+select * 
+from emp
+where sal > 
+(
+select avg(sal) 
+from emp
+);
+
+mysql> select *
+    -> from emp
+    -> where sal >
+    -> (
+    -> select avg(sal)
+    -> from emp
+    -> );
++-------+-------+-----------+------+------------+---------+------+--------+
+| EMPNO | ENAME | JOB       | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
++-------+-------+-----------+------+------------+---------+------+--------+
+|  7566 | JONES | MANAGER   | 7839 | 1981-04-02 | 2975.00 | NULL |     20 |
+|  7698 | BLAKE | MANAGER   | 7839 | 1981-05-01 | 2850.00 | NULL |     30 |
+|  7782 | CLARK | MANAGER   | NULL | 1981-06-09 | 2450.00 | NULL |     10 |
+|  7788 | SCOTT | ANALYST   | 7566 | 1982-12-09 | 3000.00 | NULL |     20 |
+|  7839 | KING  | PRESIDENT | NULL | 1981-11-17 | 5000.00 | NULL |     10 |
+|  7902 | FORD  | ANALYST   | 7566 | 1981-12-03 | 3000.00 | NULL |     20 |
++-------+-------+-----------+------+------------+---------+------+--------+
+6 rows in set (0.00 sec)
+
+2. List the employees who do not have a manager (i.e., where the MGR is NULL).
+
+select * 
+from emp 
+where empno = ANY
+(
+select empno
+from emp
+where mgr is null
+);
+
+mysql> select *
+    -> from emp
+    -> where empno = ANY
+    -> (
+    -> select empno
+    -> from emp
+    -> where mgr is null
+    -> );
++-------+--------+-----------+------+------------+---------+------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
++-------+--------+-----------+------+------------+---------+------+--------+
+|  7782 | CLARK  | MANAGER   | NULL | 1981-06-09 | 2450.00 | NULL |     10 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 | NULL |     10 |
+|  7934 | MILLER | CLERK     | NULL | 1982-01-23 | 1300.00 | NULL |     10 |
++-------+--------+-----------+------+------------+---------+------+--------+
+3 rows in set (0.00 sec)
+
+3. Find the employees who work in the same department as employee 7839 (KING).
+select * 
+from emp
+where deptno = 
+(
+select deptno
+from emp
+where empno = 7839
+); 
+
+mysql> select *
+    -> from emp
+    -> where deptno =
+    -> (
+    -> select deptno
+    -> from emp
+    -> where empno = 7839
+    -> );
++-------+--------+-----------+------+------------+---------+------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
++-------+--------+-----------+------+------------+---------+------+--------+
+|  7782 | CLARK  | MANAGER   | NULL | 1981-06-09 | 2450.00 | NULL |     10 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 | NULL |     10 |
+|  7934 | MILLER | CLERK     | NULL | 1982-01-23 | 1300.00 | NULL |     10 |
++-------+--------+-----------+------+------------+---------+------+--------+
+3 rows in set (0.00 sec)
+
+4. Find the employee(s) with the highest salary.
+
+select *
+from emp 
+where sal = 
+(
+	select max(sal) 
+	from emp
+);
+
+mysql> select *
+    -> from emp
+    -> where sal =
+    -> (
+    -> select max(sal)
+    -> from emp
+    -> );
++-------+-------+-----------+------+------------+---------+------+--------+
+| EMPNO | ENAME | JOB       | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
++-------+-------+-----------+------+------------+---------+------+--------+
+|  7839 | KING  | PRESIDENT | NULL | 1981-11-17 | 5000.00 | NULL |     10 |
++-------+-------+-----------+------+------------+---------+------+--------+
+1 row in set (0.00 sec)
+
+5. List the employees who earn more than JONES.
+
+select * 
+from emp
+where sal >
+(
+	select sal 
+	from emp
+	where ename = 'jones'
+);
+
+mysql> select *
+    -> from emp
+    -> where sal >
+    -> (
+    -> select sal
+    -> from emp
+    -> where ename = 'jones'
+    -> );
++-------+-------+-----------+------+------------+---------+------+--------+
+| EMPNO | ENAME | JOB       | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
++-------+-------+-----------+------+------------+---------+------+--------+
+|  7788 | SCOTT | ANALYST   | 7566 | 1982-12-09 | 3000.00 | NULL |     20 |
+|  7839 | KING  | PRESIDENT | NULL | 1981-11-17 | 5000.00 | NULL |     10 |
+|  7902 | FORD  | ANALYST   | 7566 | 1981-12-03 | 3000.00 | NULL |     20 |
++-------+-------+-----------+------+------------+---------+------+--------+
+3 rows in set (0.00 sec)
+
+6. Find all employees who have the same job as BLAKE.
+
+
+select * 
+from emp
+where job = 
+(
+	select job
+	from emp
+	where ename = 'blake'
+) and ename <> "blake";
+
+mysql> select *
+    -> from emp
+    -> where job =
+    -> (
+    -> select job
+    -> from emp
+    -> where ename = 'blake'
+    -> ) and ename <> "blake";
++-------+-------+---------+------+------------+---------+------+--------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7566 | JONES | MANAGER | 7839 | 1981-04-02 | 2975.00 | NULL |     20 |
+|  7782 | CLARK | MANAGER | NULL | 1981-06-09 | 2450.00 | NULL |     10 |
++-------+-------+---------+------+------------+---------+------+--------+
+2 rows in set (0.00 sec)
+
+7. List the employees whose salary is greater than the salary of any employee in department 30.
+
+select * 
+from emp
+where sal > ANY
+(
+	select sal
+	from emp
+	where deptno = 30
+) and deptno <> 30;
+
+mysql> select *
+    -> from emp
+    -> where sal > ANY
+    -> (
+    -> select sal
+    -> from emp
+    -> where deptno = 30
+    -> ) and deptno <> 30;
++-------+--------+-----------+------+------------+---------+------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
++-------+--------+-----------+------+------------+---------+------+--------+
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 | NULL |     20 |
+|  7782 | CLARK  | MANAGER   | NULL | 1981-06-09 | 2450.00 | NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000.00 | NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 | NULL |     10 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100.00 | NULL |     20 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 | NULL |     20 |
+|  7934 | MILLER | CLERK     | NULL | 1982-01-23 | 1300.00 | NULL |     10 |
++-------+--------+-----------+------+------------+---------+------+--------+
+7 rows in set (0.00 sec)
+
+8. Find the employees who report to the same manager as SCOTT.
+
+select * 
+from emp
+where mgr = 
+(
+	select mgr
+	from emp
+	where ename = 'scott'
+) and ename <> 'scott';
+
+mysql> select *
+    -> from emp
+    -> where mgr =
+    -> (
+    -> select mgr
+    -> from emp
+    -> where ename = 'scott'
+    -> ) and ename <> 'scott';
++-------+-------+---------+------+------------+---------+------+--------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7902 | FORD  | ANALYST | 7566 | 1981-12-03 | 3000.00 | NULL |     20 |
++-------+-------+---------+------+------------+---------+------+--------+
+1 row in set (0.00 sec)
+
+9. List the employees whose salary is less than the average salary of their respective department.
+
+select * 
+from emp
+where sal < ANY
+(
+	select avg(sal)
+	from emp
+	where deptno = emp.deptno
+);
+
+mysql> select *
+    -> from emp
+    -> where sal < ANY
+    -> (
+    -> select avg(sal)
+    -> from emp
+    -> where deptno = emp.deptno
+    -> );
++-------+--------+----------+------+------------+---------+---------+--------+
+| EMPNO | ENAME  | JOB      | MGR  | HIREDATE   | SAL     | COMM    | DEPTNO |
++-------+--------+----------+------+------------+---------+---------+--------+
+|  7369 | SMITH  | CLERK    | 7902 | 1980-12-17 |  800.00 |    NULL |     20 |
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7654 | MARTIN | SALESMAN | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7876 | ADAMS  | CLERK    | 7788 | 1983-01-12 | 1100.00 |    NULL |     20 |
+|  7900 | JAMES  | CLERK    | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
+|  7934 | MILLER | CLERK    | NULL | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+----------+------+------------+---------+---------+--------+
+8 rows in set (0.00 sec)
+
+10. Find the employees who are in the same department as employee SMITH and have a higher salary.
+
+select * 
+from emp
+where deptno = 
+(
+	select deptno
+	from emp
+	where ename = 'smith'
+)
+AND
+sal > (
+	select sal 
+	from emp
+	where ename = 'smith'
+);
+
+mysql> select *
+    -> from emp
+    -> where deptno =
+    -> (
+    -> select deptno
+    -> from emp
+    -> where ename = 'smith'
+    -> )
+    -> AND
+    -> sal > (
+    -> select sal
+    -> from emp
+    -> where ename = 'smith'
+    -> );
++-------+-------+---------+------+------------+---------+------+--------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7566 | JONES | MANAGER | 7839 | 1981-04-02 | 2975.00 | NULL |     20 |
+|  7788 | SCOTT | ANALYST | 7566 | 1982-12-09 | 3000.00 | NULL |     20 |
+|  7876 | ADAMS | CLERK   | 7788 | 1983-01-12 | 1100.00 | NULL |     20 |
+|  7902 | FORD  | ANALYST | 7566 | 1981-12-03 | 3000.00 | NULL |     20 |
++-------+-------+---------+------+------------+---------+------+--------+
+4 rows in set (0.00 sec)
