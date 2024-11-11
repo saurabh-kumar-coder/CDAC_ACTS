@@ -1,0 +1,37 @@
+create table A 
+(
+    aid int,
+    aname varchar(15)
+);
+insert into A 
+values(10, "abc"),
+(20, "def"),
+(30, "hij");
+
+create table B 
+(
+    bid int,
+    bname varchar(15)
+);
+insert into B 
+values
+(20, "def"),
+(30, "hij"),
+(40, "xyz"),
+(50, "pqr");
+
+mysql> select *
+    -> from A
+    -> union
+    -> select *
+    -> from B;
++------+-------+
+| aid  | aname |
++------+-------+
+|   10 | abc   |
+|   20 | def   |
+|   30 | hij   |
+|   40 | xyz   |
+|   50 | pqr   |
++------+-------+
+5 rows in set (0.01 sec)
