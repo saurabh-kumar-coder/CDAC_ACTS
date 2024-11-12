@@ -1,0 +1,170 @@
+1. Find the employees who earn more than the average salary of their department.
+
+select * from emp e1
+where sal >
+(select avg(sal) from emp e2 where e1.deptno = e2.deptno);
+
+mysql> select * from emp e1
+    -> where sal >
+    -> (select avg(sal) from emp e2 where e1.deptno = e2.deptno);
++-------+-------+-----------+------+------------+---------+--------+--------+
+| EMPNO | ENAME | JOB       | MGR  | HIREDATE   | SAL     | COMM   | DEPTNO |
++-------+-------+-----------+------+------------+---------+--------+--------+
+|  7499 | ALLEN | SALESMAN  | 7698 | 1981-02-20 | 1600.00 | 300.00 |     30 |
+|  7566 | JONES | MANAGER   | 7839 | 1981-04-02 | 2975.00 |   NULL |     20 |
+|  7698 | BLAKE | MANAGER   | 7839 | 1981-05-01 | 2850.00 |   NULL |     30 |
+|  7788 | SCOTT | ANALYST   | 7566 | 1982-12-09 | 3000.00 |   NULL |     20 |
+|  7839 | KING  | PRESIDENT | NULL | 1981-11-17 | 5000.00 |   NULL |     10 |
+|  7902 | FORD  | ANALYST   | 7566 | 1981-12-03 | 3000.00 |   NULL |     20 |
++-------+-------+-----------+------+------------+---------+--------+--------+
+6 rows in set (0.00 sec)
+
+2. List all employees whose salary is higher than the average salary of their department and also display their department number.
+
+3. Identify the employees who have the highest salary in each department.
+
+select * from emp e1 where sal =
+(select max(sal) from emp e2 where e1.deptno = e2.deptno);
+
+mysql> select * from emp e1 where sal =
+    -> (select max(sal) from emp e2 where e1.deptno = e2.deptno);
++-------+-------+-----------+------+------------+---------+------+--------+
+| EMPNO | ENAME | JOB       | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
++-------+-------+-----------+------+------------+---------+------+--------+
+|  7698 | BLAKE | MANAGER   | 7839 | 1981-05-01 | 2850.00 | NULL |     30 |
+|  7788 | SCOTT | ANALYST   | 7566 | 1982-12-09 | 3000.00 | NULL |     20 |
+|  7839 | KING  | PRESIDENT | NULL | 1981-11-17 | 5000.00 | NULL |     10 |
+|  7902 | FORD  | ANALYST   | 7566 | 1981-12-03 | 3000.00 | NULL |     20 |
++-------+-------+-----------+------+------------+---------+------+--------+
+4 rows in set (0.00 sec)
+
+4. Display employees who were hired after the oldest employee in their department.
+
+select * from emp e1 where hiredate > any (select min(hiredate) from emp e2 where e1.deptno = e2.deptno);
+
+mysql> select * from emp e1 where hiredate > any (select min(hiredate) from emp e2 where e1.deptno = e2.deptno);
++-------+--------+-----------+------+------------+---------+---------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL     | COMM    | DEPTNO |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000.00 |    NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100.00 |    NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
+|  7934 | MILLER | CLERK     | NULL | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+11 rows in set (0.00 sec)
+
+5. List the departments where every employee earns more than the average salary of the company.
+
+select * from emp
+where sal >
+(select avg(sal) from emp);
+
+mysql> select * from emp
+    -> where sal >
+    -> (select avg(sal) from emp);
++-------+-------+-----------+------+------------+---------+------+--------+
+| EMPNO | ENAME | JOB       | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
++-------+-------+-----------+------+------------+---------+------+--------+
+|  7566 | JONES | MANAGER   | 7839 | 1981-04-02 | 2975.00 | NULL |     20 |
+|  7698 | BLAKE | MANAGER   | 7839 | 1981-05-01 | 2850.00 | NULL |     30 |
+|  7782 | CLARK | MANAGER   | NULL | 1981-06-09 | 2450.00 | NULL |     10 |
+|  7788 | SCOTT | ANALYST   | 7566 | 1982-12-09 | 3000.00 | NULL |     20 |
+|  7839 | KING  | PRESIDENT | NULL | 1981-11-17 | 5000.00 | NULL |     10 |
+|  7902 | FORD  | ANALYST   | 7566 | 1981-12-03 | 3000.00 | NULL |     20 |
++-------+-------+-----------+------+------------+---------+------+--------+
+6 rows in set (0.00 sec)
+
+6. Find the employees who earn more than the minimum salary in department 10.
+
+select * from emp where sal >
+(select min(sal) from emp where deptno = 10);
+
+mysql> select * from emp where sal >
+    -> (select min(sal) from emp where deptno = 10);
++-------+--------+-----------+------+------------+---------+--------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL     | COMM   | DEPTNO |
++-------+--------+-----------+------+------------+---------+--------+--------+
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 | 300.00 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |   NULL |     20 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |   NULL |     30 |
+|  7782 | CLARK  | MANAGER   | NULL | 1981-06-09 | 2450.00 |   NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000.00 |   NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |   NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |   0.00 |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |   NULL |     20 |
++-------+--------+-----------+------+------------+---------+--------+--------+
+8 rows in set (0.00 sec)
+
+7. Show the employee details for those who have the same job title as the employee with the highest salary in their department.
+
+select * from emp where sal = any
+(select max(sal) from emp where job = emp.job and deptno = emp.deptno);
+
+8. Retrieve the department number, employee name, and salary for employees whose salary is higher than the average salary of their department, ordered by department.
+
+select deptno, ename, sal
+from emp e1
+where sal > (select avg(sal) from emp e2 where e1.deptno = e2.deptno) order by deptno;
+
+mysql> select deptno, ename, sal
+    -> from emp e1
+    -> where sal > (select avg(sal) from emp e2 where e1.deptno = e2.deptno) order by deptno;
++--------+-------+---------+
+| deptno | ename | sal     |
++--------+-------+---------+
+|     10 | KING  | 5000.00 |
+|     20 | JONES | 2975.00 |
+|     20 | SCOTT | 3000.00 |
+|     20 | FORD  | 3000.00 |
+|     30 | ALLEN | 1600.00 |
+|     30 | BLAKE | 2850.00 |
++--------+-------+---------+
+6 rows in set (0.00 sec)
+
+9. List employees who have the lowest salary in their department.
+
+select min(sal) from emp group by deptno;
+
+select * from emp e1 where sal = (select min(sal) from emp e2 where e1.deptno = e2.deptno);
+
+mysql> select * from emp e1 where sal = (select min(sal) from emp e2 where e1.deptno = e2.deptno);
++-------+--------+-------+------+------------+---------+------+--------+
+| EMPNO | ENAME  | JOB   | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
++-------+--------+-------+------+------------+---------+------+--------+
+|  7369 | SMITH  | CLERK | 7902 | 1980-12-17 |  800.00 | NULL |     20 |
+|  7900 | JAMES  | CLERK | 7698 | 1981-12-03 |  950.00 | NULL |     30 |
+|  7934 | MILLER | CLERK | NULL | 1982-01-23 | 1300.00 | NULL |     10 |
++-------+--------+-------+------+------------+---------+------+--------+
+3 rows in set (0.00 sec)
+
+10. Display the names of employees who have a manager and earn more than their manager.
+
+select * 
+from emp e1
+where e1.sal > (
+	select e2.sal
+	from emp e2
+	where e2.empno = e1.mgr
+) and e1.mgr is not null;
+
+mysql> select *
+    -> from emp e1
+    -> where e1.sal > (
+    -> select e2.sal
+    -> from emp e2
+    -> where e2.empno = e1.mgr
+    -> ) and e1.mgr is not null;
++-------+-------+---------+------+------------+---------+------+--------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7788 | SCOTT | ANALYST | 7566 | 1982-12-09 | 3000.00 | NULL |     20 |
+|  7902 | FORD  | ANALYST | 7566 | 1981-12-03 | 3000.00 | NULL |     20 |
++-------+-------+---------+------+------------+---------+------+--------+
+2 rows in set (0.00 sec)
