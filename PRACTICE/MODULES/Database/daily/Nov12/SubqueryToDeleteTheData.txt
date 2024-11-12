@@ -1,0 +1,43 @@
+mysql> delete from
+    -> emp100 where
+    -> deptno = (
+    ->          select deptno
+    ->          from emp100
+    ->          where ename = "allen"
+    -> );
+ERROR 1093 (HY000): You can't specify target table 'emp100' for update in FROM clause
+mysql> delete
+    -> from emp100
+    -> where deptno = (
+    ->     select deptno from (
+    ->         select deptno
+    ->         from emp100
+    ->         where ename = "allen"
+    ->     ) as temptab
+    -> );
+Query OK, 6 rows affected (0.03 sec)
+
+mysql> select * from emp100;
++-------+--------+-----------+------+------------+---------+------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
++-------+--------+-----------+------+------------+---------+------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800.00 | NULL |     20 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 | NULL |     20 |
+|  7782 | CLARK  | MANAGER   | NULL | 1981-06-09 | 2450.00 | NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000.00 | NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 | NULL |     10 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100.00 | NULL |     20 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 | NULL |     20 |
+|  7934 | MILLER | CLERK     | NULL | 1982-01-23 | 1300.00 | NULL |     10 |
++-------+--------+-----------+------+------------+---------+------+--------+
+8 rows in set (0.00 sec)
+
+delete 
+from emp100
+where deptno = (
+    select deptno from (
+        select deptno
+        from emp100
+        where ename = "allen"
+    ) as temptab
+);
