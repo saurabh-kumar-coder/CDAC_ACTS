@@ -1,0 +1,202 @@
+1. List all rooms which are allocated or not allocated to any courses. Use joins.
+
+select r.rname, r.rloc, c.cname
+from room r 
+left join courses c 
+on r.rid = c.rid;
+
+mysql> select r.rname, r.rloc, c.cname
+    -> from room r
+    -> left join courses c
+    -> on r.rid = c.rid;
++--------+-----------+-------+
+| rname  | rloc      | cname |
++--------+-----------+-------+
+| Jasmin | 1st floor | DBDA  |
+| Rose   | 2nd floor | DAC   |
+| Mogra  | 1st floor | NULL  |
+| Lotus  | 1st floor | DOIT  |
++--------+-----------+-------+
+4 rows in set (0.00 sec)
+
+2. Display all products sold by Kirti.
+
+select p.pname, s.sname
+from salesman1 s
+join product1 p 
+ON p.sid = s.sid
+where s.sname = 'kirti';
+
+mysql> select p.pname, s.sname
+    -> from salesman1 s
+    -> join product1 p
+    -> ON p.sid = s.sid
+    -> where s.sname = 'kirti';
++--------+-------+
+| pname  | sname |
++--------+-------+
+| lays   | Kirti |
+| nachos | Kirti |
++--------+-------+
+2 rows in set (0.00 sec)
+
+3. Consider emp and dept  table display empno,ename,deptno, dname and loc for all employees.
+
+select e.empno, e.ename, e.deptno, d.dname, d.loc
+from emp e 
+join dept d 
+on e.deptno = d.deptno;
+
+mysql> select e.empno, e.ename, e.deptno, d.dname, d.loc
+    -> from emp e
+    -> join dept d
+    -> on e.deptno = d.deptno;
++-------+--------+--------+------------+----------+
+| empno | ename  | deptno | dname      | loc      |
++-------+--------+--------+------------+----------+
+|  7369 | SMITH  |     20 | RESEARCH   | DALLAS   |
+|  7499 | ALLEN  |     30 | SALES      | CHICAGO  |
+|  7521 | WARD   |     30 | SALES      | CHICAGO  |
+|  7566 | JONES  |     20 | RESEARCH   | DALLAS   |
+|  7654 | MARTIN |     30 | SALES      | CHICAGO  |
+|  7698 | BLAKE  |     30 | SALES      | CHICAGO  |
+|  7782 | CLARK  |     10 | ACCOUNTING | NEW YORK |
+|  7788 | SCOTT  |     20 | RESEARCH   | DALLAS   |
+|  7839 | KING   |     10 | ACCOUNTING | NEW YORK |
+|  7844 | TURNER |     30 | SALES      | CHICAGO  |
+|  7876 | ADAMS  |     20 | RESEARCH   | DALLAS   |
+|  7900 | JAMES  |     30 | SALES      | CHICAGO  |
+|  7902 | FORD   |     20 | RESEARCH   | DALLAS   |
+|  7934 | MILLER |     10 | ACCOUNTING | NEW YORK |
+|  1111 | Geeta  |     20 | RESEARCH   | DALLAS   |
+|  2222 | Raj    |     40 | OPERATIONS | BOSTON   |
++-------+--------+--------+------------+----------+
+16 rows in set (0.00 sec)
+
+4. Consider emp and dept  table display empno,ename,deptno, dname and loc for all employees who are working as managers.
+
+select e.empno, e.ename, e.deptno, d.dname, d.loc 
+from emp e 
+join dept d
+on e.deptno = d.deptno
+where e.job = 'manager';
+
+mysql> select e.empno, e.ename, e.deptno, d.dname, d.loc
+    -> from emp e
+    -> join dept d
+    -> on e.deptno = d.deptno
+    -> where e.job = 'manager';
++-------+-------+--------+------------+----------+
+| empno | ename | deptno | dname      | loc      |
++-------+-------+--------+------------+----------+
+|  7566 | JONES |     20 | RESEARCH   | DALLAS   |
+|  7698 | BLAKE |     30 | SALES      | CHICAGO  |
+|  7782 | CLARK |     10 | ACCOUNTING | NEW YORK |
++-------+-------+--------+------------+----------+
+3 rows in set (0.00 sec)
+
+5. Consider emp and dept table dispaly deptno and dname to whom employees are assingned and also the depts to whom  employees are not assigned.  
+
+select e.ename, e.deptno, d.dname, d.loc
+from emp e 
+right join dept d 
+on e.deptno = d.deptno;
+
+mysql> select e.ename, e.deptno, d.dname, d.loc
+    -> from emp e
+    -> right join dept d
+    -> on e.deptno = d.deptno;
++--------+--------+------------+----------+
+| ename  | deptno | dname      | loc      |
++--------+--------+------------+----------+
+| MILLER |     10 | ACCOUNTING | NEW YORK |
+| KING   |     10 | ACCOUNTING | NEW YORK |
+| CLARK  |     10 | ACCOUNTING | NEW YORK |
+| Geeta  |     20 | RESEARCH   | DALLAS   |
+| FORD   |     20 | RESEARCH   | DALLAS   |
+| ADAMS  |     20 | RESEARCH   | DALLAS   |
+| SCOTT  |     20 | RESEARCH   | DALLAS   |
+| JONES  |     20 | RESEARCH   | DALLAS   |
+| SMITH  |     20 | RESEARCH   | DALLAS   |
+| JAMES  |     30 | SALES      | CHICAGO  |
+| TURNER |     30 | SALES      | CHICAGO  |
+| BLAKE  |     30 | SALES      | CHICAGO  |
+| MARTIN |     30 | SALES      | CHICAGO  |
+| WARD   |     30 | SALES      | CHICAGO  |
+| ALLEN  |     30 | SALES      | CHICAGO  |
+| Raj    |     40 | OPERATIONS | BOSTON   |
+| NULL   |   NULL | HR         | INDIA    |
++--------+--------+------------+----------+
+17 rows in set (0.00 sec)
+
+6. From emp table, display empno,ename,mgr and name of manager for each employee.
+
+select e.empno, e.ename, m.empno
+from emp e 
+join emp m 
+where e.empno = m.mgr;
+
+mysql> select e.empno, e.ename, m.empno
+    -> from emp e
+    -> join emp m
+    -> where e.empno = m.mgr;
++-------+-------+-------+
+| empno | ename | empno |
++-------+-------+-------+
+|  7902 | FORD  |  7369 |
+|  7698 | BLAKE |  7499 |
+|  7698 | BLAKE |  7521 |
+|  7839 | KING  |  7566 |
+|  7698 | BLAKE |  7654 |
+|  7839 | KING  |  7698 |
+|  7839 | KING  |  7782 |
+|  7566 | JONES |  7788 |
+|  7698 | BLAKE |  7844 |
+|  7788 | SCOTT |  7876 |
+|  7698 | BLAKE |  7900 |
+|  7566 | JONES |  7902 |
+|  7782 | CLARK |  7934 |
++-------+-------+-------+
+13 rows in set (0.00 sec)
+
+7. Create following table and insert the required data.create table Product_table(   pid  int,   pname varchar (20),   sid int );
+  sid is sample id which is given as a free sample on every product sold
+  pid pnames id 
+   1  Pen    2 
+   2  Pencil 3
+   3  Eraser 2
+   4  Sketch Pens 1
+Write a query to display pid, pname, sid and sample name for all the products.
+
+create table Product_table
+(
+    pid  int,   
+    pname varchar (20),   
+    sid int 
+);
+
+insert into Product_table
+values
+(1, "Pen", 2 ),
+(2, "Pencil", 3),
+(3, "Eraser", 2),
+(4, "Sketch Pens", 1);
+
+select P.pid, P.pname, p.sid, S.pname
+from Product_table P 
+join Product_table S 
+where P.pid = S.sid;
+
+mysql> select P.pid, P.pname, p.sid, S.pname
+    -> from Product_table P
+    -> join Product_table S
+    -> where P.pid = S.sid;
++------+--------+------+-------------+
+| pid  | pname  | sid  | pname       |
++------+--------+------+-------------+
+|    2 | Pencil |    3 | Pen         |
+|    3 | Eraser |    2 | Pencil      |
+|    2 | Pencil |    3 | Eraser      |
+|    1 | Pen    |    2 | Sketch Pens |
++------+--------+------+-------------+
+4 rows in set (0.00 sec)

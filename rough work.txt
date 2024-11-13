@@ -1,0 +1,18 @@
+create table dummy(
+    id int,
+    sal float,
+    sal1 decimal(5, 2),
+    sal2 double
+);
+
+insert into dummy
+value(1, 10.25, 10.255, 10.25);
+
+select sal*sal as floatSal from dummy;
+
+select sal1*sal1 as decimalSal from dummy;
+
+select sal2*sal2 as doubleSal from dummy;
+
+update dummy
+set sal = 10.2673 where id = 1;
