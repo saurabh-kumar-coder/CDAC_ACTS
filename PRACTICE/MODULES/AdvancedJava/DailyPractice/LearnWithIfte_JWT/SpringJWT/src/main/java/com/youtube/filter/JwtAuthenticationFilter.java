@@ -10,7 +10,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.youtube.service.JwtService;
-import com.youtube.service.UserDetailsImpl;
+import com.youtube.service.UserDetailsServiceImp;
 
 import io.micrometer.common.lang.NonNull;
 import jakarta.servlet.FilterChain;
@@ -22,9 +22,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 	private final JwtService jwtService;
 	
-	private final UserDetailsImpl userDetailsService;
+	private final UserDetailsServiceImp userDetailsService;
 	
-	public JwtAuthenticationFilter(JwtService jwtService, UserDetailsImpl userDetailsService) {
+	public JwtAuthenticationFilter(JwtService jwtService, UserDetailsServiceImp userDetailsService) {
 		super();
 		this.jwtService = jwtService;
 		this.userDetailsService = userDetailsService;

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.youtube.repository.UserRepository;
 
 @Service
-public class UserDetailsImpl implements UserDetailsService {
+public class UserDetailsServiceImp implements UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
