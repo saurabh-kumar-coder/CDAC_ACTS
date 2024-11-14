@@ -503,6 +503,60 @@ mysql> call calculate(5);
    if employee is salesman then hike is 7%
    if employee is analyst then hike is 5%
    others no hike
+   
+delimiter //
+drop procedure if exists salHikeCursor;
+create procedure salHikeCursor()
+begin
+
+	declare dummySal decimal(7, 2) default 0;
+	declare dummyEmpno int;
+	declare dummyName varchar(14);
+	declare dummyJob varchar(14);
+	declare flag int default 0;
+	
+	declare newSal decimal(7, 2) default 0;
+	
+	
+	
+	declare cur cursor for
+		select empno, ename, sal, job
+		from emp100;
+	
+	declare continue handler for
+	NOT FOUND set flag = 1;
+	
+	open cur;
+	
+	label : loop
+		fetch cur into dummyEmpno, dummyName, dummySal, dummyJob;
+		
+		if flag = 1 then
+			leave label;
+		end if;
+		if dummyJob = 'clerk'
+		then 
+			SET newSal = dummySal * 1.10;
+		elseif dummyJob = 'salesman'
+		then
+			SET newSal = dummySal * 1.07;
+		elseif dummyJob = 'analyst'
+		then
+			SET newSal = dummySal * 1.05;
+		end if;
+			
+		update emp100
+		set sal = newSal
+		where empno = dummyEmpno;
+			
+	end loop;
+	
+	close cur;
+
+end //
+delimiter ;
+
+call salHikeCursor();
 
 8. Try creating index.
 
