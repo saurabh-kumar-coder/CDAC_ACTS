@@ -1,0 +1,509 @@
+1. Write a procedure which accepts in parameter
+as empno and calculates total salary for that employee. Display salary out of procedure.
+total salary = sal +comm
+
+delimiter //
+drop procedure if exists proc;
+create procedure proc(mempno int, out nsal decimal(7,2)) 
+begin
+	select ifnull(sal, 0) + ifnull(comm, 0) into nsal
+	from emp 
+	where empno = mempno;
+end //
+delimiter ;
+
+call proc(7654, @k);
+select @k;
+
+mysql> delimiter //
+mysql> drop procedure if exists proc;
+    -> create procedure proc(mempno int, out nsal decimal(7,2))
+    -> begin
+    -> select ifnull(sal, 0) + ifnull(comm, 0) into nsal
+    -> from emp
+    -> where empno = mempno;
+    -> end //
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter ;
+mysql>
+mysql> call proc(7654, @k);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select @k;
++---------+
+| @k      |
++---------+
+| 2650.00 |
++---------+
+1 row in set (0.00 sec)
+
+2.Write a procedure which takes empno of 2 employees. Compare salaries of employees and display ename,sal and job for the employee who
+earns more salary out of procedure. 
+
+
+delimiter //
+drop procedure if exists getHightestOfTwo;
+
+create procedure getHightestOfTwo(empno1 int, empno2 int)
+begin
+	
+	declare sal1 decimal(7, 2);
+	declare sal2 decimal(7, 2);
+	declare ename1 varchar(12);
+	declare ename2 varchar(12);
+	declare job1 varchar(10);
+	declare job2 varchar(10);
+	
+	select ename, sal, job into ename1, sal1, job1 
+	from emp
+	where empno = empno1;
+	
+	select ename, sal, job into ename2, sal2, job2 
+	from emp
+	where empno = empno2;
+	
+	if sal1 > sal2
+	then 
+		select ename1 as name, sal1 as sal, job1 as job;
+	else 
+		select ename2 as name, sal2 as sal, job2 as job;
+	end if;
+	
+end //
+delimiter ;
+
+call getHightestOfTwo(7369, 7499);
+
+------------------------------------------------------------------
+delimiter //
+drop procedure if exists getHightestOfTwo;
+
+create procedure getHightestOfTwo(empno1 int, empno2 int, out mename varchar(12), out msal decimal(7, 2), out mjob varchar(10))
+begin
+	
+	declare sal1 decimal(7, 2);
+	declare sal2 decimal(7, 2);
+	declare ename1 varchar(12);
+	declare ename2 varchar(12);
+	declare job1 varchar(10);
+	declare job2 varchar(10);
+	
+	select ename, sal, job into ename1, sal1, job1 
+	from emp
+	where empno = empno1;
+	
+	select ename, sal, job into ename2, sal2, job2 
+	from emp
+	where empno = empno2;
+	
+	if sal1 > sal2
+	then 
+		set mename = ename1;
+		set msal = sal1;
+		set mjob = job1;
+	else 
+		set mename = ename2;
+		set msal = sal2;
+		set mjob = job2;
+	end if;
+	
+end //
+delimiter ;
+
+call getHightestOfTwo(7369, 7499, @m, @n, @o);
+select @m, @n, @o;
+
+mysql> delimiter //
+mysql> drop procedure if exists getHightestOfTwo;
+    ->
+    -> create procedure getHightestOfTwo(empno1 int, empno2 int, out mename varchar(12), out msal decimal(7, 2), out mjob varchar(10))
+    -> begin
+    ->
+    -> declare sal1 decimal(7, 2);
+    -> declare sal2 decimal(7, 2);
+    -> declare ename1 varchar(12);
+    -> declare ename2 varchar(12);
+    -> declare job1 varchar(10);
+    -> declare job2 varchar(10);
+    ->
+    -> select ename, sal, job into ename1, sal1, job1
+    -> from emp
+    -> where empno = empno1;
+    ->
+    -> select ename, sal, job into ename2, sal2, job2
+    -> from emp
+    -> where empno = empno2;
+    ->
+    -> if sal1 > sal2
+    -> then
+    -> set mename = ename1;
+    -> set msal = sal1;
+    -> set mjob = job1;
+    -> else
+    -> set mename = ename2;
+    -> set msal = sal2;
+    -> set mjob = job2;
+    -> end if;
+    ->
+    -> end //
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter ;
+mysql>
+mysql> call getHightestOfTwo(7369, 7499, @m, @n, @o);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select @m, @n, @o;
++-------+---------+----------+
+| @m    | @n      | @o       |
++-------+---------+----------+
+| ALLEN | 1600.00 | SALESMAN |
++-------+---------+----------+
+1 row in set (0.00 sec)
+
+
+3. Write a procedure which accepts ename and job as parameters and calculates salary hike depending on job. 
+
+delimiter //
+drop procedure if exists getHike;
+create procedure getHike(mename varchar(12), mjob varchar(10))
+begin
+	declare nsal decimal(7,2);
+	set nsal = 0;
+	
+	select sal into nsal
+	from emp 
+	where ename = mename and job = mjob;
+	
+	if mjob = 'clerk'
+	then 
+		set nsal = nsal + 2000;
+	elseif mjob = 'salesman'
+	then 
+		set nsal = nsal + 3000;
+	elseif mjob = 'manager'
+	then
+		set nsal = nsal + 5000;
+	elseif mjob = 'analyst'
+	then 
+		set nsal = nsal + 3000;
+	elseif mjob = 'president'
+	then 
+		set nsal = nsal + 10000;
+	else
+		set nsal = nsal + 1000;
+	end if;
+	
+	SELECT mename AS ename, mjob AS job, nsal AS new_salary;
+	
+end //
+delimiter ;
+
+
+call getHike('smith', 'clerk');
+
+call getHike('king', 'president');
+
+call getHike('allen', 'salesman');
+
+mysql> DELIMITER //
+mysql>
+mysql> DROP PROCEDURE IF EXISTS getHike;
+    ->
+    -> CREATE PROCEDURE getHike(mename VARCHAR(12), mjob VARCHAR(10))
+    -> BEGIN
+    ->     DECLARE nsal DECIMAL(7,2);  -- Declare variable to store new salary
+    ->     SET nsal = 0;  -- Initialize new salary to 0
+    ->
+    ->     -- Retrieve the current salary from the emp table
+    ->     SELECT sal INTO nsal
+    ->     FROM emp
+    ->     WHERE ename = mename AND job = mjob;
+    ->
+    ->     -- Apply the salary hike based on job title
+    ->     IF mjob = 'clerk' THEN
+    ->         SET nsal = nsal + 2000;
+    ->     ELSEIF mjob = 'salesman' THEN
+    ->         SET nsal = nsal + 3000;
+    ->     ELSEIF mjob = 'manager' THEN
+    ->         SET nsal = nsal + 5000;
+    ->     ELSEIF mjob = 'analyst' THEN
+    ->         SET nsal = nsal + 3000;
+    ->     ELSEIF mjob = 'president' THEN
+    ->         SET nsal = nsal + 10000;
+    ->     ELSE
+    ->         SET nsal = nsal + 1000;  -- Default hike for unrecognized jobs
+    ->     END IF;
+    ->
+    ->     -- Return the new salary with employee name and job
+    ->     SELECT mename AS ename, mjob AS job, nsal AS new_salary;
+    ->
+    -> END //
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+mysql>
+mysql> DELIMITER ;
+mysql>
+mysql> call getHike('smith', 'clerk');
++-------+-------+------------+
+| ename | job   | new_salary |
++-------+-------+------------+
+| smith | clerk |    2800.00 |
++-------+-------+------------+
+1 row in set (0.43 sec)
+
+Query OK, 0 rows affected (0.44 sec)
+
+mysql>
+mysql> call getHike('king', 'president');
++-------+-----------+------------+
+| ename | job       | new_salary |
++-------+-----------+------------+
+| king  | president |   15000.00 |
++-------+-----------+------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>
+mysql> call getHike('allen', 'salesman');
++-------+----------+------------+
+| ename | job      | new_salary |
++-------+----------+------------+
+| allen | salesman |    4600.00 |
++-------+----------+------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+
+4. Pass empno to the procedure. Find if employee exists in the table. If so, print sal out of procedure else print sal as 0.
+
+delimiter //
+drop procedure if exists getHike;
+create procedure getHike(eempno int, out esal decimal(7,2))
+begin
+	declare val decimal(7,2);
+	
+	set val = 0;
+	
+	select sal into val
+	from emp
+	where empno = eempno;
+	
+	set esal = ifnull(val, 0);
+	
+end //
+delimiter ;
+
+call getHike(7934, @val);
+
+select @val;
+
+mysql> delimiter //
+mysql> drop procedure if exists getHike;
+    -> create procedure getHike(eempno int, out esal decimal(7,2))
+    -> begin
+    -> declare val decimal(7,2);
+    ->
+    -> set val = 0;
+    ->
+    -> select sal into val
+    -> from emp
+    -> where empno = eempno;
+    ->
+    -> set esal = ifnull(val, 0);
+    ->
+    -> end //
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> delimiter ;
+mysql>
+mysql> call getHike(7934, @val);
+Query OK, 1 row affected (0.00 sec)
+
+mysql>
+mysql> select @val;
++---------+
+| @val    |
++---------+
+| 1300.00 |
++---------+
+1 row in set (0.00 sec)
+
+5. Write a function which will display email for employees working as salesman.
+   email generated is as follows
+   2nd and 3rd letter of name + last 2 letters of job in caps + deptno +'@mycompany.com'.
+   
+   ALLEN , SALESMAN
+   
+   LL + AN + 30 + @mycompany.com
+   
+delimiter //   
+DROP FUNCTION IF EXISTS getEmailOfSalesman;
+create function getEmailOfSalesman(nempno int) returns varchar(50)
+begin
+	declare x varchar(50);
+	
+	select concat(
+				substring(ename, 2,3), 
+				substring(job, length(job)-1, length(job)), 
+				deptno, 
+				'@mycompany.com'
+				) into x 
+	from emp 
+	where empno = nempno and job = 'salesman' limit 1;
+	
+	set x = ifnull(x, 0);
+	
+	return x;
+	
+end //
+
+delimiter ;
+
+select getEmailOfSalesman(7499) from emp limit 1;
+
+select getEmailOfSalesman(7698) from emp limit 1;
+
+select getEmailOfSalesman(7844) from emp limit 1;
+
+
+mysql> delimiter //
+mysql> DROP FUNCTION IF EXISTS getEmailOfSalesman;
+    -> create function getEmailOfSalesman(nempno int) returns varchar(50)
+    -> begin
+    -> declare x varchar(50);
+    ->
+    -> select concat(
+    -> substring(ename, 2,3),
+    -> substring(job, length(job)-1, length(job)),
+    -> deptno,
+    -> '@mycompany.com'
+    -> ) into x
+    -> from emp
+    -> where empno = nempno and job = 'salesman' limit 1;
+    ->
+    -> set x = ifnull(x, 0);
+    ->
+    -> return x;
+    ->
+    -> end //
+Query OK, 0 rows affected (0.06 sec)
+
+Query OK, 0 rows affected (0.07 sec)
+
+mysql>
+mysql> delimiter ;
+mysql>
+mysql> select getEmailOfSalesman(7499) from emp limit 1;
++--------------------------+
+| getEmailOfSalesman(7499) |
++--------------------------+
+| LLEAN30@mycompany.com    |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> select getEmailOfSalesman(7698) from emp limit 1;
++--------------------------+
+| getEmailOfSalesman(7698) |
++--------------------------+
+| 0                        |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> select getEmailOfSalesman(7844) from emp limit 1;
++--------------------------+
+| getEmailOfSalesman(7844) |
++--------------------------+
+| URNAN30@mycompany.com    |
++--------------------------+
+1 row in set (0.00 sec)
+
+
+6. Write a function which will return square of the number.
+   Call this function in the procedure 'calculate'. Pass any number to this procedure and call a function in the procedure by passing
+   a number.
+   
+delimiter //
+drop function if exists getSquare;
+create function getSquare(number int) returns int
+begin
+	declare square int;
+	set square = number * number;
+	return square;
+end //
+delimiter ;
+
+delimiter //
+drop procedure if exists calculate;
+create procedure calculate(number int) 
+begin
+	select getSquare(number);
+end //
+delimiter ;
+
+call calculate(5);
+
+mysql> delimiter //
+mysql> drop function if exists getSquare;
+    -> create function getSquare(number int) returns int
+    -> begin
+    -> declare square int;
+    -> set square = number * number;
+    -> return square;
+    -> end //
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter ;
+mysql>
+mysql> select getSquare(5);
++--------------+
+| getSquare(5) |
++--------------+
+|           25 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql>  delimiter //
+mysql> drop procedure if exists calculate;
+    -> create procedure calculate(number int)
+    -> begin
+    -> select getSquare(number);
+    -> end //
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> delimiter ;
+mysql> call calculate(5);
++-------------------+
+| getSquare(number) |
++-------------------+
+|                25 |
++-------------------+
+1 row in set (0.00 sec)
+ 
+  
+7. wite a cursor which will display salary hike as follows
+   if employee is clerk then hike is 10%
+   if employee is salesman then hike is 7%
+   if employee is analyst then hike is 5%
+   others no hike
+
+8. Try creating index.
+
+9. Practice commit and rollback and savepoint.
