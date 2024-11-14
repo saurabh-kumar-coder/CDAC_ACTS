@@ -1,0 +1,122 @@
+rollback and commit :
+
+mysql> select * from a;
++------+-------+
+| aid  | aname |
++------+-------+
+|   10 | abc   |
+|   20 | def   |
+|   30 | hij   |
++------+-------+
+3 rows in set (0.29 sec)
+----------------------------------------------------------------------
+set autocommit = 0;
+
+mysql> set autocommit = 0;
+Query OK, 0 rows affected (0.03 sec)
+----------------------------------------------------------------------
+mysql> insert into a
+    -> values(40, "pqr"),
+    -> (50, "xyz");
+Query OK, 2 rows affected (0.15 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from a;
++------+-------+
+| aid  | aname |
++------+-------+
+|   10 | abc   |
+|   20 | def   |
+|   30 | hij   |
+|   40 | pqr   |
+|   50 | xyz   |
++------+-------+
+5 rows in set (0.00 sec)
+----------------------------------------------------------------------
+mysql> savepoint x;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into a
+    -> values
+    -> (60, "MNO");
+Query OK, 1 row affected (0.34 sec)
+mysql> select * from a;
++------+-------+
+| aid  | aname |
++------+-------+
+|   10 | abc   |
+|   20 | def   |
+|   30 | hij   |
+|   40 | pqr   |
+|   50 | xyz   |
+|   60 | MNO   |
++------+-------+
+6 rows in set (0.00 sec)
+----------------------------------------------------------------------
+mysql> savepoint y;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into a
+    -> values
+    -> (70, "ANO");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from a;
++------+-------+
+| aid  | aname |
++------+-------+
+|   10 | abc   |
+|   20 | def   |
+|   30 | hij   |
+|   40 | pqr   |
+|   50 | xyz   |
+|   60 | MNO   |
+|   70 | ANO   |
++------+-------+
+7 rows in set (0.03 sec)
+
+mysql> insert into a
+    -> values
+    -> (80, "BBO");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from a;
++------+-------+
+| aid  | aname |
++------+-------+
+|   10 | abc   |
+|   20 | def   |
+|   30 | hij   |
+|   40 | pqr   |
+|   50 | xyz   |
+|   60 | MNO   |
+|   70 | ANO   |
+|   80 | BBO   |
++------+-------+
+8 rows in set (0.00 sec)
+----------------------------------------------------------------------
+mysql> rollback to y;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from a;
++------+-------+
+| aid  | aname |
++------+-------+
+|   10 | abc   |
+|   20 | def   |
+|   30 | hij   |
+|   40 | pqr   |
+|   50 | xyz   |
+|   60 | MNO   |
++------+-------+
+6 rows in set (0.03 sec)
+----------------------------------------------------------------------
+mysql> create table aa
+    -> as
+    -> select * from a;
+Query OK, 6 rows affected (0.21 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> rollback to x;
+ERROR 1305 (42000): SAVEPOINT x does not exist
+----------------------------------------------------------------------
