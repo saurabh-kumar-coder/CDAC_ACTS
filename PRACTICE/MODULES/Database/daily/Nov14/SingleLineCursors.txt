@@ -1,0 +1,50 @@
+cursor to fetch a row.
+
+delimiter //
+drop procedure if exists getSingleRow;
+create procedure getSingleRow()
+begin
+    declare i int;
+    declare n varchar(14);
+    declare cur cursor for 
+        select empno, ename 
+        from emp;
+    open cur;
+        fetch cur into i, n;
+        select i, n;
+    close cur;
+end //
+delimiter ;
+
+call getSingleRow;
+
+mysql> delimiter //
+mysql> drop procedure if exists getSingleRow;
+    -> create procedure getSingleRow()
+    -> begin
+    ->     declare i int;
+    ->     declare n varchar(14);
+    ->     declare cur cursor for
+    ->         select empno, ename
+    ->         from emp;
+    ->     open cur;
+    ->         fetch cur into i, n;
+    ->         select i, n;
+    ->     close cur;
+    -> end //
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> delimiter ;
+mysql> call getSingleRow;
++------+-------+
+| i    | n     |
++------+-------+
+| 7369 | SMITH |
++------+-------+
+1 row in set (0.03 sec)
+
+Query OK, 0 rows affected (0.04 sec)
+
+
