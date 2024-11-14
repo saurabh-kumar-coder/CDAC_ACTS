@@ -1,0 +1,30 @@
+cursor to fetch all the rows.
+
+delimiter //
+drop procedure if exists getMultiRow;
+
+create procedure getMultiRow()          # create cursor
+begin
+    declare i int;                      # declare variables
+    declare n varchar(14);
+    declare flag int default 0;
+    declare cur cursor for              # declare cursor
+        select empno, ename             # the query we want to execute
+        from emp;
+    declare continue handler for        # handle exception
+    NOT FOUND set flag = 1;
+    open cur;                           # open cursor
+        label: loop                     # loop through table
+            fetch cur into i, n;        # fetch data 
+            if flag = 1 then            
+                leave label;
+            end if;
+            select i, n;                # print data
+        end loop;       
+    close cur;                          # close cursor
+
+end //
+delimiter ;
+
+call getMultiRow;
+ 
