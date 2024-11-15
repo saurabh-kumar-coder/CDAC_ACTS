@@ -9,6 +9,9 @@ import com.youtube.model.AuthenticationResponse;
 import com.youtube.model.User;
 import com.youtube.service.AuthenticationService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 @RestController
 public class AuthenticationController {
 	private final AuthenticationService authenticationService;

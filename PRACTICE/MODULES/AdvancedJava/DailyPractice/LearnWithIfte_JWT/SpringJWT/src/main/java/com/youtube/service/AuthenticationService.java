@@ -1,8 +1,6 @@
 package com.youtube.service;
 
 
-import java.awt.desktop.UserSessionEvent.Reason;
-
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,9 +27,9 @@ public class AuthenticationService {
 	
 	public AuthenticationResponse register(User request) {
 		User user = new User();
-		user.setFirstName(request.getFirstName());
-		user.setLastName(request.getLastName());
-		user.setUserName(request.getUsername());
+		user.setFirstname(request.getFirstname());
+		user.setLastname(request.getLastname());
+		user.setUsername(request.getUsername());
 		user.setPassword(passwordEncoder.encode(request.getPassword()));
 		user.setRole(request.getRole());
 		userRepository.save(user);
@@ -43,7 +41,7 @@ public class AuthenticationService {
 		authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(response.getUsername(), response.getPassword())
 				);
-		User user = (User) userRepository.findByUserName(response.getUsername()).orElseThrow();
+		User user = (User) userRepository.findByUsername(response.getUsername()).orElseThrow();
 		String token = jwtService.generateToken(user);
 		return new AuthenticationResponse(token);
 	}

@@ -36,14 +36,14 @@ public class User implements UserDetails {
 	@Column(name = "id")
 	private Integer id;
 	
-	@Column(name = "first_name")
-	private String firstName;
+	@Column(name = "firstname")
+	private String firstname;
 	
-	@Column(name = "last_name")
-	private String lastName;
+	@Column(name = "lastname")
+	private String lastname;
 	
 	@Column(name = "username")
-	private String userName;
+	private String username;
 	
 	@Column(name = "password")
 	private String password;
@@ -55,12 +55,6 @@ public class User implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
 		return List.of(new SimpleGrantedAuthority(role.name()));
-	}
-
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

@@ -16,7 +16,7 @@ public class UserDetailsServiceImp implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		return userRepository.findByUserName(username)
+		return userRepository.findByUsername(username)
 				.orElseThrow(() -> new UsernameNotFoundException("User not found"));
 	}
 
