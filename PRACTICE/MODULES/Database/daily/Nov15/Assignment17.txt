@@ -1,0 +1,284 @@
+creating a trigger : 
+delimiter //
+create trigger <trigger_name>
+<before/after> <insert/update/delete>
+on <table_name>
+for each row
+begin
+
+	<statements>
+
+end //
+delimiter ;
+
+1.Consider following tables    
+  product(pid,pname,price,qty)   
+   product_log(pid,old_amt,new_amt)   
+   amt = price * qty
+Write a trigger which will calculate amt every time any update is done in the price of an item. 
+
+create table product 
+(
+	pid int,
+	pname varchar(10),
+	price decimal(10,2),
+	qty int 
+);
+
+insert into product 
+values(1, "Pen", 50, 3);
+
+create table product_log
+(
+	pid int primary key auto_increment,
+	old_amt decimal(7,2),
+	new_amt decimal(7,2)
+);
+
+
+update product 
+set price = 20 where pname = 'pen';
+
+mysql> create table product
+    -> (
+    -> pid int,
+    -> pname varchar(10),
+    -> price decimal(10,2),
+    -> qty int
+    -> );
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> insert into product
+    -> values(1, "Pen", 50, 3);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from product;
++------+-------+-------+------+
+| pid  | pname | price | qty  |
++------+-------+-------+------+
+|    1 | Pen   | 50.00 |    3 |
++------+-------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create trigger calculateAmount
+    -> before update
+    -> on product
+    -> for each row
+    -> begin
+    -> insert into product_log (old_amt, new_amt)
+    -> values(old.price * old.qty, new.price * old.qty);
+    -> end //
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> delimiter ;
+mysql> update product
+    -> set price = 20 where pname = 'pen';
+ERROR 1146 (42S02): Table 'cdac_acts.product_log' doesn't exist
+mysql> create table product_log
+    -> (
+    -> pid int primary key auto_increment,
+    -> old_amt decimal(7,2),
+    -> new_amt decimal(7,2)
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> update product
+    -> set price = 20 where pname = 'pen';
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from product;
++------+-------+-------+------+
+| pid  | pname | price | qty  |
++------+-------+-------+------+
+|    1 | Pen   | 20.00 |    3 |
++------+-------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from product_log;
++-----+---------+---------+
+| pid | old_amt | new_amt |
++-----+---------+---------+
+|   1 |  150.00 |   60.00 |
++-----+---------+---------+
+1 row in set (0.00 sec)
+
+
+	
+2.Consider following table  
+   emp_wage(eno,ename,sal,over_time)   eno : pk auto inc
+   Write a trigger which will insert over_time as 400 if value of  over_time entered is null.    
+
+create table emp_wage
+(
+	eno int primary key auto_increment,
+	ename varchar(12),
+	sal decimal(7,2),
+	over_time int
+);
+
+-----------------------------------------------------------------
+
+delimiter //
+drop trigger if exists setOvertime;
+create trigger setOvertime
+before insert 
+on emp_wage
+for each row
+begin 
+	if new.over_time is null
+	then
+		set new.over_time = 400;
+	end if;
+end //
+delimiter ;
+
+insert into emp_wage(ename, sal, over_time)
+values("DEF", "500", null);
+
+-----------------------------------------------------------------
+
+mysql> delimiter //
+mysql> drop trigger if exists setOvertime;
+    -> create trigger setOvertime
+    -> before insert
+    -> on emp_wage
+    -> for each row
+    -> begin
+    -> if new.over_time is null
+    -> then
+    -> set new.over_time = 400;
+    -> end if;
+    -> end //
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> delimiter ;
+mysql>
+mysql> insert into emp_wage(ename, sal, over_time)
+    -> values("ABC", "5500", 1200);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from emp_wage;
++-----+-------+---------+-----------+
+| eno | ename | sal     | over_time |
++-----+-------+---------+-----------+
+|   3 | ABC   | 5500.00 |      1200 |
++-----+-------+---------+-----------+
+1 row in set (0.00 sec)
+
+mysql> insert into emp_wage(ename, sal, over_time)
+    -> values("DEF", "500", null);
+Query OK, 1 row affected (0.38 sec)
+
+mysql> select * from emp_wage;
++-----+-------+---------+-----------+
+| eno | ename | sal     | over_time |
++-----+-------+---------+-----------+
+|   3 | ABC   | 5500.00 |      1200 |
+|   4 | DEF   |  500.00 |       400 |
++-----+-------+---------+-----------+
+2 rows in set (0.00 sec)
+
+------------------------------------------------------------------
+
+
+3.Consider following table     
+  order_master(oid,pname,qty,price)      oid : pk auto inc      
+  order_log(oid,odate,amt)
+  Write a trigger which will create a log of all orders once order is placed.
+
+create table order_master
+(
+	oid int primary key auto_increment,
+	odate datetime,
+	amt decimal(7,2)
+);
+
+insert into order_master(odate, amt)
+values(now(), 5500);
+
+create table order_log
+(
+	oid int,
+	odate datetime,
+	amt decimal(7,2)
+);
+
+insert into order_log(odate, amt)
+values(now(), 5500);
+
+delimiter //
+drop trigger if exists orderPlaced;
+create trigger orderPlaced 
+after insert 
+on order_master
+for each row
+begin
+
+	insert into order_log(oid, odate, amt)
+	values(new.oid, new.odate, new.amt);
+
+end //
+delimiter ;
+
+
+insert into order_master(odate, amt)
+values(now(), 550);
+
+
+4.Consider following table    
+  cust_master(cid,cname,accno,city) 
+  cust_details(cid,deleted_date)
+Write a trigger which will save the information of deleted customer in cust_details table. 
+
+create table cust_master
+(
+	cid int,
+	cname varchar(12),
+	accno int,
+	city varchar(12)
+);
+
+create table cust_details
+(
+	cid int,
+	deleted_date datetime
+);
+
+delimiter //
+drop trigger if exists deletedCustomer;
+create trigger deletedCustomer
+before delete
+on cust_master
+for each row
+begin 
+
+	insert into cust_details (cid, deleted_date)
+	values (old.cid, now());
+
+end //
+delimiter ;
+
+insert into cust_master
+values(1, "HERO", 4645, "PUNE");
+
+delete from cust_master
+where cid = 1;
+
+select * from cust_master;
+
+mysql> select * from cust_master;
+Empty set (0.00 sec)
+
+select * from cust_details;
+
+mysql> select * from cust_details;
++------+---------------------+
+| cid  | deleted_date        |
++------+---------------------+
+|    1 | 2024-11-15 17:06:36 |
++------+---------------------+
+1 row in set (0.00 sec)
