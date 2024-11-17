@@ -1,0 +1,237 @@
+Question 1: You need to create a trigger on the emp table that ensures the following business rule:
+
+Whenever an employee's salary is increased by more than 20%, 
+the system should automatically record this event in a new table called salary_audit. 
+This table should have the following structure:
+sql:
+DROP TABLE if exists salary_audit;
+CREATE TABLE salary_audit (
+    empno INT,
+    ename VARCHAR(50),
+    old_salary DECIMAL(10, 2),
+    new_salary DECIMAL(10, 2),
+    change_date DATETIME
+);
+The salary_audit table should log the empno, ename, the old_salary, the new_salary, and 
+the change_date when a salary increase of more than 20% is detected.
+Tasks:
+Create a trigger that will fire after an UPDATE on the emp table.
+The trigger should check if the salary has increased by more than 20%. If so, insert the appropriate information into the salary_audit table.
+Ensure that the trigger only fires if the salary is updated and the increase exceeds 20%.
+
+
+delimiter //
+set autocommit = 0;
+drop trigger if exists updatedSalary;
+create trigger updatedSalary
+before update
+on emp10
+for each row
+begin
+	declare newSal decimal(7, 2) default 0;
+	declare oldSal decimal(7, 2) default 0;
+	set newSal = new.sal;
+	set oldSal = old.sal;
+	if newSal >= oldSal * 1.2 then
+		insert into salary_audit(empno, ename, old_salary, new_salary, change_date)
+		values(old.empno, old.ename, old.sal, new.sal, curdate());
+	end if;
+end //
+delimiter ;
+
+
+update emp10 
+set sal = sal * 1.1
+where empno = 7369;
+
+select * from salary_audit;
+
+update emp10 
+set sal = sal * 1.2
+where empno = 7369;
+
+rollback;
+
+set autocommit = 1;
+
+drop trigger if exists updatedSalary;
+
+######################################################################################
+
+Question 2: Implement a Trigger to Prevent Salary Reduction
+Scenario:
+You need to ensure that no employee's salary is reduced in the emp table. If an attempt is made to update an employee’s salary to a lower value, the trigger should prevent the update and raise an error with the message "Salary cannot be reduced".
+
+Tasks:
+
+Create a BEFORE UPDATE trigger on the emp table to prevent salary reductions.
+If the new salary is lower than the old salary, the trigger should abort the update and display an error message: "Salary cannot be reduced."
+
+delimiter //
+set autocommit = 0;
+drop trigger if exists reducedSalary;
+create trigger reducedSalary
+before update
+on emp10
+for each row
+begin
+	if new.sal < old.sal then
+		signal sqlstate '45000'
+		set message_text = "salary cannot be reduced";
+	end if;
+end //
+delimiter ;
+
+update emp10
+set sal = sal + 100
+where empno = 7369;
+
+select * from emp10;
+
+update emp10
+set sal = sal - 100
+where empno = 7369;
+
+set autocommit = 1;
+
+
+######################################################################################
+
+Question 3: Track Employees Who Are Transferred to New Departments
+Scenario:
+Create a trigger that logs when an employee's department is changed. You will need a new table to track these changes:
+
+sql
+CREATE TABLE if not exists dept_transfer_audit (
+    empno INT,
+    old_deptno INT,
+    new_deptno INT,
+    transfer_date DATETIME
+);
+Tasks:
+
+Write an AFTER UPDATE trigger on the emp table that inserts a record into the dept_transfer_audit table whenever an employee’s DEPTNO is updated.
+The log should contain the employee number, old department number, new department number, and the current timestamp (NOW()).
+
+delimiter //
+set autocommit = 0;
+drop trigger if exists changeDept;
+create trigger changeDept
+before update
+on emp10
+for each row
+begin
+	if old.deptno != new.deptno then
+		
+		insert into dept_transfer_audit(empno, old_deptno, new_deptno, transfer_date)
+		values (old.empno, old.deptno, new.deptno, curdate());
+	end if;
+end //
+delimiter ;
+
+update emp10
+set deptno = 10
+where empno = 7369;
+
+select * from dept_transfer_audit;
+
+rollback;
+
+set autocommit = 1;
+
+######################################################################################
+
+Question 4: Enforce Minimum Salary for Clerks
+Scenario:
+You want to enforce a rule that employees with the job title "CLERK" must have a minimum salary of 1000. If someone tries to update a "CLERK" employee's salary to a value lower than 1000, the update should be blocked.
+
+Tasks:
+
+Create a BEFORE UPDATE trigger on the emp table.
+If the job is "CLERK" and the new salary is below 1000, the trigger should raise an error with the message: "Clerk salary cannot be less than 1000."
+
+
+
+
+######################################################################################
+
+Question 5: Prevent Deletion of Employees Who Are Managers
+Scenario:
+You need to ensure that employees who have the JOB of "MANAGER" cannot be deleted from the emp table.
+
+Tasks:
+
+Write a BEFORE DELETE trigger on the emp table.
+The trigger should check if the employee being deleted has the job "MANAGER." If so, the deletion should be aborted, and an error message should be raised: "Managers cannot be deleted."
+
+
+
+
+######################################################################################
+
+Question 6: Automatically Update Manager's Salary When Subordinates' Salaries Are Increased
+Scenario:
+When an employee’s salary is updated, the salary of their manager should also be automatically increased by 10%. This rule only applies if the employee's salary increase is more than 10%.
+
+Tasks:
+
+Create an AFTER UPDATE trigger on the emp table.
+If an employee’s salary is increased by more than 10%, the trigger should update the salary of their manager (MGR field) by 10%.
+Make sure that the manager's salary is updated only if the MGR field is not NULL and that the manager exists in the emp table.
+
+
+
+
+######################################################################################
+
+Question 7: Log Employee Promotions into a promotion_audit Table
+Scenario:
+You need to create a log whenever an employee is promoted. A promotion is defined as a change in job title from "CLERK" to either "SALESMAN" or "ANALYST". You will create a new table called promotion_audit to track this:
+
+sql
+Copy code
+CREATE TABLE promotion_audit (
+    empno INT,
+    old_job VARCHAR(50),
+    new_job VARCHAR(50),
+    promotion_date DATETIME
+);
+Tasks:
+
+Write an AFTER UPDATE trigger on the emp table.
+The trigger should log the promotion event in the promotion_audit table when the job title changes from "CLERK" to either "SALESMAN" or "ANALYST".
+The log should include the employee's empno, the old job (old_job), the new job (new_job), and the current date (promotion_date).
+
+
+
+
+######################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
