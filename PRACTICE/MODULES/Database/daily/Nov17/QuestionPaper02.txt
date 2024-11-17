@@ -1,0 +1,136 @@
+1.
+select ename, sal * 1.12 as bonus
+from emp10;
+
+2.
+select ename, year(curdate()) - year(hiredate) as experience
+from emp10;
+
+3.
+select ename, hiredate, date_add(hiredate, interval 5 year) as exp5
+from emp10;
+
+4.
+select ename, job
+from emp10
+where job = 'manager' and year(hiredate) = 1981;
+
+5.
+select ename 
+from emp10
+where ename like 'T%';
+
+6.
+select ename, job, deptno
+from emp10
+where job = 'manager' and deptno != 30;
+
+7.
+select ename as NAME, empno as NUMBER
+from emp;
+
+8.
+select * 
+from emp
+where comm > 400;
+
+9.
+select * 
+from emp10
+where ename regexp('.*T$') and sal between 1000 and 4500;
+
+10.
+select * 
+from emp10
+where ename regexp('..L.*');
+
+11.
+select e.ename, e.sal, d.deptno, d.loc
+from emp10 e
+join dept d 
+on e.deptno = d.deptno;
+
+12.
+select ename, sal, mgr 
+from emp10
+where year(hiredate) > any (
+	select year(hiredate)
+	from emp10
+	where job = 'manager'
+);
+
+13.
+select ename, locate('r', ename)
+from emp10;
+
+14.
+select e.deptno, d.dname, d.loc
+from emp10 e 
+join dept d 
+on d.deptno = e.deptno;
+
+15.
+select * 
+from emp10
+where comm > sal * 0.20;
+
+16.
+select * 
+from emp10
+where job = 'manager' or (job = 'clerk' and deptno = 10);
+
+17.
+select * 
+from emp10
+where (job = 'manager' and deptno = 10) or (job = 'clerk' and deptno = 20);
+
+18.
+select e2.ename, e1.ename 
+from emp10 e1
+join emp10 e2
+on e1.empno = e2.mgr;
+
+19.
+select e2.ename, e1.ename 
+from emp10 e1
+join emp10 e2
+on e1.empno = e2.mgr
+order by e2.ename;
+
+20.
+21.
+22.
+23.
+create table account
+(
+	accno int not null,
+	accHoldername varchar(50) not null,
+	city varchar(20) default 'mumbai' check (city in ('banglore', 'chennai', 'mumbai')),
+	telephone_number char(10),
+	balance decimal(10, 2) check (balance > 10000),
+	constraint pk_acc primary key(accno)
+);
+
+INSERT INTO account (accno, accHoldername, city, telephone_number, balance)
+VALUES
+(101, 'John Doe', 'mumbai', '9876543210', 15000.50),
+(102, 'Jane Smith', 'chennai', '9123456789', 25000.75),
+(103, 'Michael Johnson', 'banglore', '9234567890', 12000.25),
+(104, 'Emily Davis', 'chennai', '9345678901', 30000.00);
+
+24.
+set autocommit = 0;
+update account
+set city = 'banglore' where accno = 101;
+set autocommit = 1;
+25.
+delete from account 
+where accno = 101;
+
+26.
+truncate table account;
+
+27.
+28.
+29.
+30.
