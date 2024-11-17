@@ -1,0 +1,162 @@
+1. 
+select * 
+from emp
+where comm > sal * 0.6;
+
+2.
+select * 
+from emp 
+where job = "manager" or (job = clerk and deptno = 10);
+
+3.
+select * 
+from emp 
+where 
+	(job = "manager" and deptno = 10)
+	or
+	(job = "clerk" and deptno = 20);
+	
+4.
+select e1.empno, e1.ename, e1.mgr, e2.ename
+from emp e1, emp e2
+where e1.mgr = e2.empno;
+
+5.
+select e1.empno, e1.ename, e1.mgr, e2.ename
+from emp e1, emp e2
+where e1.mgr = e2.empno
+order by e1.ename;
+
+6.
+select * 
+from emp
+where sal > any (
+	select avg(sal)
+	from emp
+	where deptno = emp.deptno
+);
+
+select * 
+from emp e1
+where sal > (
+	select avg(sal)
+	from emp
+	where deptno = e1.deptno
+);
+
+7.
+select year(curdate());
+
+select date_format(curdate(), '%y');
+
+8.
+select month(curdate());
+
+9.
+select * 
+from emp
+order by ename;
+
+10.
+create table customer10
+(
+	email_address varchar(75),
+	first_name varchar(50) not null,
+	last_name varchar(50) not null,
+	address1 varchar(50),
+	address2 varchar(50),
+	customer_zip varchar(10),
+	area_code char(3),
+	city varchar(20) check(city in ('nashik', 'pune', 'mumbai')),
+	telephone_number char(10),
+	constraint pk_cust primary key(email)
+);
+
+11.
+INSERT INTO customer10 (email_address, first_name, last_name, address1, address2, customer_zip, area_code, city, telephone_number)
+VALUES
+('john.doe@example.com', 'John', 'Doe', '123 Main St', 'Apt 4B', '422001', '022', 'mumbai', '9876543210'),
+('jane.smith@example.com', 'Jane', 'Smith', '456 Oak St', 'Suite 12', '422002', '020', 'pune', '9887654321'),
+('bob.jones@example.com', 'Bob', 'Jones', '789 Pine St', 'Near Park', '422003', '025', 'nashik', '9998765432');
+
+12.
+set autocommit = 0;
+
+update customer10 
+set city = 'pune'
+where email like "john%";
+
+rollback;
+
+set autocommit = 1;
+
+13.
+set autocommit = 0;
+
+delete from customer10
+where email like 'john%';
+
+rollback;
+
+set autocommit = 1;
+
+
+14.
+truncate table customer10;
+
+15. 
+alter table customer10
+rename column email_address to email;
+
+16.
+select * 
+from emp10
+where 
+	(job = 'manager' and deptno = 10)
+	or 
+	(job = 'clerk' and deptno = 20);
+	
+17.
+select *
+from emp10
+where job not in ('clerk', 'manager') and sal >= 2000; 
+
+18.
+select * 
+from emp
+where sal between 1200 and 1400;
+
+19.
+select * 
+from emp
+where job in ('clerk', 'analyst', 'salesman');
+
+20.
+select * 
+from emp
+where job not in ('clerk', 'analyst', 'salesman');
+
+
+21.
+select *
+from emp
+where comm is null;
+
+22.
+select *
+from emp
+where comm = 0;
+
+23.
+select job
+from emp
+where comm is not null
+group by job;
+
+24.
+select e.ename, d.dname, d.loc
+from dept d
+left join emp e
+on e.deptno = d.deptno 
+where comm is null or comm < 100.25;
+
