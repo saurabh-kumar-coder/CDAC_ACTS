@@ -1,0 +1,233 @@
+1. Create a Procedure to Get Employees by Department.
+
+delimiter //
+drop procedure if exists getEmployees;
+create procedure getEmployees(userDeptNo int)
+begin
+	select * 
+	from emp10
+	where deptno = userDeptNo;
+end //
+delimiter ;
+
+set @deptId = 10;
+
+call getEmployees(@deptId);
+
+2. Create a Function to Calculate the Average Salary of Employees in a Department
+
+delimiter //
+drop function if exists avgSalary;
+create function avgSalary(deptId int) returns decimal(10, 2)
+begin 
+	declare avgSal decimal(10, 2);
+	select avg(sal) into avgSal
+	from emp10
+	where deptno = deptId;
+	return avgSal;
+end //
+delimiter ;
+
+select avgSalary(10);
+
+3. Create a Procedure to Update an Employee's Salary.
+
+delimiter //
+drop procedure if exists updateEmpSal;
+create procedure updateEmpSal(empNoToUpdate int, newSal decimal(10, 2))
+begin
+	update emp10
+	set sal = ifnull(sal, 0) + newSal
+	where empno = empNoToUpdate;
+end //
+delimiter ;
+
+call updateEmpSal(7934, 2000);
+
+4. Create a Function to Get the Employee's Manager
+
+delimiter //
+drop function if exists getManager;
+create function getManager(empid int) returns varchar(15)
+begin
+	declare manager varchar(15);
+	select ename into manager
+	from emp10 e
+	where empno = (
+			select mgr
+			from emp10 m
+			where empid = m.empno
+		);
+	return manager;
+end //
+delimiter ;
+
+select getManager(7369);
+
+5. Create a Procedure to List Employees with a Specific Job
+
+delimiter //
+drop procedure if exists listEmployeeByJob;
+create procedure listEmployeeByJob(title varchar(15))
+begin
+	select * 
+	from emp10
+	where job = title;
+end //
+delimiter ;
+
+set @title = 'clerk';
+call listEmployeeByJob(@title);
+
+
+6. Create a Function to Return the Highest Salary in the Company
+
+delimiter //
+drop function if exists findHighestSal;
+create function findHighestSal() 
+returns decimal(7,2)
+DETERMINISTIC
+begin
+	declare highSal decimal(7, 2);
+	select max(sal) into highSal 
+	from emp10;
+
+	return highSal;
+end //
+delimiter ;
+
+select findHighestSal();
+
+
+7. Create a Procedure to Delete Employees by Department
+
+delimiter //
+set autocommit = 0;
+drop procedure if exists deleteByEmpDept;
+create procedure deleteByEmpDept(IN deptID int)
+begin 
+	delete from emp10
+	where deptno = deptId;
+end //
+delimiter ;
+
+call deleteByEmpDept(10);
+set autocommit = 1;
+
+8. Create a Function to Calculate Commission for Salesmen
+
+delimiter //
+drop procedure if exists calComm;
+create function calComm(empId int)
+returns decimal (7, 2)
+begin
+	declare commSalesman decimal(7, 2);
+	select ifnull(comm, 0) into commSalesman
+	from emp10
+	where empno = empId AND job = 'salesman';
+	ifnull(commSalesman, 0);
+	return commSalesman;
+end //
+delimiter ;
+
+select calComm(7369);
+
+select calComm(7499);
+
+drop procedure if exists calComm;
+
+
+9. Create a Procedure to Count Employees by Job.
+
+delimiter //
+drop procedure if exists countEmpByJob;
+create procedure countEmpByJob()
+begin
+	select job, count(job) 
+	from emp10 
+	group by job;
+end //
+delimiter ;
+
+call countEmpByJob();
+
+drop procedure if exists countEmpByJob;
+
+
+10. Create a Function to Check if an Employee Exists.
+
+
+delimiter //
+drop function if exists checkIfEmpExists;
+create function checkIfEmpExists(empId int)
+returns Boolean
+begin
+	declare count int;
+	select count(*) into count
+	from emp 
+	where empno = empId;
+
+	set count = ifnull(count, 0);
+
+	if count > 0 then
+		return 1;
+	else
+		return 0;
+	end if;
+end //
+delimiter ;
+
+select checkIfEmpExists(7369);
+
+mysql> select checkIfEmpExists(7369);
++------------------------+
+| checkIfEmpExists(7369) |
++------------------------+
+|                      1 |
++------------------------+
+1 row in set (0.01 sec)
+
+mysql> select checkIfEmpExists(736);
++-----------------------+
+| checkIfEmpExists(736) |
++-----------------------+
+|                     0 |
++-----------------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
