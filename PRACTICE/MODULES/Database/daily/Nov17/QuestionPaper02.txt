@@ -131,6 +131,12 @@ where accno = 101;
 truncate table account;
 
 27.
+alter table account 
+add column email varchar(50) not null default "abc@abc.com";
 28.
+select * 
+from emp10
+where (job = 'analyst' and deptno = 10) or (job = 'clerk' and deptno = 20);
+
 29.
 30.
