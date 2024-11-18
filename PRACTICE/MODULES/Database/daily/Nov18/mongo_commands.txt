@@ -1,0 +1,177 @@
+show databases
+	show dbs;
+	
+create databases
+	use <database_name>
+	eg: use empdb;
+	
+	db.createCollection("<collection_name>")
+	eg: db.createCollection("empdb1");
+	
+to see current using db 
+	db;
+	
+insert data into collection
+	db.empdb.insert({});
+	eg: db.empdb.insert({
+			eno: 1,
+			ename: 'smith',
+			deptno: 10
+		});
+		
+		db.empdb.insert({
+			eno: 2,
+			ename: 'john',
+			ph_no: 88800841
+		});
+		
+to find all data
+	db.empdb.find();
+	
+to format data 
+	db.empdb.find().pretty();
+	
+insert multiple document
+	db.empdb.insertMany([{}, {}]);
+	db.empdb.insertMany(
+		[
+			{
+				eno: 3,
+				ename: 'Rohn',
+				ph_no: 88800849
+			},
+			{
+				eno: 4,
+				ename: 'Pohn',
+				ph_no: 88800847
+			}
+		]
+	);
+	
+to find first document
+	db.empdb.findOne();
+
+to find a particular document
+	db.collection.find(query, projection)
+	
+	eg: db.empdb.findOne({deptno: 3});
+	
+deleting the collection
+	db.empdb.drop();
+	
+deleting the database
+	db.dropDatabase();
+	
+storing arrays in db
+	db.empdb.insert({
+		ename: "rahul",
+		hobbies: ['cooking', 'playing']
+	});
+	
+show deptno for name rahul.
+	db.empdb.find({ename : 'rahul'}, {deptno: 1, _id: 0})
+	
+	to show value : 1
+	to not show value : 0
+	
+operators in mongo
+	$lt - less than
+	$gt - greater than
+	$eq - equal to
+	$lte - less than equal to
+	$gte - greater than equal to
+	$ne - not equal to
+	$in - in the set of values
+	$nin - not in the set of values
+	$mod - modulus
+	
+find movie with rating 3 and price 200
+	db.movie.find({rating: 3, price: 200});
+	
+all movie with rating > 3
+	db.movie.find({rating:{$gt: 3}});
+	
+display name, rating, price of all movies
+	db.movie.find({}, {name:1, rating:1, price:1, _id: 0});
+	
+display movie with price > 200 and price < 400
+	db.movie.find({price: {$gt:200 }, price: {$lt: 400}});
+	
+	db.movie.find({price: {$gt:200 }, price: {$lt: 400}}, {name:1, price:1, _id: 0});
+	
+display name of movie with price 200 or 300 or 400
+	db.movie.find({price: {$in: [200, 300, 400]}}, {name: 1, _id: 0});
+	
+display name of movie with price not in 200 or 300 or 400
+	db.movie.find({price: {$nin: [200, 300, 400]}}, {name: 1, _id: 0});
+	
+print all movies with odd rating.
+	db.movie.find({rating: {$mod: [2,1]}}, {name:1, rating: 1, _id:0});
+	
+print all movies with even rating.
+	db.movie.find({rating: {$mod: [2,0]}}, {name:1, rating: 1, _id:0});
+	
+top 5 (limit)
+	db.movie.find({},{name: 1}).limit(5);
+	
+movie with max rating.
+	db.movie.find({}, {name:1, _id:0, rating:1}).sort({rating:-1}).limit(1);
+
+movie with min rating
+	db.movie.find({}, {name:1, _id:0, rating:1}).sort({rating:-1}).limit(1);
+	
+display movie where amitab is at first index in array.
+	db.movie.find({"actor.0": "Amitabh"})
+	
+Regular Expression
+1. ^ - begin
+2. \d - digit
+3. $ - end
+4. * - multiple chars
+
+find movie ending with digit.
+	db.movie.find({name: /[0-9]$/}, {name:1, _id:0});
+	
+	
+find movie start and end with 'S'
+	db.movie.find({name: /^S[a-z0-9]*S$/}, {name: 1, _id:0});
+	
+find movie start with digit and end with 's'
+	db.movie.find({name: /^[0-9].*S$/i}, {name:1, _id:0});
+	
+
+
+Update command
+
+set rating to 6 for sholay movie
+	db.movie.find({name: 'sholay'}, {name:1, rating: 1, _id:0});
+	
+	db.movie.updateOne({name: 'sholay'},
+		{$set: {rating:6}},
+		{multi:true});
+		
+increase price by 10%
+	db.movie.update({name: 'sholay'}, 
+		{$mul:{price: 1.10},},
+		{multi: true});
+		
+	db.movie.find({name: 'sholay'}, {name:1, rating: 1, price:1, _id:0});
+	
+
+Delete key-value pair
+	it deletes the key and value both of the fields.
+	to insert again that field we need to update the collection.
+	db.movie.update({name: "sholay"},
+		{$unset: {rating: ""}},
+		{multi: false});
+	
+	db.movie.update({name: 'sholay'},
+		{$set: {rating: 6}});
+		
+delete document
+	db.movie.remove({deptno:10});
+	
+delete()
+db.movie.deleteOne({rating: 5});
+
+db.movie.deleteMany({rating: 5});
