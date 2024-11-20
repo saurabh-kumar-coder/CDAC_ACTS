@@ -1,0 +1,122 @@
+Question 1: Transfer Salary with Bonus
+Task: Create a stored procedure transfer_with_bonus that transfers an employee to a new department. The procedure should take the following parameters:
+
+emp_id (IN): Employee ID.
+new_dept (IN): New department number.
+bonus (IN): Bonus to be added to the employee's current salary.
+total_salary (OUT): Total salary of the employee after adding the bonus (should be calculated and returned).
+The procedure should:
+
+Transfer the employee to the new department.
+Add the given bonus to their current salary.
+Return the updated total salary using the OUT parameter.
+Example Usage:
+
+sql
+CALL transfer_with_bonus(7499, 20, 500, @total_salary);
+SELECT @total_salary;  -- Should return the updated salary.
+
+
+Question 2: Increase Salary and Return Total
+Task: Create a stored procedure increase_salary_and_return that increases an employee’s salary by a given percentage. The procedure should take the following parameters:
+
+emp_id (IN): Employee ID.
+percentage (IN): Percentage by which the salary should be increased.
+new_salary (OUT): The updated salary after the increase.
+message (INOUT): A message that provides feedback about the update (e.g., success or failure).
+The procedure should:
+
+Increase the employee’s salary by the specified percentage.
+Set the new_salary to the updated salary.
+Modify the message parameter to indicate whether the operation was successful.
+Example Usage:
+
+SET @message = 'Processing';
+CALL increase_salary_and_return(7654, 10, @new_salary, @message);
+SELECT @new_salary, @message;  -- Should return the updated salary and the message.
+
+delimiter //
+set autocommit = 0;
+drop procedure if exists increase_salary_and_return;
+create procedure increase_salary_and_return(
+                                            IN emp_id int,
+                                            IN percentage int,
+                                            OUT new_salary decimal,
+                                            INOUT message varchar(15)
+                                        )
+begin 
+    update emp10
+    set sal = sal + (sal * percentage) / 100;
+
+    select sal into new_salary
+    from emp10
+    where empno = emp_id;
+
+    if ROW_COUNT() > 0 then 
+        SET MESSAGE = "data updated.";
+    else
+        SET MESSAGE = "data not updated.";
+    end if;
+end //
+delimiter ;
+
+SET @message = 'Processing';
+CALL increase_salary_and_return(7654, 10, @new_salary, @message);
+SELECT @new_salary, @message; 
+
+set autocommit = 1;
+
+drop procedure if exists increase_salary_and_return;
+
+Question 3: Get Manager’s Salary and Subordinates
+Task: Write a stored procedure get_manager_and_subordinates that takes an employee’s emp_id and returns the following information:
+
+manager_salary (OUT): The salary of the employee's manager.
+subordinate_count (OUT): The number of subordinates the employee has.
+The procedure should:
+
+Find the manager of the employee and return their salary.
+Count how many employees report to that manager and return the count.
+Example Usage:
+
+sql
+Copy code
+CALL get_manager_and_subordinates(7566, @manager_salary, @subordinate_count);
+SELECT @manager_salary, @subordinate_count;  -- Should return the manager's salary and the subordinate count.
+
+
+
+Question 4: Calculate Total Salary for a Department
+Task: Write a stored procedure calculate_total_salary that calculates the total salary for all employees in a given department. The procedure should take the following parameters:
+
+dept_id (IN): The department number.
+total_dept_salary (OUT): The total salary of all employees in the department.
+average_salary (INOUT): The average salary of all employees in the department, which should be updated after the calculation.
+The procedure should:
+
+Calculate the total salary for all employees in the specified department.
+Update the average_salary parameter with the average salary for that department.
+Example Usage:
+
+delimiter //
+set autocommit = 0;
+drop procedure if exists calculate_total_salary;
+create procedure calculate_total_salary(
+                                    IN dept_id int, 
+                                    OUT total_dept_salary decimal(10, 2), 
+                                    INOUT average_salary decimal(10, 2))
+begin
+    select sum(sal), avg(sal) into total_dept_salary, average_salary
+    from emp10
+    where deptno = dept_id;
+end //
+delimiter ;
+
+SET @avg_salary = 0;
+CALL calculate_total_salary(30, @total_dept_salary, @avg_salary);
+SELECT @total_dept_salary, @avg_salary;  
+
+
+set autocommit = 1;
+
+drop procedure if exists calculate_total_salary;
