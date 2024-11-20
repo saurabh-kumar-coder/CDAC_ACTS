@@ -20,7 +20,7 @@ public class Employee implements BaseEntity{
 	@Override
 	public Long getId() {
 		// TODO Auto-generated method stub
-		return null;
+		return empId;
 	}
 	
 	public void setId(Long empId) {
