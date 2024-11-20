@@ -1,0 +1,168 @@
+Question 1:
+Create a trigger that inserts a record into an audit table whenever a salary greater than 3000 is updated.
+
+Explanation: You need to create a trigger that will automatically insert a record into an audit_log table (which should be created first). This log will capture details of the updated employee's EMPNO, ENAME, and the new SAL value whenever the salary exceeds 3000.
+
+Create the audit_log table first:
+
+sql
+DROP TABLE if exists audit_log;
+CREATE TABLE audit_log (
+    empno INT,
+    ename VARCHAR(50),
+    new_salary DECIMAL(10, 2),
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+delimiter //
+set autocommit = 0;
+drop trigger if exists updateSalary;
+create trigger updateSalary
+before update
+on emp10
+for each row
+begin
+	if new.sal > 3000 then
+		insert into audit_log (empno, ename, new_salary, updated_at)
+		values (old.empno, old.ename, new.sal, now());
+	end if;
+end //
+delimiter ;
+
+
+update emp10
+set sal = sal + 100
+where empno = 7788;
+
+select * from emp10;
+
+select * from audit_log;
+
+rollback;
+
+drop trigger if exists updateSalary;
+
+set autocommit = 1;
+
+
+
+Question 2:
+Create a trigger that updates an employee's department number (DEPTNO) if their manager (MGR) is updated to a new manager with a different department number.
+
+Explanation: When the MGR of an employee is updated to another employee (who has a different department), the department number of the employee should be updated to match the manager's department number.
+
+delimiter //
+set autocommit = 0;
+drop trigger if exists updateMgr;
+create trigger updateMgr
+before update
+on emp10
+for each row
+begin 
+	declare ndeptno int default 0;
+	if old.mgr != new.mgr then
+		select distinct deptno into ndeptno from emp10 where empno = new.mgr;
+		if ndeptno is not null then
+			set new.deptno = ndeptno;
+		end if;
+	end if;
+end //
+delimiter ;
+
+update emp10
+set mgr = 7698
+where empno = 7369;
+
+rollback;
+
+set autocommit = 1;
+
+drop trigger if exists updateMgr;
+
+
+Question 3:
+Create a trigger that prevents an employee from being hired (insert) if their salary is less than 1000 or more than 5000.
+
+Explanation: This trigger will block the insertion of new employee records if the SAL value does not fall within the valid range (1000 to 5000). It should raise an error message in case the condition is violated.
+
+delimiter //
+set autocommit = 0;
+drop trigger if exists hireEmp;
+create trigger hireEmp
+before insert
+on emp10
+for each row
+begin 
+	if new.sal < 1000 or new.sal > 5000 then
+		SIGNAL SQLSTATE '45000'
+		SET MESSAGE_TEXT = "Salary must be more than 1000 and less than 5000";
+	end if;
+end //
+delimiter ;
+
+insert into emp10 (empno, ename, job, sal)
+values
+(1111, 'Rahul', 'CLERK', 500);
+
+
+insert into emp10 (empno, ename, job, sal)
+values
+(1111, 'Rahul', 'CLERK', 1500);
+
+
+rollback;
+
+set autocommit = 1;
+
+drop trigger if exists hireEmp;
+
+Question 4:
+Create a trigger that ensures when an employee is deleted, all employees who report to that manager (i.e., have the same MGR) are also removed.
+
+Explanation: When an employee is deleted, this trigger should check if the deleted employee is a manager (i.e., has subordinates). If there are employees reporting to that manager (i.e., employees with the same MGR), those employees should also be deleted.
+
+delimiter //
+set autocommit = 0;
+drop trigger if exists deleteManager;
+create trigger deleteManager
+after delete
+on emp10
+for each row
+begin
+	DELETE FROM emp10 WHERE mgr = old.empno; 
+end //
+delimiter ;
+
+delete from emp10 where empno = 7369;	// clerk
+
+delete from emp10 where empno = 7566;	// manager
+
+set autocommit = 1;
+
+drop trigger if exists deleteManager;
+
+Question 5:
+Create a trigger that inserts a new employee record into the emp_backup table every time an employee's job title (JOB) is changed.
+
+Explanation: This trigger will back up the employee's record (including the old JOB) into a new emp_backup table whenever an employee's JOB is updated.
+
+Create the emp_backup table first:
+
+sql
+
+CREATE TABLE emp_backup (
+    empno INT,
+    ename VARCHAR(50),
+    old_job VARCHAR(50),
+    salary DECIMAL(10, 2),
+    hiredate DATE,
+    deptno INT,
+    backup_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+Question 6:
+Create a trigger that calculates the commission (COMM) for SALESMAN employees as 10% of their salary when they are hired.
+
+Explanation: Whenever a new SALESMAN is hired (inserted into the table), this trigger will automatically calculate the COMM as 10% of their salary and insert it into the COMM column.
