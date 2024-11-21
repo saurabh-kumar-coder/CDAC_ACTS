@@ -23,6 +23,7 @@ public class Employee implements BaseEntity{
 		return empId;
 	}
 	
+	@Override
 	public void setId(Long empId) {
 		this.empId = empId;
 	}
