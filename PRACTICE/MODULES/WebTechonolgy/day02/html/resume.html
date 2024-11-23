@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RESUME</title>
+</head>
+
+<body>
+  <div style="text-align: center">
+    <h1>Resume Form</h1>
+  </div>
+  <div>
+    <table width="100%" border="2px black solid">
+      <form onsubmit="" method="post" action="status.html">
+        <thead hidden>
+          <tr>
+            <th>Field</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Name :</td>
+            <td>
+              <input placeholder="Enter the name" style="width: 100%" type="text" pattern="[a-zA-Z]{3,15}" required />
+            </td>
+          </tr>
+          <tr>
+            <td>Age :</td>
+            <td>
+              <input placeholder="Enter the age" style="width: 100%" type="text" pattern="[0-9]{1,3}" required />
+            </td>
+          </tr>
+          <tr>
+            <td>Gender :</td>
+            <td>
+              <label for="gender"><input id="male" value="male" name="gender" type="radio" />Male</label>
+              <label for="gender"><input id="female" value="female" name="gender" type="radio" />Female</label>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <table width="100%">
+                <thead>
+                  <tr>
+                    <th>Education</th>
+                    <th>Passout</th>
+                    <th>% Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Graduation</td>
+                    <td>
+                      <input placeholder="Enter Graduation Year" type="text" style="width: 100%" id="gradYear"
+                        name="gradYear" required />
+                    </td>
+                    <td>
+                      <input placeholder="Enter Graduation % Score" type="text" style="width: 100%" id="gradScore"
+                        name="gradScore" required />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>12th</td>
+                    <td>
+                      <input placeholder="Enter Graduation Year" type="text" style="width: 100%" id="twelvethYear"
+                        name="twelvethYear" required />
+                    </td>
+                    <td>
+                      <input placeholder="Enter Graduation % Score" type="text" style="width: 100%" id="twelvethScore"
+                        name="twelvethScore" required />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>10th</td>
+                    <td>
+                      <input placeholder="Enter Graduation Year" type="text" style="width: 100%" id="tenthYear"
+                        name="tenthYear" required />
+                    </td>
+                    <td>
+                      <input placeholder="Enter Graduation % Score" type="text" style="width: 100%" id="tenthScore"
+                        name="tenthScore" required />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>SKILLS</td>
+            <td>
+              <label for="python"><input type="checkbox" name="skills" id="python" value="Python" />Python</label>
+              <label for="database"><input type="checkbox" name="skills" id="database"
+                  value="Database" />Database</label>
+              <label for="CJava"><input type="checkbox" name="skills" id="CJava" value="Core Java" />Core JAVA</label>
+              <label for="Cpp"><input type="checkbox" name="skills" id="Cpp" value="C++" />C++</label>
+              <label for="spring"><input type="checkbox" name="skills" id="spring" value="Spring" />Spring</label>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="1">Progress :</th>
+          </tr>
+          <tr>
+            <td colspan="1">Python :</td>
+            <td colspan="1">
+              <progress id="progress" name="progress" value="90" max="100"></progress>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">Database :</td>
+            <td colspan="1">
+              <progress id="progress" name="progress" value="80" max="100"></progress>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">Core JAVA :</td>
+            <td colspan="1">
+              <progress id="progress" name="progress" value="50" max="100"></progress>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">C++ :</td>
+            <td colspan="1">
+              <progress id="progress" name="progress" value="60" max="100"></progress>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">Spring :</td>
+            <td colspan="1">
+              <progress id="progress" name="progress" value="30" max="100"></progress>
+            </td>
+          </tr>
+          <tr>
+            <th>Extra-Curriculum Activity</th>
+          </tr>
+          <tr>
+            <td colspan="1">Video :</td>
+            <td>
+              <video autoplay>
+                <source src="video.mp4" type="video/mp4" />
+              </video>
+            </td>
+          </tr>
+          <tr>
+            <td>Languages :</td>
+            <td>
+              <label><input type="checkbox" />Hindi</label>
+              <label><input type="checkbox" />English</label>
+              <label><input type="checkbox" />French</label>
+            </td>
+          </tr>
+          <tr>
+            <td>Audio :</td>
+            <td>
+              <audio src=""></audio>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button style="color: white; background-color: rgb(23, 23, 136)" type="submit">
+                Submit
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </form>
+    </table>
+  </div>
+</body>
+
+</html>
