@@ -45,13 +45,31 @@ document.getElementById("greeting1").replaceChild(newH2, oldH1);
 
 // Toggle the visibility of the <h1> element each time the button is clicked.
 
+document.getElementById("button1").addEventListener("click", () => {
+	const heading = document.getElementById("greeting1");
+	heading.style.display = heading.style.display === "none" ? "block" : "none";
+});
+
 // Hint: Change the style.display property between "none" and "block".
+
 // Add a hover effect on the button that changes its text to "Hovering!" when the mouse is over it, and back to "Submit" when the mouse leaves.
 
+const btn2 = document.getElementById("button1");
+btn2.addEventListener("mouseover", () => {
+	btn2.innerText("Hovering...");
+});
+btn2.addEventListener("mouseout", () => {
+	btn2.innerText("Submit");
+});
+
 // Hint: Use mouseover and mouseout event listeners.
+
 // Insert a new <div> with the text "New Div Added" after the greeting1 <div> element.
 
+const newDiv = document.createElement("div");
+newDiv.innerHTML = "New Div Added";
+
+const greeting1div = document.getElementById("greeting1");
+greeting1div.insertAdjacentElement("afterend", newDiv);
+
 // Hint: Use insertAdjacentHTML() or insertAdjacentElement().
-// Bonus Question
-// How can you dynamically replace {{Saurabh}} in the <h1> tag with a different name (e.g., "Rahul") using JavaScript?
-// Hint: Use textContent or innerHTML and string manipulation methods.
