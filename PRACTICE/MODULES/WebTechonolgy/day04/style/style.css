@@ -1,0 +1,91 @@
+#online, #foodshop, #footer, #body-header, #order-now{
+    display: flex;
+    justify-content: center;
+}
+
+#container2{
+    border: 2px solid black;
+}
+
+#body-data{
+    z-index: 1;
+}
+
+#chef, #nav-menu{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 1%;
+}
+
+#body-header{
+    color: red;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+/* #background-img{
+    background-image: url(../images/kitchen.jpg);
+    height: 350px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    opacity: 45%;
+    border: 2px solid black;
+    border-bottom-left-radius: 30% 45%;
+    z-index: 0;
+} */
+
+#container3 {
+    position: relative;
+    height: 350px;
+    width: 100%;
+    overflow: hidden;
+}
+
+#background-img {
+    background-image: url(../images/kitchen.jpg);
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    opacity: 0.45; /* Apply opacity only to the background */
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 2px solid black;
+    border-bottom-left-radius: 30% 45%;
+    z-index: 0; /* Behind the text */
+}
+
+#body-data {
+    position: relative;
+    z-index: 1; /* Above the background */
+    text-align: center;
+    color: black; /* Bright text color */
+    padding: 20px;
+}
+
+#body-header {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#order-now {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+#chef-img{
+    border: 2px solid black;
+    border-radius: 50%;
+}
+
+#order-now{
+    background-color: yellow;
+    border-radius: 30px;
+    font-weight: 400;
+    font-weight: bold;
+}
