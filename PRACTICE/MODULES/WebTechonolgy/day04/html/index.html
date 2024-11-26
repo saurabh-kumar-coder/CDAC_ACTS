@@ -8,12 +8,19 @@
     <link rel="styleSheet" href="../style/style.css">
 </head>
 
-<body>
+<body onload="getDateTime()">
     <div>
         <div id="container1">
             <div id="header1">
-                <div id="online">Online</div>
+                <div onmouseover="changeHeader(event, 'online')" onmouseout="changeHeader(event, 'online')" id="online">
+                    Online
+                </div>
                 <div id="foodshop">FoodShop</div>
+            </div>
+            <div id="timezone">
+                time : <span id="time"></span>
+                <br />
+                date : <span id="date"></span>
             </div>
         </div>
         <div id="container2">
@@ -56,6 +63,7 @@
             </div>
         </div>
     </div>
+    <script src="../js/script.js"></script>
 </body>
 
 </html>
