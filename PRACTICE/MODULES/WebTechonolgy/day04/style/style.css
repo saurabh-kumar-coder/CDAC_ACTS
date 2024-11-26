@@ -3,8 +3,14 @@
     justify-content: center;
 }
 
+#online {
+    color: red;
+    font-size: 30px;
+}
+
 #container2{
     border: 2px solid black;
+    border-radius: 5px;
 }
 
 #body-data{
@@ -22,19 +28,6 @@
     font-weight: bold;
     font-size: xx-large;
 }
-
-/* #background-img{
-    background-image: url(../images/kitchen.jpg);
-    height: 350px;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    width: 100%;
-    opacity: 45%;
-    border: 2px solid black;
-    border-bottom-left-radius: 30% 45%;
-    z-index: 0;
-} */
 
 #container3 {
     position: relative;
@@ -76,6 +69,11 @@
     margin-top: 10px;
     padding: 10px 20px;
     font-size: 16px;
+    background-color: yellow;
+    border-radius: 30px;
+    font-weight: 400;
+    font-weight: bold;
+    z-index: 5;
 }
 
 #chef-img{
@@ -83,9 +81,53 @@
     border-radius: 50%;
 }
 
-#order-now{
+#btn-order{
+    display: flex;
+    justify-content: center;
+}
+
+#images {
+    height: 150px;
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#img1, #img2{
+    border: 2px solid;
+    width: 150px;
+    position: relative;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+#pricing {
+    background-image: url("../images/chefPrices.jpg");
+}
+
+#special{
+    background-image: url("../images/chefSpecials.jpg");
+}
+
+#special , #pricing {
+    z-index: 3;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#btn-s, #btn-p {
+    position: absolute;
+    bottom: 10px; /* Distance from the bottom edge */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center alignment */
+    padding: 10px 20px;
     background-color: yellow;
-    border-radius: 30px;
-    font-weight: 400;
+    color: black;
     font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    /* cursor: pointer; */
+    font-size: 14px;
 }
