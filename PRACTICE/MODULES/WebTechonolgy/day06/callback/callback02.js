@@ -5,8 +5,8 @@ example :
 performOperation(10, 5, (result) => {
     console.log("The sum is:", result);
 });
-
 */
+
 // case 1
 /*
 function performOperation(a, b, callback) {
@@ -32,7 +32,9 @@ performOperation(9, 7, (result) => {
 	console.log(result);
 });
 */
+
 // ------------------------------- OR --------------------------------------------
+
 // case 2 callback with 2 args
 /*
 function performOperation01(a, b, callback) {
@@ -53,7 +55,9 @@ performOperation01(9, 7, (text, result) => {
 	console.log(text + result);
 });
 */
+
 // ----------------------------------------- OR -----------------------------------------
+
 // case 3 setTimeout inside setTimeout
 /*
 function performOperation03(a, b, callback) {
@@ -82,6 +86,9 @@ performOperation03(9, 7, (res) => {
 	console.log(res);
 });
 */
+
+// ===========================================================================================================
+
 /*
 2. Delayed Greeting
 Create a function delayedGreeting(name, delay, callback) that takes a name, a delay in milliseconds, and a callback. Use the callback to log a greeting message like Hello, <name>! after the specified delay.
@@ -92,6 +99,22 @@ delayedGreeting("Alice", 2000, (message) => {
     console.log(message);
 });
 */
+
+// case 1
+/*
+function delayedGreeting(name, delay, callback) {
+	setTimeout(() => {
+		let msg = "Hello " + name + "!";
+		callback(msg);
+	}, delay);
+}
+
+delayedGreeting("Alice", 2000, (message) => {
+	console.log(message);
+});
+*/
+
+// ===========================================================================================================
 
 /*
 3. Filter Array
@@ -104,6 +127,26 @@ filterArray([1, 2, 3, 4, 5, 6], (filteredArr) => {
 });
 */
 
+// case 1
+/*
+function filterArray(fa, callback) {
+	setTimeout(() => {
+		let nfa = [];
+		fa.forEach((e) => {
+			if (e % 2 == 0) {
+				nfa.push(e);
+			}
+		});
+		callback(nfa);
+	}, 3000);
+}
+filterArray([1, 2, 3, 4, 5, 6], (filteredArray) => {
+	console.log(filteredArray);
+});
+*/
+
+// ===========================================================================================================
+
 /*4. Simulated API Request
 Create a function fetchData(callback) that simulates fetching data from a server using setTimeout. After 2 seconds, pass an array of user data (e.g., ["Alice", "Bob", "Charlie"]) to the callback.
 
@@ -115,6 +158,14 @@ fetchData((users) => {
 */
 
 /*
+
+
+
+*/
+
+// ===========================================================================================================
+
+/*
 5. File Processing
 Write a function processFile(fileName, callback) that simulates reading a file (use setTimeout to mimic a delay). The callback should log a message like File <fileName> processed!.
 
@@ -124,6 +175,26 @@ processFile("data.txt", (message) => {
 });
 
 */
+// case 1
+/*
+function processFile(fileName, callback) {
+	// Simulate file processing with a 2-second delay
+	setTimeout(() => {
+		// Create a message indicating the file has been processed
+		const message = `File ${fileName} processed!`;
+
+		// Call the callback function with the message
+		callback(message);
+	}, 2000); // 2000ms = 2 seconds delay to simulate processing time
+}
+
+// Using the processFile function
+processFile("data.txt", (message) => {
+	console.log(message);
+});
+*/
+
+// =================================================================================================
 
 /*
 Bonus Challenge:
@@ -135,6 +206,27 @@ calculateAndGreet(
     5, 
     10, 
     (result) => result * 2, // Double the result
+    (finalResult) => console.log(`The final result is ${finalResult}`)
+);
+*/
+// case 1
+/*
+function calculateAndGreet(a, b, operationCallback, greetingCallback) {
+    // Simulate delay for operation using setTimeout
+    setTimeout(() => {
+        const result = operationCallback(a, b);  // Perform the operation on a and b
+        // Simulate delay for greeting after operation
+        setTimeout(() => {
+            greetingCallback(result);  // Pass the result to the greetingCallback
+        }, 1000);  // 1 second delay for greeting
+    }, 1000);  // 1 second delay for operation
+}
+
+// Example usage:
+calculateAndGreet(
+    5, 
+    10, 
+    (a, b) => a + b, // Perform addition
     (finalResult) => console.log(`The final result is ${finalResult}`)
 );
 */
