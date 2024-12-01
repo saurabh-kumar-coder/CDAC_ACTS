@@ -1,24 +1,21 @@
 const { fetchData, addUser } = require("../services/services")
 
-function routing(app, fs, path) {
-
+function routing(global) {
+    app = global.app;
     app
         .route("/")
         .get(async (req, res) => {
             try {
-                const users = await fetchData(fs, path);
-                console.log("users : " + users);
+                const users = await fetchData(global);
                 res.send(users)
-                // res.send("Hello World!");
             } catch (error) {
                 console.error("Fetching error " + error);
-
             }
         })
         .post((req, res) => {
             user = req.body;
             try {
-                isAdded = addUser(user, fs, path);
+                isAdded = addUser(user, global);
                 res.send("post data" + isAdded)
             } catch (error) {
                 console.log("adding error" + error);
@@ -28,7 +25,7 @@ function routing(app, fs, path) {
     app
         .route("/users")
         .get(async (req, res) => {
-            const users = await fetchData(fs, path);
+            const users = await fetchData(global);
             res.send(users);
         })
 
@@ -37,7 +34,7 @@ function routing(app, fs, path) {
         .get(async (req, res) => {
             try {
                 const id = req.params.id;
-                const users = await fetchData(fs, path)
+                const users = await fetchData(global)
                 getUser = users.forEach(element => {
                     if (element.id == id) {
                         res.send(element)

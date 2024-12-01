@@ -7,6 +7,9 @@ console.log("hello");
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-constants(app, fs, path);
+
+global = { app, fs, path };
+
+constants(global);
 
 app.listen(5000, () => console.log("Listening"))

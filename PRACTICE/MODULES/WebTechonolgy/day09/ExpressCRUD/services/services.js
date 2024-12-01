@@ -1,11 +1,8 @@
-// const fetch = require("node-fetch")
-// const fs = require('fs')
-// const path = require('path')
 
-async function fetchData(fs, path) {
-    const dataPath = path.join(__dirname, "../dummy/dummyData.json");
+async function fetchData(global) {
+    const dataPath = global.path.join(__dirname, "../dummy/dummyData.json");
     return new Promise((resolve, reject) => {
-        fs.readFile(dataPath, "utf8", (err, data) => {
+        global.fs.readFile(dataPath, "utf8", (err, data) => {
             if (err) {
                 reject(err)
             } else {
@@ -20,17 +17,17 @@ async function fetchData(fs, path) {
     })
 }
 
-function addUser(user, fs, path) {
-    const dataPath = path.join(__dirname, "../dummy/dummyData.json");
+function addUser(user, global) {
+    const dataPath = global.path.join(__dirname, "../dummy/dummyData.json");
     try {
-        fileData = fs.readFileSync(dataPath, "utf8");
+        fileData = global.fs.readFileSync(dataPath, "utf8");
         users = JSON.parse(fileData)
         userId = users[users.length - 1].id;
         console.log("user id ", userId);
         user.id = userId + 1;
         users.push(user);
 
-        fs.writeFileSync(dataPath, JSON.stringify(users, null, 2))
+        global.fs.writeFileSync(dataPath, JSON.stringify(users, null, 2))
         console.log("user added ");
         return true;
     } catch (error) {
@@ -40,7 +37,3 @@ function addUser(user, fs, path) {
 }
 
 module.exports = { fetchData, addUser }
-// const dataPath = path.join(__dirname, "../dummy/dummyData.json")
-// const fileData = fs.readFile(dataPath, "utf8");
-// const users = JSON.parse(fileData)
-// return users;
