@@ -1,0 +1,14 @@
+#heading {
+    display: flex;
+    justify-content: center;
+}
+
+#icon-gear {
+    display: flex;
+    justify-content: end;
+}
+
+#task-list {
+    display: flex;
+    justify-items: left;
+}
