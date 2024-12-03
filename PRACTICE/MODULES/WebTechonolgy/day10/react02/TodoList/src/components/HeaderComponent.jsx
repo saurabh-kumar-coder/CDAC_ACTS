@@ -13,18 +13,26 @@ import TaskComponent from "./TaskComponent";
 const HeaderComponent = () => {
 	const [todo, setTodo] = useState([]);
 	const [inputValue, setInputValue] = useState("");
+	const [checkedItems, setCheckedItems] = useState([]);
 	function handleAddTodo() {
 		setTodo((prevTodos) => [...prevTodos, inputValue]);
 		setInputValue("");
-		console.log("todo's : " + todo);
 	}
 	const handleInputChange = (e) => {
 		setInputValue(e.target.value);
-		console.log(inputValue);
+	};
+	const handleCheckboxChange = (idx) => {
+		setCheckedItems((prevCheckedItems) => {
+			if (prevCheckedItems.includes(idx)) {
+				return prevCheckedItems.filter((item) => item !== idx);
+			} else {
+				return [...prevCheckedItems, idx]; 
+			}
+		});
 	};
 	return (
 		<div>
-			<div className="container">
+			<div className="container pt-3">
 				<Row>
 					<Col xs={4}></Col>
 					<Col xs={4}>
@@ -65,7 +73,11 @@ const HeaderComponent = () => {
 							<Col xs={3}></Col>
 						</Row>
 						<Row className="pt-4">
-							<TaskComponent todo={todo} />
+							<TaskComponent
+								todo={todo}
+								checkedItems={checkedItems}
+								handleCheckboxChange={handleCheckboxChange}
+							/>
 						</Row>
 					</Col>
 					<Col xs={4}></Col>
@@ -76,14 +88,3 @@ const HeaderComponent = () => {
 };
 
 export default HeaderComponent;
-
-{
-	/* <div>
-							
-						</div>
-
-						<div></div>
-						<div>
-							
-						</div> */
-}
