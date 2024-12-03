@@ -26,7 +26,7 @@ const HeaderComponent = () => {
 			if (prevCheckedItems.includes(idx)) {
 				return prevCheckedItems.filter((item) => item !== idx);
 			} else {
-				return [...prevCheckedItems, idx]; 
+				return [...prevCheckedItems, idx];
 			}
 		});
 	};
