@@ -4,10 +4,10 @@ const userFormRouter = express.Router()
 userFormRouter
     .route("/")
     .get((req, res) => {
-        res.render("", "");
+        res.render("./userForm/form");
     })
     .post((req, res) => {
-        res.render("")
+        res.send("Hello Bacho");
     })
 
 module.exports = userFormRouter;
