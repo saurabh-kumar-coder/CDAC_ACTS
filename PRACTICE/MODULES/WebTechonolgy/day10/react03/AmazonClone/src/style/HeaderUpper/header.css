@@ -1,0 +1,56 @@
+#header-main {
+    background-color: #05390d;
+}
+
+#header-row-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo-amazon {
+    display: flex;
+    justify-content: center;
+    height: 45px;
+    align-items: center;
+}
+
+.white-text {
+    color: white;
+}
+
+#logo-country {
+    height: 39px;
+}
+
+.font-12{
+    font-size: 12px;
+}
+
+.font-14 {
+    font-size: 14px;
+}
+
+.badge {
+    position: absolute;
+    top: -10px; /* Adjust based on your needs */
+    right: -10px; /* Adjust based on your needs */
+    background-color: red; /* Badge background color */
+    color: white; /* Badge text color */
+    border-radius: 50%; /* Makes the badge round */
+    width: 25px; /* Size of the badge */
+    height: 20px; /* Size of the badge */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px; /* Adjust font size as needed */
+}
+
+.padding-0 {
+    padding: 0px !important;
+}
+
+.us-center {
+    display: flex;
+    align-items: center;
+}
