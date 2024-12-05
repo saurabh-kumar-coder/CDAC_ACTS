@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="userFormData" method="POST" action="/userdata">
+        <div>
+            <input placeholder="id" type="text" value=<%=locals.id %>
+        </div>
+        <div>
+            <input placeholder="first name" type="text" value=<%=locals.first_name %>
+        </div>
+        <div>
+            <input placeholder="last name" type="text" value=<%=locals.last_name %>
+        </div>
+        <div>
+            <input placeholder="email" type="text" value=<%=locals.email %>
+        </div>
+        <div>
+            <input placeholder="gender" type="text" value=<%=locals.gender %>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</body>
+
+</html>
