@@ -5,15 +5,9 @@ const Middle = (props) => {
 		<div className="container">
 			<div className="bg-success">
 				<div>Middle : counter : {props.counter}</div>
-				<div>
-					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
-					praesentium.
-				</div>
+				<div>This is middle component</div>
 				<Inner counter={props.counter} />
-				<div>
-					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
-					praesentium.
-				</div>
+				<div>This is middle component</div>
 			</div>
 		</div>
 	);
