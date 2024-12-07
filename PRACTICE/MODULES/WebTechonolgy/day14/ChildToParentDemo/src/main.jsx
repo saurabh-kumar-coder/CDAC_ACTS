@@ -1,11 +1,11 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.jsx";
-import MyRoutes from "./components/routing/MyRoutes.jsx";
+// import App from "./App.jsx";
+import { Routing } from "./routing/Routing.jsx";
 
 createRoot(document.getElementById("root")).render(
 	<StrictMode>
-		<MyRoutes />
-		<App />
+		<Routing />
+		{/* <App /> */}
 	</StrictMode>
 );
