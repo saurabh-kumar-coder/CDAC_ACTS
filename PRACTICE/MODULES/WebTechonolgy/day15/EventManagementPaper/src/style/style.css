@@ -1,0 +1,13 @@
+.divideScreen{
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+}
+
+.maxWidth {
+    max-width: 400px;
+}
+
+table, thead, tr, tbody, td {
+    border: 2px solid black;
+}
