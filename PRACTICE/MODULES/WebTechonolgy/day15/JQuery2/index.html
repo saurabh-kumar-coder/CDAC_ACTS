@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div>
+        <div class="input-data">
+            <form method="post" action="">
+                <div>Enter Details</div>
+                <div>
+                    <input type="text" id="bname" placeholder="Book Name" />
+                </div>
+                <div>
+                    <input type="text" id="bauthor" placeholder="Author Name" />
+                </div>
+                <div>
+                    <input type="date" id="bdate" />
+                </div>
+                <div>
+                    <input type="text" id="bprice" placeholder="Book Price" />
+                </div>
+                <div>Languages: </div>
+                <input type="checkbox" name="languages" value="hindi" /><label> Hindi </label>
+                <input type="checkbox" name="languages" value="marathi" /><label> Matathi </label>
+                <input type="checkbox" name="languages" value="english" /><label> English </label>
+                <div>
+                    <button type="submit" id="submit-btn"> submit </button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book Name</th>
+                        <th>Book Author</th>
+                        <th>Book Date</th>
+                        <th>Book Price</th>
+                        <th>Book Languages</th>
+                    </tr>
+                </thead>
+                <tbody id="Book-Tbody">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>
