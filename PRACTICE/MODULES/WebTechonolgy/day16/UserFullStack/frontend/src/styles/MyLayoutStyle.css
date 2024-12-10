@@ -1,0 +1,33 @@
+.navbar-text {
+    background-color: blueviolet;
+    height: 50px;
+    font-weight: bold;
+	display: flex;
+	align-items: center
+}
+
+.navbar-links {
+    color: white;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.text-decoration {
+    text-decoration: none;
+}
+
+.user-btn {
+    background-color: blueviolet;
+    border-color: blueviolet;
+}
+
+.user-btn:hover {
+    background-color: rgb(181, 42, 181);
+    border-color: rgb(181, 42, 181);
+}
+
+td, tr {
+    background-image: linear-gradient(white, blueviolet);
+}
