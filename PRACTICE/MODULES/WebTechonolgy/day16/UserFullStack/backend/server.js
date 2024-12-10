@@ -42,6 +42,7 @@ app
                 res.send(err);
             })
     })
+    // update user
     .put((req, res) => {
         let userId = req.params.id;
         let uname = req.body.uname;
@@ -56,6 +57,7 @@ app
                 res.send(error);
             })
     })
+    // delete the particular user
     .delete((req, res) => {
         let userId = req.params.id;
         deleteUserByIdService(userId)
