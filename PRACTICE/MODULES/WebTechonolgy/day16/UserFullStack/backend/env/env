@@ -1,0 +1,11 @@
+const env = {
+
+    SERVER_PORT : 3000,
+
+    DB_HOST : "localhost",
+    DB_USER : "root",
+    DB_PASSWORD : "tiger",
+    DB_DATABASE : "cdac_acts"
+}
+
+export default env;
