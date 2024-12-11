@@ -1,13 +1,19 @@
 import express from "express"
 import env from "./env/env"
+import cors from "cors"
 import { getUserDataService, addUserDataService, findUserByIdService, deleteUserByIdService, updateUserByIdService } from "./services/userServices.js"
 const app = express();
+app.use(cors({
+    origin: "http://localhost:5176"
+}))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app
-    .route("/")
+    .route("/user")
     // get all users
     .get((req, res) => {
+        console.log("get called");
+
         getUserDataService()
             .then((result) => {
                 res.send(result);

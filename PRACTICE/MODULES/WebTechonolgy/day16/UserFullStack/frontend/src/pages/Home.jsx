@@ -1,6 +1,56 @@
+import { useEffect, useState } from "react";
 import { Button, Col, Row, Table } from "react-bootstrap";
 
 const Home = () => {
+	const [data, setData] = useState([]);
+	const [uname, setUname] = useState("");
+	const [city, setCity] = useState("");
+	const [address, setAddress] = useState("");
+	const [updateOnPost, setUpdateOnPost] = useState(false);
+	useEffect(() => {
+		const getUserData = async () => {
+			try {
+				setUpdateOnPost(false);
+				let response = await fetch("http://localhost:3000/user");
+				if (!response.ok) throw new Error("Not Fetched");
+				const result = await response.json();
+
+				setData(result);
+				console.log(result);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		getUserData();
+	}, [updateOnPost]);
+
+	const addUser = () => {
+		let newUser = { uname: uname, city: city, address: address };
+		console.log(newUser);
+		const addUser = async () => {
+			try {
+				const response = await fetch("http://localhost:3000/user", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(newUser),
+				});
+
+				if (!response) {
+					throw new Error("Unable to add data.");
+				}
+				const result = await response.json();
+				console.log(result);
+				setUpdateOnPost(true);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		addUser();
+	};
+
 	return (
 		<div>
 			<Row>
@@ -17,13 +67,19 @@ const Home = () => {
 							<input
 								className="form-control"
 								type="text"
+								onChange={(e) => setUname(e.target.value)}
 								placeholder="USERNAME"
 							/>
 						</Col>
 					</Row>
 					<Row className="px-5 pt-4">
 						<Col>
-							<input className="form-control" type="text" placeholder="CITY" />
+							<input
+								className="form-control"
+								onChange={(e) => setCity(e.target.value)}
+								type="text"
+								placeholder="CITY"
+							/>
 						</Col>
 					</Row>
 					<Row className="px-5 pt-4">
@@ -31,13 +87,16 @@ const Home = () => {
 							<input
 								className="form-control"
 								type="text"
+								onChange={(e) => setAddress(e.target.value)}
 								placeholder="ADDRESS"
 							/>
 						</Col>
 					</Row>
 					<Row className="px-5 pt-4">
 						<Col>
-							<Button className="form-control user-btn">ADD USER</Button>
+							<Button onClick={addUser} className="form-control user-btn">
+								ADD USER
+							</Button>
 						</Col>
 					</Row>
 				</Col>
@@ -62,28 +121,33 @@ const Home = () => {
 									</tr>
 								</thead>
 								<tbody>
-									<tr className="align-center">
-										<td className="w-auto">USER ID</td>
-										<td className="w-auto">USERNAME</td>
-										<td className="w-auto">CITY</td>
-										<td className="w-auto">ADDRESS</td>
-										<td className="w-auto">
-											<Button className="user-btn">EDIT</Button>
-											<span className="px-2"></span>
-											<Button className="user-btn">DELETE</Button>
-										</td>
-									</tr>
-									<tr className="align-center">
-										<td className="w-auto">USER ID</td>
-										<td className="w-auto">USERNAME</td>
-										<td className="w-auto">CITY</td>
-										<td className="w-auto">ADDRESS</td>
-										<td className="w-auto">
-											<Button className="user-btn">EDIT</Button>
-											<span className="px-2"></span>
-											<Button className="user-btn">DELETE</Button>
-										</td>
-									</tr>
+									{data.length > 0 ? (
+										data.map((user, idx) => {
+											{
+												return (
+													<tr className="align-center" key={idx}>
+														<td className="w-auto">{user.id}</td>
+														<td className="w-auto">{user.uname}</td>
+														<td className="w-auto">{user.city}</td>
+														<td className="w-auto">{user.address}</td>
+														<td className="w-auto">
+															<Button id={user.id} className="user-btn">
+																EDIT
+															</Button>
+															<span className="px-2"></span>
+															<Button id={user.id} className="user-btn">
+																DELETE
+															</Button>
+														</td>
+													</tr>
+												);
+											}
+										})
+									) : (
+										<tr>
+											<td colSpan="5">No Data FOUND</td>
+										</tr>
+									)}
 								</tbody>
 							</Table>
 						</Col>

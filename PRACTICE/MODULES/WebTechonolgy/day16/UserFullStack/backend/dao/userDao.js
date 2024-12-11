@@ -67,6 +67,4 @@ const deleteUserById = (userId) => {
     })
 }
 
-console.log("in Dao file");
-
 export { getUserData, addUserData, findUserById, deleteUserById, updateUserById }

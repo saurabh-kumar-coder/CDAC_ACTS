@@ -8,31 +8,31 @@ const conn = mysql.createConnection({
     database: env.DB_DATABASE
 })
 
-conn.connect((err)=>{
+conn.connect((err) => {
     if (err) {
         console.log(err);
     } else {
-        console.log("connection created");
+        // console.log("connection created");
     }
 })
 
 const database_creation = `create database if not exists ${env.DB_DATABASE}`
 
 conn.query(database_creation, (err) => {
-    if(err) {
+    if (err) {
         console.log(err);
     } else {
-        console.log("DATABASE CREATED");
+        // console.log("DATABASE CREATED");
     }
 })
 
 const use_database = `use ${env.DB_DATABASE}`;
 
 conn.query(use_database, (err) => {
-    if(err)
+    if (err)
         throw err;
     else {
-        console.log(`USING DATABASE ${env.DB_DATABASE}`);
+        // console.log(`USING DATABASE ${env.DB_DATABASE}`);
     }
 })
 
@@ -48,10 +48,10 @@ const create_table = `
     `;
 
 conn.query(create_table, (err) => {
-    if(err)
+    if (err)
         throw err;
     else {
-        console.log("TABLE CREATED");
+        // console.log("TABLE CREATED");
     }
 });
 
