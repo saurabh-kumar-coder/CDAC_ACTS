@@ -37,7 +37,7 @@ conn.query(use_database, (err) => {
 })
 
 const create_table = `
-    create table if not exists wpt 
+    create table if not exists ${env.DB_TABLE} 
     (
         id int auto_increment,
         uname varchar(20),

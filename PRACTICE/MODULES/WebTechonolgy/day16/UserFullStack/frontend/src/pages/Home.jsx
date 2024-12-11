@@ -8,14 +8,13 @@ const Home = () => {
 	const [uname, setUname] = useState("");
 	const [city, setCity] = useState("");
 	const [address, setAddress] = useState("");
-	// const [updateOnPost, setUpdateOnPost] = useState(false);
 	const [flagToGetData, setFlagToGetData] = useState(false);
 	const [edit, setEdit] = useState(false);
 	// useEffect(() => {
 	// 	const getUserData = async () => {
 	// 		try {
 	// 			setUpdateOnPost(false);
-	// 			let response = await fetch("http://localhost:3000/user");
+	// 			let response = await fetch(`http://localhost:3000/user`);
 	// 			if (!response.ok) throw new Error("Not Fetched");
 	// 			const result = await response.json();
 
@@ -32,7 +31,7 @@ const Home = () => {
 		const getUserData = async () => {
 			try {
 				setFlagToGetData(false);
-				let response = await axios.get("http://localhost:3000/user");
+				let response = await axios.get(`http://localhost:3000/user`);
 				if (!response) throw new Error("Data Not Fetched...");
 				const result = response.data;
 				setData(result);
@@ -48,7 +47,7 @@ const Home = () => {
 	// 	console.log(newUser);
 	// 	const addUser = async () => {
 	// 		try {
-	// 			const response = await fetch("http://localhost:3000/user", {
+	// 			const response = await fetch(`http://localhost:3000/user`, {
 	// 				method: "POST",
 	// 				headers: {
 	// 					"Content-Type": "application/json",
@@ -79,7 +78,7 @@ const Home = () => {
 		const addUser = async () => {
 			try {
 				const response = await axios.post(
-					"http://localhost:3000/user",
+					`http://localhost:3000/user`,
 					newUser,
 					{
 						headers: {
@@ -296,7 +295,9 @@ const Home = () => {
 											})
 										) : (
 											<tr>
-												<td colSpan="5">No Data FOUND</td>
+												<td colSpan="5" className="no-data-found">
+													No Data FOUND
+												</td>
 											</tr>
 										)}
 									</tbody>

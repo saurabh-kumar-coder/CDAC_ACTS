@@ -5,7 +5,9 @@ const env = {
     DB_HOST : "localhost",
     DB_USER : "root",
     DB_PASSWORD : "tiger",
-    DB_DATABASE : "cdac_acts"
+    DB_DATABASE : "cdac_acts",
+    DB_TABLE : "WPT", 
+    REACT_URL: "http://localhost:5176"
 }
 
 export default env;

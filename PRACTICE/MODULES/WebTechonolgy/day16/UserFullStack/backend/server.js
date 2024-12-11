@@ -4,7 +4,7 @@ import cors from "cors"
 import { getUserDataService, addUserDataService, findUserByIdService, deleteUserByIdService, updateUserByIdService } from "./services/userServices.js"
 const app = express();
 app.use(cors({
-    origin: "http://localhost:5176"
+    origin: env.REACT_URL
 }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

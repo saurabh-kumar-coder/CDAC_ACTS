@@ -35,7 +35,8 @@ td, tr {
 .table-container {
     height: 530px;
     overflow-y: auto;
+}
 
-    /* color: black; */
-    /* border: 2px solid black; */
+.no-data-found {
+    text-align: center;
 }
