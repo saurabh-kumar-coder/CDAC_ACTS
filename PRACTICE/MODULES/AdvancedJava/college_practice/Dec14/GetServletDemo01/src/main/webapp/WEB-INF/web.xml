@@ -28,4 +28,15 @@
   	<servlet-name>GetContactPageServlet</servlet-name>
   	<url-pattern>/GetContactUsPage</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>GetLoginPageServlet</servlet-name>
+  	<servlet-class>com.saurabh.servlets.GetLoginPageServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>GetLoginPageServlet</servlet-name>
+  	<url-pattern>/LoginPage</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

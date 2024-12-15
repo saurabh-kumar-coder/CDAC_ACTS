@@ -1,0 +1,21 @@
+Create a Java Console Application that allows the User to create a new table with
+columns in the database
+1. Create Table
+		-> Accept the Table Name
+		-> loop the below till Save is selected
+	a. Add column
+		-> Accept the column name
+		-> show a list of standard types (VARCHAR, INT,FLOAT)
+		-> ask him to select an option this will be the datatype to be used for
+		the column
+		
+	b. Set Primary Key
+		->Show all the columns above and ask him to select the column to act
+		as a primary key
+	
+	c. Save
+		->this will result in saving the Table to the underlying database
+
+2. Display Columns of a Table
+	-> Accept the name of the table and show Only the column names in that
+	table.
