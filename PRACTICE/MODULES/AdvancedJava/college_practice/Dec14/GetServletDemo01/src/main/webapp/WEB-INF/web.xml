@@ -9,4 +9,23 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <servlet>
+  	<servlet-name>GetHomePageServlet</servlet-name>
+  	<servlet-class>com.saurabh.servlets.GetHomePageServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>GetHomePageServlet</servlet-name>
+  	<url-pattern>/GetHomePage</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>GetContactPageServlet</servlet-name>
+  	<servlet-class>com.saurabh.servlets.GetContactPageServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>GetContactPageServlet</servlet-name>
+  	<url-pattern>/GetContactUsPage</url-pattern>
+  </servlet-mapping>
 </web-app>
