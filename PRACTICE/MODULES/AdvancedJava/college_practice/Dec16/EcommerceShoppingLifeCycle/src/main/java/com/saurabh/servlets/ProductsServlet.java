@@ -41,10 +41,10 @@ public class ProductsServlet extends HttpServlet {
 			public void destroy() {
 				// TODO Auto-generated method stub
 				try {
-					if(connection == null) {
+					if(connection != null) {
 						connection.close();
 					}
-					if(psGetProductByCategory == null) {
+					if(psGetProductByCategory != null) {
 						psGetProductByCategory.close();
 					}
 				} catch (SQLException e) {

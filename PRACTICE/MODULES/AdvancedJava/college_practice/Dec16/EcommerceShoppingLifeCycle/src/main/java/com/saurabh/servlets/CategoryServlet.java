@@ -88,6 +88,7 @@ public class CategoryServlet extends HttpServlet {
 							out.println("<td>");
 							out.println(categoriesResult.getString("categoryDescription"));
 							out.println("</td>");
+							
 							out.println("<td>");
 							out.println("<img height='60px' width='60px' src='Images/"
 									+ categoriesResult.getString("categoryImageUrl") + "' alt='"
