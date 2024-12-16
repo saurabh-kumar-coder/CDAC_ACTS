@@ -30,7 +30,7 @@ public class CategoryServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		serviceImpl(request, response);
+//		serviceImpl(request, response);
 	}
 
 	private void serviceImpl(HttpServletRequest request, HttpServletResponse response)
