@@ -31,3 +31,5 @@ PRACTICE/MODULES/WebTechonolgy/day05/tailwind/node_modules
 PRACTICE/MODULES/WebTechonolgy/day05/tailwind/tailwind.config.js
 PRACTICE/MODULES/WebTechonolgy/day05/tailwind/package.json
 *\node_modules
+*\.metadata
+*\server
