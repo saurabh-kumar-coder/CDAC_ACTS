@@ -1,4 +1,4 @@
-package com.saurabh.servlets.common;
+package com.saurabh.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,40 +18,39 @@ import jakarta.servlet.http.HttpServletResponse;
 public class AuthenticationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			
-			try(
-					Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/advjava", "root", "tiger");
-					PreparedStatement psGetUsernameAndPassword = connection.prepareStatement("SELECT * FROM users WHERE userName = ? AND password = ?")
-					) 
-			{
+
+			try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/advjava", "root",
+					"tiger");
+					PreparedStatement psGetUsernameAndPassword = connection
+							.prepareStatement("SELECT * FROM users WHERE userName = ? AND password = ?");
+					) {
 				String userName = request.getParameter("username");
 				String password = request.getParameter("password");
 				psGetUsernameAndPassword.setString(1, userName);
 				psGetUsernameAndPassword.setString(2, password);
-				
+
 				ResultSet result = psGetUsernameAndPassword.executeQuery();
-				if(result.next()) {
-					out.println("User Authenticated");
+				if (result.next()) {
+					out.println("Valid User");
+					response.sendRedirect("Category");
 				} else {
 					out.println("Invalid User");
 					response.sendRedirect("login.html");
 				}
-				
-			} catch(SQLException e) {
+
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 
 }
