@@ -40,11 +40,11 @@ public class CategoryServlet extends HttpServlet {
 	@Override
 	public void destroy() {
 		try {
-			if (connection != null) {
-				connection.close();
-			}
 			if (psGetCategoriesData != null) {
 				psGetCategoriesData.close();
+			}
+			if (connection != null) {
+				connection.close();
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

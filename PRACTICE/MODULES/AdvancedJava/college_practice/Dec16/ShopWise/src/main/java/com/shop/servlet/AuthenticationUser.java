@@ -1,6 +1,7 @@
 package com.shop.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -35,7 +36,7 @@ public class AuthenticationUser extends HttpServlet {
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/advjava", "root", "tiger");
 
 			psFindUsernameAndPassword = connection
-					.prepareStatement("SELECT * FROM USERS WHERE userName = ? AND password = ?;");
+					.prepareStatement("SELECT * FROM users WHERE userName = ? AND password = ?;");
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,11 +47,11 @@ public class AuthenticationUser extends HttpServlet {
 	public void destroy() {
 		// TODO Auto-generated method stub
 		try {
-			if (connection != null) {
-				connection.close();
-			}
 			if (psFindUsernameAndPassword != null) {
 				psFindUsernameAndPassword.close();
+			}
+			if (connection != null) {
+				connection.close();
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -67,25 +68,29 @@ public class AuthenticationUser extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		PrintWriter writer = response.getWriter();
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
 		
 		try {
 			psFindUsernameAndPassword.setString(1, userName);
 			psFindUsernameAndPassword.setString(2, password);
-
+			System.out.println(userName);
+			System.out.println(password);
 			try (ResultSet result = psFindUsernameAndPassword.executeQuery()) {
-				if (result.next() && userName.equalsIgnoreCase("admin")) {
-					response.sendRedirect("");
-				}
-				if (result.next()) {
-					response.sendRedirect("");
+				System.out.println(psFindUsernameAndPassword);
+				if (userName.equalsIgnoreCase("admin") && result.next() ) {
+					response.sendRedirect("admin/adminHome.html");
+				} else if (result.next()) {
+					response.sendRedirect("user/userHome.html");
+				} else {
+					response.sendRedirect("login.html");
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} catch (SQLException | IOException e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
