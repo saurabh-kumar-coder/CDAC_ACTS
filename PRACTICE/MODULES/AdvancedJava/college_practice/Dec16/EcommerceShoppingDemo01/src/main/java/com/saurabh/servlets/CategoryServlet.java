@@ -14,33 +14,17 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class CategoryServlet
- */
 @WebServlet("/Category")
 public class CategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		serviceImpl(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		serviceImpl(request, response);
-	}
-
-	private void serviceImpl(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-
+		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-
+			
 			try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/advjava", "root",
 					"tiger");
 					PreparedStatement psGetCategoriesData = connection.prepareStatement("SELECT * FROM category");) {
@@ -49,30 +33,30 @@ public class CategoryServlet extends HttpServlet {
 					out.println("<html>");
 					out.println("<body>");
 					out.println("<table border='2px' solid black'>");
-
+					
 					out.println("<tr>");
-
+					
 					out.println("<th>");
 					out.println("Category Name");
 					out.println("</th>");
-
+					
 					out.println("<th>");
 					out.println("Description");
 					out.println("</th>");
-
+					
 					out.println("<th>");
 					out.println("Image");
 					out.println("</th>");
-
+					
 					out.println("</tr>");
 					while (categoriesResult.next()) {
 						out.println("<tr>");
-
+						
 						out.println("<td>");
 						out.println("<a href='Products?categoryId=" + categoriesResult.getString("categoryId") + "'>"
 								+ categoriesResult.getString("categoryName") + "</a>");
 						out.println("</td>");
-
+						
 						out.println("<td>");
 						out.println(categoriesResult.getString("categoryDescription"));
 						out.println("</td>");
@@ -81,17 +65,17 @@ public class CategoryServlet extends HttpServlet {
 								+ categoriesResult.getString("categoryImageUrl") + "' alt='"
 								+ categoriesResult.getString("categoryDescription") + "'/>");
 						out.println("</td>");
-
+						
 						out.println("</tr>");
 					}
-
+					
 					out.println("</table>");
 					out.println("</body>");
 					out.println("</html>");
 				} else {
 					out.println("No Data FOUND");
 				}
-
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -100,4 +84,7 @@ public class CategoryServlet extends HttpServlet {
 		}
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+	}
 }
