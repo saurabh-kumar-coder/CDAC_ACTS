@@ -1,6 +1,7 @@
 package com.shop.servlet.admin;
 
 import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -27,9 +28,14 @@ public class AddProducts extends HttpServlet {
 		super.init(config);
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			ServletContext application = getServletContext();
+			String driver = application.getInitParameter("driver");
+			String url = application.getInitParameter("url");
+			String username = application.getInitParameter("username");
+			String password = application.getInitParameter("password");
+			Class.forName(driver);
 
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/advjava", "root", "tiger");
+			connection = DriverManager.getConnection(url, username, password);
 
 			psInsertProduct = connection.prepareStatement(
 					"INSERT INTO products (categoryId, productName, productDescription, productPrice, productImageUrl) values (?, ?, ?, ?, ?)");
@@ -69,7 +75,7 @@ public class AddProducts extends HttpServlet {
 		String productDescription = request.getParameter("productDescription");
 		int productPrice = Integer.parseInt(request.getParameter("productPrice"));
 		String productImageUrl = request.getParameter("productImageUrl");
-
+		System.out.println("In product add table");
 		try {
 			if (categoryId == 0 || productName != null || productDescription != null || productPrice == 0 || productImageUrl != null) {
 				response.sendRedirect("addProduct.html");
@@ -87,15 +93,21 @@ public class AddProducts extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				System.out.println(psInsertProduct);
 				if (result > 0)
 					response.sendRedirect("adminHome.html");
+				else {
+					response.sendRedirect("addProduct.html");
+				}
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("error inside add products");
+//			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("error inside add products");
+//			e.printStackTrace();
 		}
 
 	}

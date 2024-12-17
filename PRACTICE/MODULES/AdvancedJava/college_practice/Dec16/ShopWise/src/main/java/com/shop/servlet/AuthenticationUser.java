@@ -75,10 +75,7 @@ public class AuthenticationUser extends HttpServlet {
 		try {
 			psFindUsernameAndPassword.setString(1, userName);
 			psFindUsernameAndPassword.setString(2, password);
-			System.out.println(userName);
-			System.out.println(password);
 			try (ResultSet result = psFindUsernameAndPassword.executeQuery()) {
-				System.out.println(psFindUsernameAndPassword);
 				if (userName.equalsIgnoreCase("admin") && result.next() ) {
 					response.sendRedirect("admin/adminHome.html");
 				} else if (result.next()) {
