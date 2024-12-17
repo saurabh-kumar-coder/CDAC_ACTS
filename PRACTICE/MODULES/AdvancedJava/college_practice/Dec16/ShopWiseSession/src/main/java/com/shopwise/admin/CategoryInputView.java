@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpSession;
  * Servlet implementation class AddCategory
  */
 @WebServlet("/CategoryView")
-public class CategoryView extends HttpServlet {
+public class CategoryInputView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	

@@ -84,7 +84,7 @@ public class AddCategory extends HttpServlet {
 			
 			if(addCategoryResult > 0) {
 				writer.println("category Added");
-				response.sendRedirect("Admin");
+				response.sendRedirect("Categories");
 				return;
 			} else {
 				writer.println("category not Added");
