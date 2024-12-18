@@ -55,7 +55,7 @@ public class ListCart extends HttpServlet {
 			writer.println("<tr> Total : " + total + "</tr>");
 		}
 		writer.println("<a href='AddCardView'>Add Card</a><br />");
-		writer.println("</table>" + "<a href=''>Checkout</a><br />" + "<a href='Logout'>LOGOUT</a>" + "</body>" + "</html>");
+		writer.println("</table>" + "<a href='CheckOut'>Checkout</a><br />" + "<a href='Logout'>LOGOUT</a>" + "</body>" + "</html>");
 		session.setAttribute("totalPriceForCheckOut", total);
 	}
 

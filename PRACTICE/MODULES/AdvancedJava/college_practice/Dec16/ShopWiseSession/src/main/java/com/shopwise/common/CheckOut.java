@@ -5,8 +5,8 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
@@ -18,14 +18,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class AddCardDetails
+ * Servlet implementation class CheckOut
  */
-@WebServlet("/AddCardDetails")
-public class AddCardDetails extends HttpServlet {
+@WebServlet("/CheckOut")
+public class CheckOut extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+
 	Connection connection;
-	PreparedStatement psAddCardDetails;
+	PreparedStatement psGetCards;
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -40,7 +40,7 @@ public class AddCardDetails extends HttpServlet {
 		try {
 			Class.forName(DB_DRIVER);
 			connection = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-			psAddCardDetails = connection.prepareStatement("INSERT INTO card values (?, ?, ?)");
+			psGetCards = connection.prepareStatement("SELECT * FROM card");
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
@@ -51,8 +51,8 @@ public class AddCardDetails extends HttpServlet {
 	@Override
 	public void destroy() {
 		try {
-			if (psAddCardDetails == null) {
-				psAddCardDetails.close();
+			if (psGetCards == null) {
+				psGetCards.close();
 			}
 			if (connection == null) {
 				connection.close();
@@ -63,29 +63,27 @@ public class AddCardDetails extends HttpServlet {
 		}
 	}
 
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter writer = response.getWriter();
+		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(false);
 		if(session == null) {
 			response.sendRedirect("login.html");
 			return;
 		}
-		int cardNo = Integer.parseInt(request.getParameter("cardNo"));
-		float balance = Float.parseFloat(request.getParameter("balance"));
-		String expiry = request.getParameter("expiry");
-		
-		try {
-			psAddCardDetails.setInt(1, cardNo);
-			psAddCardDetails.setFloat(2, balance);
-			psAddCardDetails.setString(3, expiry);
-			
-			int resultAddCard = psAddCardDetails.executeUpdate();
-			
-			if(resultAddCard > 0) {
-				writer.println("added card");
-			} else {
-				writer.println("added not card");
+		String username = (String)session.getAttribute("username");
+		PrintWriter writer = response.getWriter();
+		try (ResultSet resultCards = psGetCards.executeQuery()) {
+			writer.println("<html><body><form action='TransactionCart' method='post'>");
+			writer.println("Welcome <b>" + username + "</b><br />");
+			writer.println("TOTAL AMOUNT TO BE DEDUCTED : <b>" + session.getAttribute("totalPriceForCheckOut")+"</b><br />");
+			writer.println("<div>SELECT CARD : <select name=cards>");
+			while(resultCards.next()) {
+				writer.println("<option value='"+resultCards.getString(1)+"'>"+resultCards.getString(1)+"</option>");
 			}
+			writer.println("</div>");
+			writer.println("<div><input type='submit' value='buy'></div>");
+			writer.println("</form></body></html>");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
