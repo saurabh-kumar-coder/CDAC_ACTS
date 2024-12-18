@@ -77,7 +77,7 @@ public class CheckOut extends HttpServlet {
 			writer.println("<html><body><form action='TransactionCart' method='post'>");
 			writer.println("Welcome <b>" + username + "</b><br />");
 			writer.println("TOTAL AMOUNT TO BE DEDUCTED : <b>" + session.getAttribute("totalPriceForCheckOut")+"</b><br />");
-			writer.println("<div>SELECT CARD : <select name=cards>");
+			writer.println("<div>SELECT CARD : <select name=cardNo>");
 			while(resultCards.next()) {
 				writer.println("<option value='"+resultCards.getString(1)+"'>"+resultCards.getString(1)+"</option>");
 			}
