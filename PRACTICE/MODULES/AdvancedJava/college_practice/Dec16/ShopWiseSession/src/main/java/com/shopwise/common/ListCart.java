@@ -41,31 +41,22 @@ public class ListCart extends HttpServlet {
 
 		writer.println("<table border=2>" + "<tr>" + "<th>category id</th>" + "<th>product id</th>"
 				+ "<th>product Price</th>" + "</tr>");
+		int total = 0;
 		if (item == null) {
 			writer.println("cart is null");
 		} else {
 			Iterator<CartItem> itr = item.iterator();
-			int total = 0;
 			while (itr.hasNext()) {
 				CartItem cartItem = itr.next();
-				writer.println("<tr>"
-						+ "<td>"
-						+ cartItem.getCategoryId()
-						+ "</td>"
-						+ "<td>"
-						+ cartItem.getProductId()
-						+ "</td>"
-						+ "<td>"
-						+ cartItem.getPrice()
-						+ "</td>"
-						+ "</tr>");
-					total += cartItem.getPrice();
+				writer.println("<tr>" + "<td>" + cartItem.getCategoryId() + "</td>" + "<td>" + cartItem.getProductId()
+						+ "</td>" + "<td>" + cartItem.getPrice() + "</td>" + "</tr>");
+				total += cartItem.getPrice();
 			}
-			writer.println("<tr> Total : " + total +"</tr>");
+			writer.println("<tr> Total : " + total + "</tr>");
 		}
-		writer.println("</table>"
-				+ "<a href='Logout'>LOGOUT</a>"
-				+ ""+"</body></html>");
+		writer.println("<a href='AddCardView'>Add Card</a><br />");
+		writer.println("</table>" + "<a href=''>Checkout</a><br />" + "<a href='Logout'>LOGOUT</a>" + "</body>" + "</html>");
+		session.setAttribute("totalPriceForCheckOut", total);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
