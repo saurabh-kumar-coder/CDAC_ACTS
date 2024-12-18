@@ -59,17 +59,15 @@ public class ListCart extends HttpServlet {
 						+ cartItem.getPrice()
 						+ "</td>"
 						+ "</tr>");
+					total += cartItem.getPrice();
 			}
+			writer.println("<tr> Total : " + total +"</tr>");
 		}
 		writer.println("</table>"
 				+ "<a href='Logout'>LOGOUT</a>"
 				+ ""+"</body></html>");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub

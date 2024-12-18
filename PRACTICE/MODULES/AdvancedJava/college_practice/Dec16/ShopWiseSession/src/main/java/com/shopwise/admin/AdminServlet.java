@@ -38,6 +38,8 @@ public class AdminServlet extends HttpServlet {
 		writer.println("<br />");
 		writer.println("<a href='Categories'>Show Categories</a>");
 		writer.println("<br />");
+		writer.println("<a href='ListCart'>Show Cart</a>");
+		writer.println("<br />");
 		writer.println("</body>");
 		writer.println("</html>");
 	}
