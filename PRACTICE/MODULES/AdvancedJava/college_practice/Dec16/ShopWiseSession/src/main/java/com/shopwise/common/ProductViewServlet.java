@@ -78,7 +78,7 @@ public class ProductViewServlet extends HttpServlet {
 				writer.println("<html><body>");
 				writer.println("Welcome <b>" + username + "</b><br />");
 				writer.println("<table border=2>" + "<tr>" + "<th>category name</th>" + "<th>category description</th>"
-						+ "<th>category Price</th>" + "<th>category image</th>" + "<th>Operation</th>" + "</tr>");
+						+ "<th>product Price</th>" + "<th>category image</th>" + "<th>Operation</th>" + "</tr>");
 				if (productListByCategory != null) {
 					while (productListByCategory.next()) {
 						writer.println("<tr>");

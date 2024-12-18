@@ -42,7 +42,6 @@ public class CategoryServlet extends HttpServlet {
 			Class.forName(DB_DRIVER);
 			connection = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 			psCategoryList = connection.prepareStatement("SELECT * FROM category");
-			categoryListResult = psCategoryList.executeQuery();
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,10 +51,10 @@ public class CategoryServlet extends HttpServlet {
 	@Override
 	public void destroy() {
 		try {
-			if (psCategoryList == null) {
+			if (psCategoryList != null) {
 				psCategoryList.close();
 			}
-			if (connection == null) {
+			if (connection != null) {
 				connection.close();
 			}
 		} catch (SQLException e) {
@@ -68,30 +67,36 @@ public class CategoryServlet extends HttpServlet {
 			throws ServletException, IOException {
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession(false);
-		if (session == null) {
-			response.sendRedirect("login.html");
-			return;
-		}
-		String username = (String) session.getAttribute("username");
-
 		try {
-			writer.println("<html><body>");
-			writer.println("Welcome <b>" + username + "</b><br />");
-			writer.println("<table border=2>" + "<tr>" + "<th>category name</th>" + "<th>category description</th>"
-					+ "<th>category image</th>" + "</tr>");
-			while (categoryListResult.next()) {
-				writer.println("<tr>");
-				writer.println("<td><a href='Product?categoryId=" + categoryListResult.getString("categoryId") + "'>"
-						+ categoryListResult.getString("categoryName") + "</a></td>");
-				writer.println("<td>" + categoryListResult.getString("categoryDescription") + "</td>");
-				writer.println("<td><img width='60px' height='60px' src='Images/"
-						+ categoryListResult.getString("categoryImageUrl") + "' alt='"
-						+ categoryListResult.getString("categoryDescription") + "'></td>");
-				writer.println("</tr>");
-
+			categoryListResult = psCategoryList.executeQuery();
+			if (session == null) {
+				response.sendRedirect("login.html");
+				return;
 			}
-			writer.println("</table></body></html>");
-		} catch (SQLException e) {
+			String username = (String) session.getAttribute("username");
+
+			try {
+				writer.println("<html><body>");
+				writer.println("Welcome <b>" + username + "</b><br />");
+				writer.println("<table border=2>" + "<tr>" + "<th>category name</th>" + "<th>category description</th>"
+						+ "<th>category image</th>" + "</tr>");
+				while (categoryListResult.next()) {
+					writer.println("<tr>");
+					writer.println("<td><a href='Product?categoryId=" + categoryListResult.getString("categoryId") + "'>"
+							+ categoryListResult.getString("categoryName") + "</a></td>");
+					writer.println("<td>" + categoryListResult.getString("categoryDescription") + "</td>");
+					writer.println("<td><img width='60px' height='60px' src='Images/"
+							+ categoryListResult.getString("categoryImageUrl") + "' alt='"
+							+ categoryListResult.getString("categoryDescription") + "'></td>");
+					writer.println("</tr>");
+
+				}
+				writer.println("</table></body></html>");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (SQLException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
