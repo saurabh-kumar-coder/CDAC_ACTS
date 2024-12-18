@@ -83,7 +83,7 @@ public class Authenticate extends HttpServlet {
 			
 			try (ResultSet authResult = psAuthenticateUser.executeQuery()) {
 				if(username.equalsIgnoreCase("a") && authResult.next()) {
-					HttpSession session = request.getSession();
+					HttpSession session = request.getSession(false);
 					session.setAttribute("username", username);
 					response.sendRedirect("Admin");
 					return;
