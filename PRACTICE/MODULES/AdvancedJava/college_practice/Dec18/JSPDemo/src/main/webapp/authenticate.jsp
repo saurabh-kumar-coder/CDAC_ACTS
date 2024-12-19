@@ -33,10 +33,12 @@
 		session.setAttribute("username", resultAuth.getString("userName"));
 	%>
 	<jsp:forward page="category.jsp"></jsp:forward>
+	return;
 	<%
 	} else {
 	%>
 	<jsp:forward page="index.jsp"></jsp:forward>
+	return;
 	<%
 	}
 	%>

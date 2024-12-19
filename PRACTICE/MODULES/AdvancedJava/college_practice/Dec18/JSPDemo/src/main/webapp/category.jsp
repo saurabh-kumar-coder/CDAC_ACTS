@@ -7,6 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	WELCOME TO CATEGORY
+	<%
+		if(session == null) {
+			response.sendRedirect("index.jsp");
+			return;
+		}
+	%>
+	<%
+		String username = (String)session.getAttribute("username");
+	%>
+	WELCOME <b style="color: red;"><%=username.toUpperCase() %></b> TO CATEGORY
+	
+
 </body>
 </html>
