@@ -28,9 +28,6 @@ public class App
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        
-        
     }
 
 	private static void putData(Session hibernateSession) {
