@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -24,23 +26,23 @@ public class InitializeHibernate extends HttpServlet {
 		// TODO Auto-generated method stub
 		super.init(config);
 		Configuration hibernateConfiguration = new Configuration();
-		Properties prop = new Properties();
+		Properties hibernateProperties = new Properties();
 		InputStream input = getClass().getClassLoader().getResourceAsStream("application.properties");
         try {
 			if (input == null) {
 			    throw new FileNotFoundException("application.properties not found in classpath");
 			}
-			prop.load(input);
+			hibernateProperties.load(input);
+			hibernateConfiguration.setProperties(hibernateProperties);
+			SessionFactory hibernateFactory = hibernateConfiguration.buildSessionFactory();
+//			addAnnotatedClass
+			
+			ServletContext application = getServletContext();
+			application.setAttribute("hibernateFactory", hibernateFactory);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		try {
-//			prop.load(new FileInputStream("application.properties"));
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 	}
 
 }
