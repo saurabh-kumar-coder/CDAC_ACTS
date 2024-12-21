@@ -4,6 +4,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.basic.config.ApplicationConfiguration;
+import com.basic.pojos.DummyUser;
 import com.basic.pojos.Users;
 
 /**
@@ -23,6 +24,10 @@ public class App
 			System.out.println(user1.getUsername());
 			System.out.println(user1.getPassword());
 			System.out.println("user : " + user1.hashCode());
+			
+			DummyUser dUser = applicationContext.getBean(DummyUser.class);
+			System.out.println(dUser.toString());
+			
 		} catch (BeansException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
