@@ -25,3 +25,8 @@ WORKDIR /app
 COPY . /app
 
 CMD ["java", "-cp", "bin", "com.mainclass.Main"]
+
+cmd : 
+    docker build -t labexam .
+    docker run labexam
+    docker run -it labexam
