@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Hello
+	LOGIN PAGE
+	<form action="authenticate.jsp" method="post">
+		username : <input type="text" name="userName" />
+		password : <input type="text" name="password" />
+		<input type="submit" value="login" />
+	</form>
 </body>
 </html>

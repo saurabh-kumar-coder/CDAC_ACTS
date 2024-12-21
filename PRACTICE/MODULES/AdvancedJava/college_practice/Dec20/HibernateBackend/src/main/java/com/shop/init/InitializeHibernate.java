@@ -8,6 +8,9 @@ import java.util.Properties;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.shop.pojos.Category;
+import com.shop.pojos.Users;
+
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -34,9 +37,10 @@ public class InitializeHibernate extends HttpServlet {
 			}
 			hibernateProperties.load(input);
 			hibernateConfiguration.setProperties(hibernateProperties);
-			SessionFactory hibernateFactory = hibernateConfiguration.buildSessionFactory();
 //			addAnnotatedClass
-			
+			hibernateConfiguration.addAnnotatedClass(Users.class);
+			hibernateConfiguration.addAnnotatedClass(Category.class);
+			SessionFactory hibernateFactory = hibernateConfiguration.buildSessionFactory();
 			ServletContext application = getServletContext();
 			application.setAttribute("hibernateFactory", hibernateFactory);
 		} catch (IOException e) {
