@@ -16,3 +16,12 @@ select sal2*sal2 as doubleSal from dummy;
 
 update dummy
 set sal = 10.2673 where id = 1;
+
+
+FROM openjdk:latest
+
+WORKDIR /app
+
+COPY . /app
+
+CMD ["java", "-cp", "bin", "com.mainclass.Main"]
