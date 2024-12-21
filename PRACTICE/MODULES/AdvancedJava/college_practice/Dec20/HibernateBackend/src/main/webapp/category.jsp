@@ -14,10 +14,10 @@
 <body>
 	<%
 	SessionFactory hibernateFactory = (SessionFactory) application.getAttribute("hibernateFactory");
-	try(Session hibernateSession = hibernateFactory.openSession();) {
-		
-	Query<Category> findAllCategory = hibernateSession.createQuery("FROM Category", Category.class);
-	List<Category> categoryList = findAllCategory.getResultList();
+	try (Session hibernateSession = hibernateFactory.openSession();) {
+
+		Query<Category> findAllCategory = hibernateSession.createQuery("FROM Category", Category.class);
+		List<Category> categoryList = findAllCategory.getResultList();
 	%>
 
 	<table border='1'>
@@ -27,19 +27,19 @@
 			<th>category image</th>
 		</tr>
 		<%
-		for(Category category : categoryList) {
+		for (Category category : categoryList) {
 		%>
 		<tr>
-			<td><a href="#"><%= category.getCategoryName() %></a></td>
-			<td><%= category.getCategoryDescription() %></td>
-			<td><%= category.getCategoryImageUrl() %></td>
+			<td><a href="products.jsp?categoryId=<%= category.getCategoryId()%>"><%=category.getCategoryName()%></a></td>
+			<td><%=category.getCategoryDescription()%></td>
+			<td><%=category.getCategoryImageUrl()%></td>
 		</tr>
 		<%
-		};
-	} catch (Exception e) {
+		}
+		;
+		} catch (Exception e) {
 		e.printStackTrace();
-	}
-	
+		}
 		%>
 	</table>
 </body>
