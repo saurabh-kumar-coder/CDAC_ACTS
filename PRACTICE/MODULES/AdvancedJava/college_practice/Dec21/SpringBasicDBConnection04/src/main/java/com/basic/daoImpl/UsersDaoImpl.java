@@ -56,7 +56,7 @@ public class UsersDaoImpl implements UsersDao {
 	}
 
 	@Override
-	public Users findUsersByUserName() {
+	public Users findUsersByUserName(String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}
