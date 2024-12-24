@@ -43,7 +43,7 @@ public class UserController {
 			System.out.println("@@@@@@@@@@@@@@ in authenticate @@@@@@@@@@@@@@@@@@@@@");
 			Users dbUser = (Users) hibernateSession.get(Users.class, objUser.getUsername());
 			if (dbUser.getPassword().equals(objUser.getPassword())) {
-				return new ModelAndView("success", "data", "user authenticated successfully");
+				return new ModelAndView("redirect:/showcategory");
 			} else {
 				return new ModelAndView("failure", "data", "authentication failure");
 			}
