@@ -31,11 +31,16 @@ public class CategoryController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/category")
 	public ModelAndView showCategory(@ModelAttribute("objCategory") Category objCategory) {
-		System.out.println("@@@@@@@@@@@@@@ in category @@@@@@@@@@@@@@@@@@@@@");
 		
 		try(Session hibernateSession = hibernateFactory.openSession()) {
 			List<Category> categoryList = hibernateSession.createQuery("from Category", Category.class).list();
 			System.out.println("%%%%%%%%%%  Category List : " + categoryList);
+			categoryList.forEach(category -> {
+	            System.out.println("Category Name: " + category.getCategoryName());
+	            System.out.println("Category Description: " + category.getCategoryDescription());
+	            System.out.println("Category Image URL: " + category.getCategoryImageUrl());
+
+	        });
 			return new ModelAndView("category", "categoryList", categoryList);
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -45,3 +50,15 @@ public class CategoryController {
 	}
 	
 }
+
+/*
+ *
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <c:forEach var="category" items="${categoryList}">
+			<tr>
+				<th>${category.categoryName}</th>
+				<th>${category.categoryDescription }</th>
+				<th>${category.categoryImageUrl }</th>
+			</tr>
+		</c:forEach>
+*/

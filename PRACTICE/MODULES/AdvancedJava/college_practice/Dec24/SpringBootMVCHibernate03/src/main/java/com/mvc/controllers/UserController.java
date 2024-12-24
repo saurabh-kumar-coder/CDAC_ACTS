@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mvc.pojos.Users;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
@@ -38,11 +39,12 @@ public class UserController {
 	}
 
 	@RequestMapping("/authenticate")
-	public ModelAndView auth(@ModelAttribute("user") Users objUser) {
+	public ModelAndView auth(@ModelAttribute("user") Users objUser, HttpSession session) {
 		try (Session hibernateSession = hibernateFactory.openSession()) {
 			System.out.println("@@@@@@@@@@@@@@ in authenticate @@@@@@@@@@@@@@@@@@@@@");
 			Users dbUser = (Users) hibernateSession.get(Users.class, objUser.getUsername());
 			if (dbUser.getPassword().equals(objUser.getPassword())) {
+				session.setAttribute("username", dbUser.getUsername());
 				return new ModelAndView("redirect:/showcategory");
 			} else {
 				return new ModelAndView("failure", "data", "authentication failure");

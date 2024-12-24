@@ -1,7 +1,8 @@
+<%@page import="java.util.List"%>
 <%@page import="com.mvc.pojos.Category"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,22 +11,38 @@
 </head>
 <body>
 	CATEGORIES
-
+	<h1>
+		WELCOME, <%= session.getAttribute("username") %>
+	</h1>
+	<%
+		List<Category> categories = (List<Category>) request.getAttribute("categoryList");
+		if (categories != null && !categories.isEmpty()) {
+	%>
 	<table border="1">
 		<tr>
 			<th>CATEGORY NAME</th>
 			<th>CATEGORY DESCRIPTION</th>
 			<th>CATEGORY IMAGE</th>
 		</tr>
+		<%
+		for (Category category : categories) {
+		%>
+		<tr>
+			<td><a href="<%= request.getContextPath() + "/products?categoryId=" + category.getCategoryId() %>"><%=category.getCategoryName()%></a></td>
+			<td><%=category.getCategoryDescription()%></td>
+			<td><%=category.getCategoryImageUrl()%></td>
+		</tr>
+		<%
+		}
+		%>
 
-		<c:forEach var="category" items="${categoryList}">
-			<tr>
-				<th>${category.categoryName}</th>
-				<th>${category.categoryDescription }</th>
-				<th>${category.categoryImageUrl }</th>
-			</tr>
-		</c:forEach>
 	</table>
-
+	<%
+	} else {
+	%>
+	<p>No categories available.</p>
+	<%
+	}
+	%>
 </body>
 </html>
