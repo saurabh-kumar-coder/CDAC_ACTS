@@ -41,4 +41,9 @@ public class CategoryController {
 		return categoryService.findCategoryNameLike(inputValue);
 	}
 	
+	@GetMapping("/name/{categoryName}")
+	public CategoryDTO findCategoryByCategoryName(@PathVariable("categoryName") String categoryName) {
+		return categoryService.findByCategoryName(categoryName);
+	}
+	
 }

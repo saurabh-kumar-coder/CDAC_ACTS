@@ -14,4 +14,6 @@ public interface CategoryRepository extends CrudRepository<Category, Integer> {
 	@Query("SELECT objCategory FROM Category objCategory WHERE objCategory.categoryName LIKE :inputValue%")
 	public List<Category> findCategoryNameLike(@Param("inputValue") String inputValue);
 	
+	public Category findByCategoryName(String categoryName);
+	
 }

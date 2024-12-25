@@ -69,6 +69,15 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 		return categoryDTOList;
 	}
+
+	@Override
+	public CategoryDTO findByCategoryName(String categoryName) {
+		// TODO Auto-generated method stub
+		Category byCategoryName = categoryRepository.findByCategoryName(categoryName);
+		CategoryDTO cDTO = new CategoryDTO();
+		BeanUtils.copyProperties(byCategoryName, cDTO);
+		return cDTO;
+	}
 	
 	
 
