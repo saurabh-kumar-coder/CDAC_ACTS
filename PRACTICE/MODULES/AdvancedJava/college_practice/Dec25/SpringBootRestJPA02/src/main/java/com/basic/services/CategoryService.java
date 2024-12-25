@@ -10,4 +10,6 @@ public interface CategoryService {
 	public List<CategoryDTO> findAllCategory();
 	
 	public CategoryDTO findCategoryById(int categoryId);
+	
+	public List<CategoryDTO> findCategoryNameLike(String inputValue);
 }

@@ -57,4 +57,19 @@ public class CategoryServiceImpl implements CategoryService {
 		return null;
 	}
 
+	@Override
+	public List<CategoryDTO> findCategoryNameLike(String inputValue) {
+		// TODO Auto-generated method stub
+		List<Category> categoryNameLike = categoryRepository.findCategoryNameLike(inputValue);
+		ArrayList<CategoryDTO> categoryDTOList = new ArrayList<CategoryDTO>();
+		for(Category eCategory : categoryNameLike) {
+			CategoryDTO cDTO = new CategoryDTO();
+			BeanUtils.copyProperties(eCategory, cDTO);
+			categoryDTOList.add(cDTO);
+		}
+		return categoryDTOList;
+	}
+	
+	
+
 }
