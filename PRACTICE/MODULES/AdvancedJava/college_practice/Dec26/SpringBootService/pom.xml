@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com</groupId>
-	<artifactId>SpringSootService</artifactId>
+	<artifactId>SpringBootService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>SpringSootService</name>
+	<name>SpringBootService</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
