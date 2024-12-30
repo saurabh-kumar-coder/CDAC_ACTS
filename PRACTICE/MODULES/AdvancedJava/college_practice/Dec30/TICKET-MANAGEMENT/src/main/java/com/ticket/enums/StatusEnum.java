@@ -5,7 +5,7 @@ public enum StatusEnum {
 	IN_PROGRESS("IN_PROGRESS"),
 	RESOLVED("RESOLVED");
 	
-	String statusEnum;
+	private final String statusEnum;
 	
 	private StatusEnum(String statusEum) {
 		// TODO Auto-generated constructor stub
@@ -15,5 +15,10 @@ public enum StatusEnum {
 	public String getvalue() {
 		return this.statusEnum;
 	}
+	
+	@Override
+    public String toString() {
+        return this.statusEnum;
+    }
 	
 }
