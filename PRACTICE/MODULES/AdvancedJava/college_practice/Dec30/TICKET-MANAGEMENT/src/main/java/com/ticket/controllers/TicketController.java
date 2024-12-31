@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ticket.dto.TicketDTO;
+import com.ticket.dto.TicketStatusDTO;
 import com.ticket.exception.PhoneNumberAlreadyExistException;
 import com.ticket.exception.TicketWithIdAlreadyExists;
 import com.ticket.exception.TicketWithIdDoesnotExistException;
@@ -33,7 +34,7 @@ public class TicketController {
 	}
 	
 	@PutMapping("/{ticketId}")
-	public ResponseEntity<Boolean> updateCategory(@PathVariable("ticketId") Long ticketId, @RequestBody TicketDTO ticketDTO) throws TicketWithIdDoesnotExistException {
+	public ResponseEntity<Boolean> updateCategory(@PathVariable("ticketId") Long ticketId, @RequestBody TicketStatusDTO ticketDTO) throws TicketWithIdDoesnotExistException {
 		ticketService.updateTicket(ticketId, ticketDTO);
 		return ResponseEntity.ok(true);
 	}

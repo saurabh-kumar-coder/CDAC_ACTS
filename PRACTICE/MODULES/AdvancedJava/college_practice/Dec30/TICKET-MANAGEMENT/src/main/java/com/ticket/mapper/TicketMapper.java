@@ -1,6 +1,7 @@
 package com.ticket.mapper;
 
 import com.ticket.dto.TicketDTO;
+import com.ticket.dto.TicketStatusDTO;
 import com.ticket.entities.Ticket;
 
 public class TicketMapper {
@@ -31,6 +32,26 @@ public class TicketMapper {
 		ticketDTO.setResolutionDetails(ticketEntity.getResolutionDetails());
 		System.out.println(ticketDTO);
 		return ticketDTO;
+	}
+	
+	public static Ticket statusTicketDtoToTicketEntity(TicketStatusDTO ticketStatusDTO, Ticket ticket) {
+//		Ticket ticketEntity = new Ticket();
+		ticket.setTicketId(ticketStatusDTO.getTicketId());
+		ticket.setStatus(ticketStatusDTO.getStatus());		
+		ticket.setIssueResolutionDate(ticketStatusDTO.getIssueResolutionDate());
+		ticket.setResolutionDetails(ticketStatusDTO.getResolutionDetails());
+		System.out.println(ticket);
+		return ticket;
+	}
+	
+	public static TicketStatusDTO statusTicketEntityToTicketDto(Ticket ticketEntity) {
+		TicketStatusDTO ticketStatusDTO = new TicketStatusDTO();
+		ticketStatusDTO.setTicketId(ticketEntity.getTicketId());
+		ticketStatusDTO.setStatus(ticketEntity.getStatus());		
+		ticketStatusDTO.setIssueResolutionDate(ticketEntity.getIssueResolutionDate());
+		ticketStatusDTO.setResolutionDetails(ticketEntity.getResolutionDetails());
+		System.out.println(ticketStatusDTO);
+		return ticketStatusDTO;
 	}
 	
 }

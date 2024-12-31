@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ticket.dto.TicketDTO;
+import com.ticket.dto.TicketStatusDTO;
 import com.ticket.entities.Ticket;
 import com.ticket.enums.StatusEnum;
 import com.ticket.exception.PhoneNumberAlreadyExistException;
@@ -25,10 +26,6 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public TicketDTO createTicket(TicketDTO ticketDTO) throws PhoneNumberAlreadyExistException, TicketWithIdAlreadyExists {
-		Optional<Ticket> findTicketbyId = ticketRepository.findById(ticketDTO.getTicketId());
-		if(findTicketbyId.isEmpty()) {
-			throw new TicketWithIdAlreadyExists("Ticket With Id Already Exists");
-		}
 		List<Ticket> phoneNumberAlreadyExist = ticketRepository.findByPhoneNumber(ticketDTO.getPhoneNumber());
 		if(!phoneNumberAlreadyExist.isEmpty()) {
 			throw new PhoneNumberAlreadyExistException("Phone Number Already Exist Exception");
@@ -39,15 +36,16 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public TicketDTO updateTicket(Long ticketId, TicketDTO ticketDTO) throws TicketWithIdDoesnotExistException {
+	public TicketStatusDTO updateTicket(Long ticketId, TicketStatusDTO ticketStatusDTO) throws TicketWithIdDoesnotExistException {
 		// TODO Auto-generated method stub
 		Optional<Ticket> ticketById = ticketRepository.findById(ticketId);
 		if(ticketById.isEmpty()) {
 			throw new TicketWithIdDoesnotExistException("Ticket With Id Doesnot Exist Exception");
 		}
-		Ticket ticket = TicketMapper.TicketDtoToTicketEntity(ticketDTO);
+		Ticket ticket = ticketById.get();
+		ticket = TicketMapper.statusTicketDtoToTicketEntity(ticketStatusDTO, ticket);
 		ticketRepository.save(ticket);
-		return ticketDTO;
+		return ticketStatusDTO;
 	}
 
 	@Override
