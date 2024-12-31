@@ -4,17 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ticket.TicketMapper;
 import com.ticket.dto.TicketDTO;
 import com.ticket.entities.Ticket;
 import com.ticket.enums.StatusEnum;
 import com.ticket.exception.PhoneNumberAlreadyExistException;
 import com.ticket.exception.TicketWithIdAlreadyExists;
 import com.ticket.exception.TicketWithIdDoesnotExistException;
+import com.ticket.mapper.TicketMapper;
 import com.ticket.repository.TicketRepository;
 import com.ticket.services.TicketService;
 
@@ -34,7 +33,7 @@ public class TicketServiceImpl implements TicketService {
 		if(!phoneNumberAlreadyExist.isEmpty()) {
 			throw new PhoneNumberAlreadyExistException("Phone Number Already Exist Exception");
 		}
-		Ticket ticket = TicketMapper.TicketDTOToEntity(ticketDTO);
+		Ticket ticket = TicketMapper.TicketDtoToTicketEntity(ticketDTO);
 		ticketRepository.save(ticket);
 		return ticketDTO;
 	}
@@ -45,9 +44,8 @@ public class TicketServiceImpl implements TicketService {
 		Optional<Ticket> ticketById = ticketRepository.findById(ticketId);
 		if(ticketById.isEmpty()) {
 			throw new TicketWithIdDoesnotExistException("Ticket With Id Doesnot Exist Exception");
-		} 
-		Ticket ticket = ticketById.get();
-		BeanUtils.copyProperties(ticketDTO, ticket);		
+		}
+		Ticket ticket = TicketMapper.TicketDtoToTicketEntity(ticketDTO);
 		ticketRepository.save(ticket);
 		return ticketDTO;
 	}
@@ -60,9 +58,8 @@ public class TicketServiceImpl implements TicketService {
 			throw new TicketWithIdDoesnotExistException("Ticket With Id Doesnot Exist Exception");
 		}
 		Ticket ticket = ticketById.get();
-		TicketDTO ticketDto = new TicketDTO();
-		BeanUtils.copyProperties(ticket, ticketDto);
-		return ticketDto;
+		TicketDTO ticketDTO = TicketMapper.TicketEntityToTicketDto(ticket);
+		return ticketDTO;
 	}
 
 	@Override
@@ -71,9 +68,8 @@ public class TicketServiceImpl implements TicketService {
 		List<Ticket> ticketByOpenStatus = ticketRepository.findByStatus(StatusEnum.OPEN);
 		List<TicketDTO> ticketDTO = new ArrayList<TicketDTO>();
 		for(Ticket tickets : ticketByOpenStatus) {
-			TicketDTO ticket = new TicketDTO();
-			BeanUtils.copyProperties(tickets, ticket);
-			ticketDTO.add(ticket);
+			TicketDTO ticketDto = TicketMapper.TicketEntityToTicketDto(tickets);
+			ticketDTO.add(ticketDto);
 		}
 		return ticketDTO;
 	}
@@ -95,9 +91,8 @@ public class TicketServiceImpl implements TicketService {
 		List<Ticket> allTickets = ticketRepository.findAll();
 		List<TicketDTO> ticketDTO = new ArrayList<TicketDTO>();
 		for(Ticket tickets : allTickets) {
-			TicketDTO ticket = new TicketDTO();
-			BeanUtils.copyProperties(tickets, ticket);
-			ticketDTO.add(ticket);
+			TicketDTO ticketDto = TicketMapper.TicketEntityToTicketDto(tickets);
+			ticketDTO.add(ticketDto);
 		}
 		return ticketDTO;
 	}
