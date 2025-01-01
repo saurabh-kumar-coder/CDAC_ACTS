@@ -46,5 +46,3 @@ public class Ticket {
 	@Column(name="issueresolutiondate")
 	private LocalDateTime issueResolutionDate;
 }
-
-//	, columnDefinition = "default = null")
