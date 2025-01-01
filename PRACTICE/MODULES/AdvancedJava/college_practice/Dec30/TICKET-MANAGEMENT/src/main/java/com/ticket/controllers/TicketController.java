@@ -3,6 +3,7 @@ package com.ticket.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,8 +30,9 @@ public class TicketController {
 	
 	@PostMapping
 	public ResponseEntity<TicketDTO> createCategory(@RequestBody TicketDTO ticketDTO) throws PhoneNumberAlreadyExistException, TicketWithIdAlreadyExists {
-		ticketService.createTicket(ticketDTO);
-		return ResponseEntity.ok(ticketDTO);
+//		ticketService.createTicket(ticketDTO);
+//		return ResponseEntity.ok(ticketDTO);
+		return ResponseEntity.status(HttpStatus.CREATED).body(ticketService.createTicket(ticketDTO));
 	}
 	
 	@PutMapping("/{ticketId}")

@@ -16,7 +16,6 @@ public class TicketMapper {
 		ticketEntity.setIssueResolutionDate(ticketDTO.getIssueResolutionDate());
 		ticketEntity.setIssueStartDate(ticketDTO.getIssueStartDate());
 		ticketEntity.setResolutionDetails(ticketDTO.getResolutionDetails());
-		System.out.println(ticketEntity);
 		return ticketEntity;
 	}
 	
@@ -30,17 +29,14 @@ public class TicketMapper {
 		ticketDTO.setIssueResolutionDate(ticketEntity.getIssueResolutionDate());
 		ticketDTO.setIssueStartDate(ticketEntity.getIssueStartDate());
 		ticketDTO.setResolutionDetails(ticketEntity.getResolutionDetails());
-		System.out.println(ticketDTO);
 		return ticketDTO;
 	}
 	
 	public static Ticket statusTicketDtoToTicketEntity(TicketStatusDTO ticketStatusDTO, Ticket ticket) {
-//		Ticket ticketEntity = new Ticket();
 		ticket.setTicketId(ticketStatusDTO.getTicketId());
 		ticket.setStatus(ticketStatusDTO.getStatus());		
 		ticket.setIssueResolutionDate(ticketStatusDTO.getIssueResolutionDate());
 		ticket.setResolutionDetails(ticketStatusDTO.getResolutionDetails());
-		System.out.println(ticket);
 		return ticket;
 	}
 	
@@ -50,7 +46,6 @@ public class TicketMapper {
 		ticketStatusDTO.setStatus(ticketEntity.getStatus());		
 		ticketStatusDTO.setIssueResolutionDate(ticketEntity.getIssueResolutionDate());
 		ticketStatusDTO.setResolutionDetails(ticketEntity.getResolutionDetails());
-		System.out.println(ticketStatusDTO);
 		return ticketStatusDTO;
 	}
 	
