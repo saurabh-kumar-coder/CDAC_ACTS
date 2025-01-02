@@ -17,7 +17,9 @@ select sal2*sal2 as doubleSal from dummy;
 update dummy
 set sal = 10.2673 where id = 1;
 
-
+------------------------------------------------------------------
+docker
+======
 FROM openjdk:latest
 
 WORKDIR /app
@@ -32,7 +34,8 @@ cmd :
     docker run -it labexam
 
 -------------------------------------------------------------------
-
+application.yml
+===============
 spring:
   application:
     name: TICKET-MANAGEMENT
@@ -45,3 +48,17 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
+
+--------------------------------------------------
+dotnet commands
+===============
+dotnet new sln -n <solution-name>
+
+
+dotnet new console -n <project-name> --use-program-main
+
+
+dotnet sln dotnet new sln -n <solution-name>.sln add <project-name>/<project-name>.csproj
+
+
+dotnet run
