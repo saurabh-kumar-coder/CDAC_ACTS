@@ -30,3 +30,18 @@ cmd :
     docker build -t labexam .
     docker run labexam
     docker run -it labexam
+
+-------------------------------------------------------------------
+
+spring:
+  application:
+    name: TICKET-MANAGEMENT
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/springboot
+    username: root
+    password: tiger
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
