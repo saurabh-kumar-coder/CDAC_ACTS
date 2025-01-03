@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{F7E97F5D-770A-40EB-865F-53935043D652}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InOutRef", "InOutRef\InOutRef.csproj", "{67022CE1-DE8F-4CED-BD3F-6E8DEC1B10D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,5 +24,9 @@ Global
 		{F7E97F5D-770A-40EB-865F-53935043D652}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7E97F5D-770A-40EB-865F-53935043D652}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7E97F5D-770A-40EB-865F-53935043D652}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67022CE1-DE8F-4CED-BD3F-6E8DEC1B10D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67022CE1-DE8F-4CED-BD3F-6E8DEC1B10D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67022CE1-DE8F-4CED-BD3F-6E8DEC1B10D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67022CE1-DE8F-4CED-BD3F-6E8DEC1B10D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
