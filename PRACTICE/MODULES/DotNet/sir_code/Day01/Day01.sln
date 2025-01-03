@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticMembers", "StaticMemb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InheritanceDemo", "InheritanceDemo\InheritanceDemo.csproj", "{6E31C6E6-098F-4057-BB54-65D4B52B2065}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InheritanceAllInOne", "InheritanceAllInOne\InheritanceAllInOne.csproj", "{9CAE6D5B-C9AE-4893-BE82-12F1A4CDE306}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{6E31C6E6-098F-4057-BB54-65D4B52B2065}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E31C6E6-098F-4057-BB54-65D4B52B2065}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E31C6E6-098F-4057-BB54-65D4B52B2065}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CAE6D5B-C9AE-4893-BE82-12F1A4CDE306}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CAE6D5B-C9AE-4893-BE82-12F1A4CDE306}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CAE6D5B-C9AE-4893-BE82-12F1A4CDE306}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CAE6D5B-C9AE-4893-BE82-12F1A4CDE306}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
