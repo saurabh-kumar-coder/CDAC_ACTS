@@ -6,6 +6,7 @@
         public String two { get; set; }
 
         // constructor
+        public Base(){}
         public Base(int one, String two)
         {
             this.one = one;
@@ -16,6 +17,11 @@
         {
             System.Console.WriteLine("base func01..!!");
         }
+        // public void func01(int five)
+        // {
+        //     System.Console.WriteLine("five : " + five);
+        //     System.Console.WriteLine("base func01..!!");
+        // }
         // hiding
         public void func02()
         {
@@ -31,6 +37,7 @@
     public class Derived : Base
     {
         public int three { get; set; }
+        public Derived() {}
         public Derived(int three, int one, String two) : base(one, two)
         {
             this.three = three;
@@ -84,19 +91,26 @@
     {
         public static void Main()
         {
+
+            Base b = new Derived();
+            
+            b.func01();
+            // b.func01(4);
+            b.func02();
+            b.func03();
+
             // Derived derived = new Derived(3,1,"two");
             // System.Console.WriteLine(derived);
             // derived.func01();
             // derived.func02();
             // derived.func03();
 
-            SubDerived subDerived = new SubDerived(4, 3, 1, "two");
-            System.Console.WriteLine(subDerived);
-            subDerived.func01();
-            subDerived.func01(5);
-            subDerived.func01(6,7);
-            subDerived.func02();
-            subDerived.func03();
+            // SubDerived subDerived = new SubDerived(4, 3, 1, "two");
+            // subDerived.func01();
+            // subDerived.func01(5);
+            // subDerived.func01(6,7);
+            // subDerived.func02();
+            // subDerived.func03();
         }
     }
 }
