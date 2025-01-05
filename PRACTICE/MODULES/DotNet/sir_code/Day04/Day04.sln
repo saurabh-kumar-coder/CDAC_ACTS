@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelegatesDemo", "DelegatesD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnonymousFunctions", "AnonymousFunctions\AnonymousFunctions.csproj", "{CD46282B-03BA-4A5F-B30F-CBD7308A5904}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaDemo", "LambdaDemo\LambdaDemo.csproj", "{42E58F03-8D0D-4AAB-8E8E-B741622F2102}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,5 +30,9 @@ Global
 		{CD46282B-03BA-4A5F-B30F-CBD7308A5904}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD46282B-03BA-4A5F-B30F-CBD7308A5904}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD46282B-03BA-4A5F-B30F-CBD7308A5904}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42E58F03-8D0D-4AAB-8E8E-B741622F2102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42E58F03-8D0D-4AAB-8E8E-B741622F2102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42E58F03-8D0D-4AAB-8E8E-B741622F2102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42E58F03-8D0D-4AAB-8E8E-B741622F2102}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
