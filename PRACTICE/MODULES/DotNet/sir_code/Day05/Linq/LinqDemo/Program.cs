@@ -85,16 +85,27 @@
             // }
 
             // to get employee with their dept number order by employee name
-            var employeeWithDeptOrderByName = from emp in lstEmp
-                                                join dept in lstDept
-                                                    on emp.DeptNo equals dept.DeptNo
-                                                orderby emp.Name
-                                                select new {emp, dept};
+            // var employeeWithDeptOrderByName = from emp in lstEmp
+            //                                     join dept in lstDept
+            //                                         on emp.DeptNo equals dept.DeptNo
+            //                                     orderby emp.Name
+            //                                     select new {emp, dept};
 
-            foreach (var item in employeeWithDeptOrderByName)
-            {
-                System.Console.WriteLine(item);
-            }
+            // foreach (var item in employeeWithDeptOrderByName)
+            // {
+            //     System.Console.WriteLine(item);
+            // }
+
+            // to get employee name and dept name
+            // var employeeNameWithDeptName = from emp in lstEmp
+            //                                 join dept in lstDept
+            //                                     on emp.DeptNo equals dept.DeptNo
+            //                                 select new {emp.Name, dept.DeptName};
+
+            // foreach (var item in employeeNameWithDeptName)
+            // {
+            //     System.Console.WriteLine(item);
+            // }
         }
     }
 }
