@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqDemoWithLambda", "LinqDemoWithLambda\LinqDemoWithLambda.csproj", "{A39A1E42-37CB-4160-AA6B-9735D24E26C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadDemo", "ThreadDemo\ThreadDemo.csproj", "{4C755374-A1DB-46E4-A3A9-1A9BF8A994EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,5 +24,9 @@ Global
 		{A39A1E42-37CB-4160-AA6B-9735D24E26C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A39A1E42-37CB-4160-AA6B-9735D24E26C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A39A1E42-37CB-4160-AA6B-9735D24E26C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C755374-A1DB-46E4-A3A9-1A9BF8A994EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C755374-A1DB-46E4-A3A9-1A9BF8A994EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C755374-A1DB-46E4-A3A9-1A9BF8A994EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C755374-A1DB-46E4-A3A9-1A9BF8A994EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
