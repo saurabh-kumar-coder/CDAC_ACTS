@@ -62,3 +62,16 @@ dotnet sln dotnet new sln -n <solution-name>.sln add <project-name>/<project-nam
 
 
 dotnet run
+
+---------------------------------------------------
+creating a react project using vite
+
+npm create vite@latest
+
+npm create vite@latest <project-name>
+
+cd my-project
+
+npm install
+
+npm run dev
