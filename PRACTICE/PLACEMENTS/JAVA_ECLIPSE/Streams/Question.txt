@@ -1,0 +1,63 @@
+🔹 List-Based Stream Questions
+01. Filter all students who have a grade 'A' and collect them into a List<Student>.
+02. Sort students by marks in descending order and collect them into a List<Student>.
+03. Get a list of student names who have an attendance percentage greater than 85%.
+04. Convert all student names to uppercase and collect them into a List<String>.
+05. Extract a list of unique courses taken by all students (flatMap).
+06. Find the student with the highest marks using max() and return an Optional<Student>.
+07. Find the average marks of all students.
+08. Partition students into two lists: pass (marks ≥ 50) and fail (marks < 50) using partitioningBy().
+09. Find the first 3 students in the sorted list (top 3 students by marks).
+10. Get the second-highest scoring student (skip the first one, then take the next).
+
+
+🔹 HashMap-Based Stream Questions
+11. Convert the student list into a HashMap with ID as key and Student object as value.
+12. Convert the student list into a HashMap with name as key and marks as value.
+13. Group students by their grade and store them in a HashMap<Character, List<Student>>.
+14. Group students by their city using Collectors.groupingBy().
+15. Create a Map where the key is the enrollment year and the value is the count of students who enrolled that year.
+16. Convert the student list into a HashMap where the key is the student ID and the value is their total courses enrolled.
+17. Find the student with the highest marks in each city and store it in a HashMap<String, Student>.
+18. Convert the student list into a Map with student names as keys and their courses as values (using Collectors.toMap()).
+19. Find the city with the most students.
+20. Find the average marks per city and store them in a Map<String, Double>.
+
+
+🔹 Set-Based Stream Questions
+21. Get a Set of all unique student names.
+22. Get a Set of all unique grades assigned to students.
+23. Get a Set of all unique cities where students come from.
+24. Convert the list of students into a Set of Student objects (remove duplicates).
+25. Extract a Set of unique courses taken by all students.
+26. Find out if all students have attendance greater than 50% using allMatch().
+27. Find out if any student is from "New York" using anyMatch().
+28. Get a Set of students who have taken "Math" as a course.
+29. Convert the List<Student> into a LinkedHashSet<Student> to maintain insertion order.
+30. Convert the List<Student> into a TreeSet<Student> based on marks (implement Comparable<Student>).
+
+
+🔹 TreeMap-Based Stream Questions
+31. Create a TreeMap where the key is student name and value is marks, sorted alphabetically.
+32. Create a TreeMap where the key is grade and the value is a list of students sorted by marks.
+33. Create a TreeMap where the key is city, and the value is count of students from that city.
+34. Store students in a TreeMap where the key is marks and value is student object, sorted in ascending order.
+35. Create a TreeMap where the key is age and the value is total students of that age.
+36. Convert the list of students into a TreeMap<Integer, List<Student>>, where the key is enrollment year.
+37. Create a TreeMap<Double, Student> where the key is attendance percentage (sorted naturally).
+38. Create a TreeMap<Character, Double> where the key is grade and the value is average marks per grade.
+39. Find the lowest and highest enrollment years using firstEntry() and lastEntry().
+40. Store students in a TreeMap where the key is student ID and values are student names.
+
+
+🔹 Bonus Advanced Questions
+41. Find the top 5 students based on marks using sorted().limit(5).
+42. Find the student with the lowest attendance percentage using min().
+43. Get a Map<Character, Long> where the key is the grade and the value is the count of students in that grade.
+44. Find the city with the highest average marks using groupingBy() and averagingDouble().
+45. Find the course with the most enrollments by counting occurrences in flatMap().
+46. Find the student with the longest name.
+47. Get a Map<String, List<String>> where the key is city, and the value is a list of student names.
+48. Find the youngest student who has enrolled in Computer Science.
+49. Get a Map<String, Set<Character>>, where the key is the city, and the value is a set of grades present in that city.
+50. Create a LinkedHashMap<Integer, Double> where the key is student ID and value is marks, preserving insertion order.
