@@ -47,4 +47,12 @@ public class MapMethods {
 		mapYearAndStudentCount.entrySet().stream()
 			.forEach(System.out::println);
 	}
+
+	public static void mapIdAndCourseCount(List<Student> students) {
+		// TODO Auto-generated method stub
+		Map<Integer, Integer> mapIdAndCourseCount = students.stream()
+			.collect(Collectors.toMap(Student::getId, s -> s.getCourses().size()));
+		mapIdAndCourseCount.entrySet().stream()
+			.forEach(System.out::println);
+	}
 }

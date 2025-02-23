@@ -67,7 +67,7 @@ public class Tester {
 //		MapMethods.mapYearAndCountOfStudents(students);
 		
 //		16. Convert the student list into a HashMap where the key is the student ID and the value is their total courses enrolled.
-
+//		MapMethods.mapIdAndCourseCount(students);
 		
 //		17. Find the student with the highest marks in each city and store it in a HashMap<String, Student>.
 		
