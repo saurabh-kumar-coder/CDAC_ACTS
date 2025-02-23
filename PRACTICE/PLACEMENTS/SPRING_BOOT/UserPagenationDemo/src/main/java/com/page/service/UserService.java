@@ -1,0 +1,9 @@
+package com.page.service;
+
+import java.util.List;
+
+import com.page.dto.UserDTO;
+
+public interface UserService {
+	List<UserDTO> getPagenatedData();
+}
