@@ -14,7 +14,7 @@ public class StudentData {
 
 				new Student(3, "Charlie", 19, "Male", 'A', 88.5, "Chicago", Arrays.asList("Math", "Computer Science"), 75.3, 2023),
 
-				new Student(4, "David", 22, "Male", 'C', 65.0, "Houston", Arrays.asList("History", "Political Science"), 82.1, 2020),
+				new Student(4, "David", 22, "Male", 'C', 45.0, "Houston", Arrays.asList("History", "Political Science"), 82.1, 2020),
 
 				new Student(5, "Eva", 20, "Female", 'A', 95.2, "San Francisco", Arrays.asList("Math", "Physics", "Chemistry"), 95.0, 2022),
 
