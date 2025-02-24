@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 	public List<UserDTO> getPagenatedData(int current, int size, String sort) {
 		Pageable pageable;
 		if(sort.equals(null)) {
-			pageable = PageRequest.of(current, size);
+			pageable = PageRequest.of(current, size, Sort.unsorted());
 			
 		} else {
 			pageable = PageRequest.of(current, size, Sort.by(sort));			
