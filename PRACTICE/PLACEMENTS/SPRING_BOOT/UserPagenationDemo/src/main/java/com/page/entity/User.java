@@ -55,5 +55,10 @@ public class User {
 		this.username = username;
 		this.city = city;
 	}
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 }

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.page.dto.UserDTO;
@@ -20,8 +21,12 @@ public class UserController {
 	UserService userService;
 	
 	@GetMapping
-	public ResponseEntity<List<UserDTO>> getPagenatedData() {
-		return ResponseEntity.status(HttpStatus.FOUND).body(userService.getPagenatedData());
+	public ResponseEntity<List<UserDTO>> getPagenatedData(
+				@RequestParam(defaultValue = "0") int current,
+				@RequestParam(defaultValue = "5") int size,
+				@RequestParam(defaultValue = "username") String sort
+			) {
+		return ResponseEntity.status(HttpStatus.FOUND).body(userService.getPagenatedData(current, size, sort));
 	}
 	
 }

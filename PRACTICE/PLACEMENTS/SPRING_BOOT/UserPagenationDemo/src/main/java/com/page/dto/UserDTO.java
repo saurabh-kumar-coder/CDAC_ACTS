@@ -33,5 +33,9 @@ public class UserDTO {
 		this.username = username;
 		this.city = city;
 	}
+	public UserDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 }

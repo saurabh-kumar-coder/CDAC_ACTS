@@ -5,5 +5,5 @@ import java.util.List;
 import com.page.dto.UserDTO;
 
 public interface UserService {
-	List<UserDTO> getPagenatedData();
+	List<UserDTO> getPagenatedData(int current, int size, String sort);
 }
