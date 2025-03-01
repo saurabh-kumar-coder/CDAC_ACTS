@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +28,12 @@ public class UserController {
 				@RequestParam(defaultValue = "username") String sort
 			) {
 		return ResponseEntity.status(HttpStatus.FOUND).body(userService.getPagenatedData(current, size, sort));
+	}
+	
+	@GetMapping("{userId}")
+	public ResponseEntity<UserDTO> getUserById(@PathVariable Long userId) {
+		UserDTO userById = userService.findUserById(userId);
+		return ResponseEntity.status(HttpStatus.FOUND).body(userById);
 	}
 	
 }
