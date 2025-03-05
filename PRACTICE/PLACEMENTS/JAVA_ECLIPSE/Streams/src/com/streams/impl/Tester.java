@@ -70,16 +70,16 @@ public class Tester {
 //		MapMethods.mapIdAndCourseCount(students);
 		
 //		17. Find the student with the highest marks in each city and store it in a HashMap<String, Student>.
-		
+//		MapMethods.mapStudentsWithHightestMarksInEachCity(students);
 		
 //		18. Convert the student list into a Map with student names as keys and their courses as values (using Collectors.toMap()).
-		
+//		MapMethods.mapStudentToMap(students);
 		
 //		19. Find the city with the most students.
-		
+//		MapMethods.mapCityWithMostStudents(students);
 		
 //		20. Find the average marks per city and store them in a Map<String, Double>.
-		
+//		MapMethods.mapStudentWithScore(students);
 //		--------------------------------------------------------------------------------------
 	}
 }

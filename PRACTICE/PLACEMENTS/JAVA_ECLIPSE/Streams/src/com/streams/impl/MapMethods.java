@@ -55,4 +55,41 @@ public class MapMethods {
 		mapIdAndCourseCount.entrySet().stream()
 			.forEach(System.out::println);
 	}
+
+	public static void mapStudentsWithHightestMarksInEachCity(List<Student> students) {
+		// TODO Auto-generated method stub
+		Map<String, Student> mapStudentsWithHightestMarksInEachCity = students.stream()
+			.collect(Collectors.toMap(Student::getCity, 
+										student -> student, 
+										(existing, replacement) -> existing.getMarks() > replacement.getMarks() ? existing : replacement));
+		mapStudentsWithHightestMarksInEachCity.entrySet().stream()
+			.forEach(entry -> System.out.println(entry.getKey() + entry.getValue()));
+	}
+
+	public static void mapStudentToMap(List<Student> students) {
+		// TODO Auto-generated method stub
+		Map<String, List<String>> mapStudents = students.stream()
+			.collect(Collectors.toMap(Student::getName, Student::getCourses));
+		mapStudents.entrySet().stream()
+			.forEach(entry -> System.out.println(entry.getKey() + " -> " + entry.getValue()));
+	}
+
+	public static void mapCityWithMostStudents(List<Student> students) {
+		// TODO Auto-generated method stub
+		String mostPopulatedCity = students.stream()
+			.collect(Collectors.groupingBy(Student::getCity, Collectors.counting()))
+			.entrySet()
+			.stream()
+			.max(Map.Entry.comparingByValue())
+			.map(Map.Entry::getKey)
+			.orElse("No String Available");
+		System.out.println(mostPopulatedCity);
+	}
+
+	public static void mapStudentWithScore(List<Student> students) {
+		// TODO Auto-generated method stub
+		Map<String, Double> mapStudentWithScore = students.stream()
+			.collect(Collectors.groupingBy(Student::getCity, Collectors.averagingDouble(Student::getMarks)));
+		mapStudentWithScore.forEach((a,b) -> System.out.println(a + " -> " + b));
+	}
 }
