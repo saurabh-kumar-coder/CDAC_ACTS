@@ -1,0 +1,123 @@
+Overview:
+
+Create a REST API for an Employee Management System where users can:
+
+1. Manage employees and departments.
+
+2. Fetch employees by department along with their manager.
+
+3. Calculate the average salary of employees within a department.
+
+ 
+
+Requirements:
+
+1. Employee and Department Management:
+
+◦ Create basic CRUD operations for managing:
+
+▪ Employees: Each employee has a name, age, salary, manager_id
+
+(nullable), department_id, and timestamps (created_at,
+
+updated_at).
+
+▪ Departments: Each department has a name and department_id.
+
+◦ Employees can have managers (another employee), which will be indicated using a
+
+manager_id (self-referencing foreign key).
+
+ 
+
+2. Fetch Employees by Department:
+
+◦ Implement an API endpoint to fetch all employees in a given department.
+
+◦ For each employee, include their manager's name (if they have one) using a selfjoin.
+
+ 
+
+3. Calculate Average Salary by Department:
+
+◦ Implement an API to calculate the average salary of all employees in a given
+
+department.
+
+ 
+
+API Endpoints:
+
+1. Create an Employee:
+
+◦ Method: POST /employees
+
+◦ Body: { "name": "John Doe", "age": 30, "salary":
+
+50000, "manager_id": null, "department_id": 1 }
+
+ 
+
+2. Update Employee:
+
+◦ Method: PUT /employees/:id
+
+◦ Body: { "name": "John Smith", "age": 32, "salary":
+
+52000 }
+
+ 
+
+3. Delete Employee:
+
+◦ Method: DELETE /employees/:id
+
+ 
+
+4. Get Employees by Department with Manager Details:
+
+◦ Method: GET /employees/department/:department_id
+
+◦ Response: List of employees in the department, including the employee's name, age,
+
+salary, and their manager's name (if applicable).
+
+ 
+
+5. Calculate Average Salary by Department:
+
+◦ Method: GET /employees/department/:department_id/
+
+average-salary
+
+ 
+
+◦ Response: The average salary of all employees in the department.
+
+ 
+
+Database Schema:
+
+1. Employees Table:
+
+◦ employee_id: Auto-incrementing ID.
+
+◦ name: String.
+
+◦ age: Integer.
+
+◦ salary: Decimal.
+
+◦ manager_id: Foreign key, self-referencing (nullable).
+
+◦ department_id: Foreign key to departments.
+
+◦ created_at: Timestamp.
+
+◦ updated_at: Timestamp.
+
+2. Departments Table:
+
+◦ department_id: Auto-incrementing ID.
+
+◦ name: String.

@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: EMPLOYEE-MANAGEMENT
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/employee
+    username: root
+    password: tiger
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
