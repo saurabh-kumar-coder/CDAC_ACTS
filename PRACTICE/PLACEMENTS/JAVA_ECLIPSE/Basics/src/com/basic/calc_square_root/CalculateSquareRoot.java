@@ -13,8 +13,8 @@ public class CalculateSquareRoot {
 	public static void main(String[] args) {
 //		System.out.println(calculateSquareRoot(25));
 //		replaceString("banana", "bana");
-		getList();
-//		getRCount("Saurabh is Developer");
+//		getList();
+		getRCount("Saurabh is Developer");
 	}
 	private static void getRCount(String string) {
 		// TODO Auto-generated method stub
@@ -22,8 +22,12 @@ public class CalculateSquareRoot {
 		for(Character ch : string.toCharArray()) {
 			map.put(ch, map.getOrDefault(ch, 0) + 1);
 		}
-		map.entrySet().stream()
-			.forEach(e -> System.out.println(e.getKey() + " -> " + e.getValue()));
+		int sum = map.entrySet().stream()
+			.filter(e -> e.getKey() == 'r' || e.getKey() == 'R')
+			.mapToInt(Map.Entry::getValue)
+			.sum();
+		System.out.println(sum);
+//			.forEach(e -> System.out.println(e.getKey() + " -> " + e.getValue()));
 	}
 	/*
 	private static void replaceString(String string, String nstr) {
@@ -65,7 +69,3 @@ public class CalculateSquareRoot {
 	}
 	
 }
-
-//			if(data.getStatus().equals("Active")) {
-//				currentData.add(data);
-//			}
