@@ -13,8 +13,8 @@ public class CalculateSquareRoot {
 	public static void main(String[] args) {
 //		System.out.println(calculateSquareRoot(25));
 //		replaceString("banana", "bana");
-//		getList();
-		getRCount("Saurabh is Developer");
+		getList();
+//		getRCount("Saurabh is Developer");
 	}
 	private static void getRCount(String string) {
 		// TODO Auto-generated method stub
@@ -55,9 +55,9 @@ public class CalculateSquareRoot {
 	*/
 	private static void getList() {
 		List<Data> list = DummyData.getDummyData();
-		Map<String, Data> map = new LinkedHashMap<>();
+		Map<String, List<Data>> map = new LinkedHashMap<>();
 		for(Data data : list) {
-			System.out.println(map.put(data.getStatus(), data));
+			map.computeIfAbsent(data.getStatus(), k -> new ArrayList<>()).add(data);
 		}
 
 		map.entrySet().stream()
