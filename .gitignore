@@ -38,3 +38,6 @@ PRACTICE/MODULES/WebTechonolgy/day05/tailwind/package.json
 
 *\bin
 *\obj
+*\.vs 
+*\.csproj
+*\.sln
