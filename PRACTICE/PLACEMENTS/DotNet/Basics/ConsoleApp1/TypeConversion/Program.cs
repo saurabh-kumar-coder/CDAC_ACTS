@@ -17,6 +17,11 @@ namespace TypeConversion
             Console.WriteLine(dd);
             int aa = (int)dd;
 
+            String s = "2";
+            int si = int.Parse(s);
+            Console.WriteLine("si : " + si);
+            Console.WriteLine(Convert.ToInt32(s));
+            
         }
     }
 }
